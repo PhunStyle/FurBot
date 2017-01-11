@@ -1,0 +1,2 @@
+# FurBot
+Furry Discord Bot
