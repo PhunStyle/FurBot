@@ -69,51 +69,24 @@ function tags(client, evt, suffix) {
         // Grab the data
         let id = body[randomid].id;
         let file = body[randomid].file_url;
-        let desc = body[randomid].description;
-        let descLimit = desc.substring(0, 100);
-        let time = body[randomid].created_at.s + '000';
-        let timeFix = parseInt(time);
-        let artist = body[randomid].artist;
+        let artist = body[randomid].artist.join(', ');
         if (body[randomid].artist.length === 0) artist = 'Unknown';
+        if (artist.length >= 40) artist = artist.substring(0, 40);
+        if (artist.length >= 40) artist += '-...';
         let height = body[randomid].height;
         let width = body[randomid].width;
         let score = body[randomid].score;
-        let faves = body[randomid].fav_count;
-        let uploader = body[randomid].author;
-        let extension = body[randomid].file_ext;
-        // Put it all together for output (message object needs at least some message data)
-        // Logging
-        // console.log(randomid, id, file, descLimit, timeFix, height, width, score, faves, uploader, extension);
-        // Logging
-        let output = `\n`;
         let embed = {
           color: 77399,
           author: {
             name: 'Searched: ' + query,
-            icon_url: evt.message.author.avatarURL // eslint-disable-line camelcase
+            icon_url: evt.message.author.avatarURL
           },
-          ////title: 'https://e621.net/post/show/' + id,
-          url: 'https://e621.net/post/show/' + id, // The url for the title.
-          description: descLimit,
-          fields: [
-            { name: 'Artist:',
-              value: '\u200C' + artist,
-              inline: true },
-            { name: 'Resolution:',
-              value: width + 'x' + height,
-              inline: true },
-            { name: 'Score:',
-              value: score,
-              inline: true },
-            { name: 'Favorites:',
-              value: faves,
-              inline: true }
-          ],
-          image: { url: file },
-          timestamp: new Date(timeFix),
-          footer: { text: 'Uploader: ' + uploader }
+          url: 'https://e621.net/post/show/' + id,
+          description: `**Artist(s):** ${artist}\n**Score:** ${score} | **Resolution: ** ${width} x ${height}`,
+          image: { url: file }
         }
-        return evt.message.channel.sendMessage(output, false, embed);
+        return evt.message.channel.sendMessage('', false, embed);
       })
     })
   })

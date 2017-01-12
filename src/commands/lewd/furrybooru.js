@@ -72,38 +72,20 @@ function tags(client, evt, suffix) {
       let file = body[randomid].image;
       let directory = body[randomid].directory;
       let fileurl = `http://img.booru.org/furry/images/${directory}/${file}`;
-      let time = body[randomid].change + '000';
-      let timeFix = parseInt(time);
       let height = body[randomid].height;
       let width = body[randomid].width;
       let score = body[randomid].score;
-      let uploader = body[randomid].owner;
-      // Put it all together for output (message object needs at least some message data)
-      // Logging
-      // console.log(randomid, id, file, directory, timeFix, height, width, score, uploader);
-      // Logging
-      let output = `\n`;
       let embed = {
         color: 29695,
         author: {
           name: 'Searched: ' + query,
-          icon_url: evt.message.author.avatarURL // eslint-disable-line camelcase
+          icon_url: evt.message.author.avatarURL
         },
-        //title: 'http://furry.booru.org/index.php?page=post&s=view&id=' + id,
-        url: 'http://furry.booru.org/index.php?page=post&s=view&id=' + id, // The url for the title.
-        fields: [
-          { name: 'Resolution:',
-            value: width + 'x' + height,
-            inline: true },
-          { name: 'Score:',
-            value: score,
-            inline: true }
-        ],
-        image: { url: fileurl },
-        timestamp: new Date(timeFix),
-        footer: { text: 'Uploader: ' + uploader }
+        url: 'http://furry.booru.org/index.php?page=post&s=view&id=' + id,
+        description: `**Score:** ${score} | **Resolution: ** ${width} x ${height}`,
+        image: { url: fileurl }
       }
-      return evt.message.channel.sendMessage(output, false, embed);
+      return evt.message.channel.sendMessage('', false, embed);
     })
   })
 })

@@ -18,9 +18,9 @@ function findPoke(client, evt, suffix, lang) {
     return Promise.all(PokePromises)
   })
   .then(function(data) {
-    let output = `\n`;
     let typesArray = [];
     let typesData = data[0].types.forEach(types => {typesArray.push(types.type.name)});
+    let flavorText = data[1].flavor_text_entries[1].flavor_text;
     let embed = {
       color: 13384507,
       author: {
@@ -28,7 +28,7 @@ function findPoke(client, evt, suffix, lang) {
         icon_url: data[0].sprites.front_default // eslint-disable-line camelcase
       },
       url: 'http://bulbapedia.bulbagarden.net/wiki/' + data[0].name, // The url for the title.
-      description: data[1].flavor_text_entries[1].flavor_text,
+      description: flavorText.replace(/\n|\r/g, ' '),
       fields: [
         { name: 'Pokedex ID:',
           value: data[0].id,
@@ -70,7 +70,7 @@ function findPoke(client, evt, suffix, lang) {
       ],
       image: { url: 'http://www.pokestadium.com/sprites/xy/' + data[0].name + '.gif' }
     }
-    return Promise.resolve(evt.message.channel.sendMessage(output, false, embed));
+    return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   })
   .catch(function(err){
     return Promise.resolve(evt.message.channel.sendMessage(`\u26A0  |  No results for: \`${suffix}\``))

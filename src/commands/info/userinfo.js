@@ -7,7 +7,6 @@ import { getOrdinal, numberWithCommas, secondDec, toTitleCase } from '../../help
 function userinfo(client, evt, suffix) {
   const userinfo = [];
   if (evt.message.channel.isPrivate) {
-    let output = `\n`;
     let embed = {
       color: 29695,
       author: {
@@ -32,9 +31,8 @@ function userinfo(client, evt, suffix) {
       timestamp: new Date(evt.message.author.registeredAt),
       footer: { text: 'Registered at' }
     }
-    return Promise.resolve(evt.message.channel.sendMessage(output, false, embed));
+    return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   } else if (!suffix && !evt.message.mentions.length) {
-    let output = `\n`;
     let embed = {
       color: 29695,
       author: {
@@ -59,10 +57,9 @@ function userinfo(client, evt, suffix) {
       timestamp: new Date(evt.message.author.registeredAt),
       footer: { text: 'Registered at' }
     }
-    return Promise.resolve(evt.message.channel.sendMessage(output, false, embed));
+    return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   } else if (evt.message.mentions.length) {
     R.forEach(user => {
-      let output = `\n`;
       let embed = {
         color: 29695,
         author: {
@@ -87,12 +84,11 @@ function userinfo(client, evt, suffix) {
         timestamp: new Date(user.registeredAt),
         footer: { text: 'Registered at' }
       }
-      return Promise.resolve(evt.message.channel.sendMessage(output, false, embed));
+      return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
     }, evt.message.mentions);
   } else {
     const user = R.find(R.propEq('username', suffix))(evt.message.guild.members);
     if (!user) return;
-    let output = `\n`;
     let embed = {
       color: 29695,
       author: {
@@ -117,7 +113,7 @@ function userinfo(client, evt, suffix) {
       timestamp: new Date(user.registeredAt),
       footer: { text: 'Registered at' }
     }
-    return Promise.resolve(evt.message.channel.sendMessage(output, false, embed));
+    return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   }
   return Promise.resolve(userinfo);
 }

@@ -8,7 +8,6 @@ function channelinfo(client, evt, suffix) {
   const channelinfo = [];
   if (evt.message.channel.isPrivate) return Promise.resolve('\u2139  |  Use this command in a server!');
   if (!suffix && evt.message.content.indexOf('<#') === -1) {
-    let output = `\n`;
     let embed = {
       color: 29695,
       author: {
@@ -38,12 +37,11 @@ function channelinfo(client, evt, suffix) {
       timestamp: new Date(evt.message.channel.createdAt),
       footer: { text: 'Created at' }
     }
-    return Promise.resolve(evt.message.channel.sendMessage(output, false, embed));
+    return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   } else if (evt.message.content.indexOf('<#') !== -1) {
     R.forEach(suffix => {
     const channel = R.find(R.propEq('id', suffix.substring(2, suffix.length - 1)))(evt.message.guild.channels);
       if (channel.type === 0) {
-        let output = `\n`;
         let embed = {
           color: 29695,
           author: {
@@ -73,9 +71,8 @@ function channelinfo(client, evt, suffix) {
           timestamp: new Date(channel.createdAt),
           footer: { text: 'Created at' }
         }
-        return Promise.resolve(evt.message.channel.sendMessage(output, false, embed));
+        return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
       } else {
-      let output = `\n`;
       let embed = {
         color: 29695,
         author: {
@@ -105,14 +102,13 @@ function channelinfo(client, evt, suffix) {
         timestamp: new Date(channel.createdAt),
         footer: { text: 'Created at' }
       }
-      return Promise.resolve(evt.message.channel.sendMessage(output, false, embed));
+      return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
       }
     }, suffix.split(' '));
     } else {
       const channel = R.find(R.propEq('name', suffix))(evt.message.guild.channels);
       if (!channel) return;
       if (channel.type === 0) {
-        let output = `\n`;
         let embed = {
           color: 29695,
           author: {
@@ -142,9 +138,8 @@ function channelinfo(client, evt, suffix) {
           timestamp: new Date(channel.createdAt),
           footer: { text: 'Created at' }
         }
-        return Promise.resolve(evt.message.channel.sendMessage(output, false, embed));
+        return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
       } else {
-        let output = `\n`;
         let embed = {
           color: 29695,
           author: {
@@ -174,7 +169,7 @@ function channelinfo(client, evt, suffix) {
           timestamp: new Date(channel.createdAt),
           footer: { text: 'Created at' }
         }
-        return Promise.resolve(evt.message.channel.sendMessage(output, false, embed));
+        return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
       }
   }
   return Promise.resolve(channelinfo);

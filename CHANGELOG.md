@@ -1,3 +1,10 @@
+<a name="3.3.2" />
+## 3.3.2 (January 12th, 2016)
+
+### Technical Features
+- Hopefully optimized a lot of the lewd commands, they should also be less large and bulky now.
+- Optimized all the commands that use embeds.
+
 <a name="3.3.1" />
 ## 3.3.1 (January 11th, 2016)
 

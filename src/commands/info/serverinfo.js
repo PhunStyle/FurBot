@@ -8,7 +8,6 @@ function serverinfo(client, evt, suffix) {
   const serverinfo = [];
   if (evt.message.channel.isPrivate) return Promise.resolve('\u2139  |  Use this command in a server!');
   if (!suffix) {
-    let output = `\n`;
     let embed = {
       color: 29695,
       author: {
@@ -39,11 +38,10 @@ function serverinfo(client, evt, suffix) {
       timestamp: new Date(evt.message.guild.createdAt),
       footer: { text: 'Created at' }
     }
-    return Promise.resolve(evt.message.channel.sendMessage(output, false, embed));
+    return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   } else {
     const guild = R.find(R.propEq('name', suffix))(client.Guilds);
     if (!guild || nconf.get('SHARDING')) return;
-    let output = `\n`;
     let embed = {
       color: 29695,
       author: {
@@ -74,7 +72,7 @@ function serverinfo(client, evt, suffix) {
       timestamp: new Date(guild.createdAt),
       footer: { text: 'Created at' }
     }
-    return Promise.resolve(evt.message.channel.sendMessage(output, false, embed));
+    return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   }
   return Promise.resolve(serverinfo);
 }

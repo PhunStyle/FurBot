@@ -70,35 +70,20 @@ function tags(client, evt, suffix) {
       // Grab the data
       let id = body[randomid].id;
       let file = body[randomid].file_url;
-      let time = body[randomid].change + '000';
-      let timeFix = parseInt(time);
       let height = body[randomid].height;
       let width = body[randomid].width;
       let score = body[randomid].score;
-      let uploader = body[randomid].owner;
-      // Put it all together for output (message object needs at least some message data)
-      let output = `\n`;
       let embed = {
         color: 29695,
         author: {
           name: 'Searched: ' + query,
-          icon_url: evt.message.author.avatarURL // eslint-disable-line camelcase
+          icon_url: evt.message.author.avatarURL
         },
-        //title: 'http://gelbooru.com/index.php?page=post&s=view&id=' + id,
-        url: 'http://gelbooru.com/index.php?page=post&s=view&id=' + id, // The url for the title.
-        fields: [
-          { name: 'Resolution:',
-            value: width + 'x' + height,
-            inline: true },
-          { name: 'Score:',
-            value: score,
-            inline: true }
-        ],
-        image: { url: file },
-        timestamp: new Date(timeFix),
-        footer: { text: 'Uploader: ' + uploader }
+        url: 'http://gelbooru.com/index.php?page=post&s=view&id=' + id,
+        description: `**Score:** ${score} | **Resolution: ** ${width} x ${height}`,
+        image: { url: file }
       }
-      return evt.message.channel.sendMessage(output, false, embed);
+      return evt.message.channel.sendMessage('', false, embed);
     })
   })
 })

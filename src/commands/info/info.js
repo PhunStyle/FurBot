@@ -8,7 +8,6 @@ function botinfo(client, evt) {
   const uptimem = Math.floor(process.uptime() % (60 * 60) / 60);
   const uptimes = Math.floor(process.uptime() % 60);
   const botinfo = [];
-  let output = `\n`;
   let embed = {
     color: 2455143,
     author: {
@@ -23,7 +22,7 @@ function botinfo(client, evt) {
         value: 'Discordie',
         inline: true },
       { name: 'Version:',
-        value: '3.3.1',
+        value: '3.3.2',
         inline: true },
       { name: 'Servers:',
         value: client.Guilds.length,
@@ -45,7 +44,7 @@ function botinfo(client, evt) {
         inline: true }
     ]
   }
-    return Promise.resolve(evt.message.channel.sendMessage(output, false, embed));
+    return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
 }
 
 export const help = {info: {}};
