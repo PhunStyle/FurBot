@@ -1,3 +1,14 @@
+<a name="3.3.3" />
+## 3.3.3 (January 16th, 2016)
+
+### Features
+- Added a more forgiving search to the pokedex, it now tries to fix your spelling errors!
+
+### Bug Fixes
+- Removed some overhead from the lewd commands
+- Fixed a bug that caused Errors in the log file
+- Fixed a bug that allowed the `!e6` command to be repeated more than the allowed number of times
+
 <a name="3.3.2" />
 ## 3.3.2 (January 12th, 2016)
 
