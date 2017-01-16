@@ -30,6 +30,7 @@ function _makeRequest(options) {
 function tags(client, evt, suffix) {
   const channel_id = evt.message.channel_id;
   return getNSFWChannel(channel_id).then(value => {
+    if (evt.message.channel.isPrivate) value = true;
     if (value === 'false') return Promise.resolve(`\u26A0  |  Please use this command in a NSFW channel. Admins can enable NSFW with the command \`!setnsfw\``);
     let query;
     let array = suffix.split(' ');
@@ -58,8 +59,8 @@ function tags(client, evt, suffix) {
     };
 
     return Promise.resolve(R.repeat('tags', count))
-      .map(() => {
-    return _makeRequest(options)
+    .map(() => {
+      return _makeRequest(options)
       .then(body => {
         if (!body || typeof body === 'undefined' || body.length == 0) return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
         // Do some math
