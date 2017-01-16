@@ -1,16 +1,33 @@
 import Promise from 'bluebird';
+import didyoumean from 'didyoumean';
 import R from 'ramda';
-import T from '../../../translate';
 import Pokedex from 'pokedex-promise-v2'
+
+import { poke_list } from '../../../data';
 import { getOrdinal, numberWithCommas, secondDec, toTitleCase } from '../../../helpers';
+
 
 const P = new Pokedex();
 
+// Verify name of a pokemon. If pokemon is not found, do a closest string match to find it.
+// If no pokemon can be matched, return the string anyway.
+function _verifyName(poke) {
+  const poke_reg = poke.toLowerCase();
+  if (!poke_list[poke_reg]) {
+    const poke_search = didyoumean(poke_reg, R.keys(poke_list));
+    if (poke_search) return poke_search;
+  }
+  return poke_reg;
+}
+
 function findPoke(client, evt, suffix, lang) {
   if (!suffix) return Promise.resolve(T('pokemon_usage', lang));
-  suffix = suffix.toLowerCase();
-  var PokePromises = [P.getPokemonByName(suffix), P.getPokemonSpeciesByName(suffix)];
-  evt.message.channel.sendMessage(`\uD83D\uDD0D Searching for ${suffix}...`)
+
+  const poke = suffix;
+  const poke_reg = _verifyName(poke);
+
+  var PokePromises = [P.getPokemonByName(poke_reg), P.getPokemonSpeciesByName(poke_reg)];
+  evt.message.channel.sendMessage(`\uD83D\uDD0D Searching for ${poke_reg}...`)
   .then(function(message) {
     setTimeout(function() {
         client.Messages.deleteMessage(message.id, evt.message.channel.id);
@@ -66,7 +83,6 @@ function findPoke(client, evt, suffix, lang) {
         { name: 'Health:',
           value: data[0].stats[5].base_stat,
           inline: true }
-
       ],
       image: { url: 'http://www.pokestadium.com/sprites/xy/' + data[0].name + '.gif' }
     }
