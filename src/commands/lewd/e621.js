@@ -1,11 +1,9 @@
 import Promise from 'bluebird';
-import didyoumean from 'didyoumean';
-import nconf from 'nconf';
 import R from 'ramda';
 import _request from 'request';
-import SuperError from 'super-error';
 
 import { getNSFWChannel } from '../../redis';
+
 
 const request = Promise.promisify(_request);
 
@@ -39,7 +37,7 @@ function tags(client, evt, suffix) {
     let count = 1;
     if (suffix && Number.isInteger(lastTag)) {
       count = lastTag;
-      if (count > 15) count = 10;
+      if (count > 5) count = 5;
       if (count < 0) count = 1;
       let removeCount = R.slice(0, -1, array);
       let cleanSuffix = R.join(' ', removeCount);

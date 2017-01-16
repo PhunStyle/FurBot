@@ -145,6 +145,8 @@ function connect() {
 function forceFetchUsers() {
   logger.info('Force fetching users');
   client.Users.fetchMembers();
+  logger.info('Setting Game')
+  client.User.setGame('!help - !info');
 }
 
 if (nconf.get('SHARDING')) {
@@ -202,7 +204,7 @@ export function start() {
 
   client.Dispatcher.on('DISCONNECTED', err => {
     logger.warn('Disconnected. Attempting to reconnect in 10 seconds...');
-    sentry(err, 'discord');
+    // sentry(err, 'discord'); # Disable sentry logging
     setTimeout(connect, 10000);
   });
 

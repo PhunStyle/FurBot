@@ -43,8 +43,6 @@ function warn(msg) {
 function error(msg) {
   if (production) return _submitToLogger('error', msg);
   console.log(chalk.magenta.bold(`[FurBot]`), chalk.blue(`[${moment().format('YYYY-MM-DD HH:mm:ss')}]`), chalk.red(`[ERROR] ${msg} ++`));
-  var str = JSON.stringify(msg);
-  console.log(str);
 }
 
 

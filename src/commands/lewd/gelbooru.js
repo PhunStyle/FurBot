@@ -1,11 +1,9 @@
 import Promise from 'bluebird';
-import didyoumean from 'didyoumean';
-import nconf from 'nconf';
 import R from 'ramda';
 import _request from 'request';
-import SuperError from 'super-error';
 
 import { getNSFWChannel } from '../../redis';
+
 
 const request = Promise.promisify(_request);
 
