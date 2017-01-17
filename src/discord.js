@@ -9,6 +9,9 @@ import logger from './logger';
 import sentry from './sentry';
 import startExpress from './express';
 import { init as initPhantom } from './phantom';
+import SegfaultHandler from 'segfault-handler';
+
+SegfaultHandler.registerHandler("crash.log");
 
 import { startPortalTimeouts, startPortalIntervals } from './portals';
 import {
