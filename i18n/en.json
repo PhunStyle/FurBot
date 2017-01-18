@@ -140,6 +140,7 @@
   "translate_leet": "1337ifies the sentence",
   "translate_snoop": "Snoopifies tha sentence",
   "translate_yoda": "Yodaifies the sentence",
+  "translate_translate": "Translates sentences. First two characters are the language to translate to. Usage: `!translate NL Hello World`",
   "unshorten": "Unshortens a shortened link",
   "unshorten_usage": "Usage: **`!unshorten`** `url`",
   "uptime": "Shows how long the bot has been online",

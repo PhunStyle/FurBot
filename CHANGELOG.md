@@ -1,3 +1,14 @@
+<a name="3.4.0" />
+## 3.4.0 (January 18th, 2016)
+
+### Features
+- Added Google Translate to the `!translate` command.
+
+### Bug Fixes
+- Fixed a bug that caused a SIGSEGV error, causing FurBot to restart - making the experimental prune command useless.
+- Fixed a bug that caused a help text error for the `!pokemon` command. If it has no suffix it should now properly display usage.
+
+
 <a name="3.3.3" />
 ## 3.3.3 (January 16th, 2016)
 

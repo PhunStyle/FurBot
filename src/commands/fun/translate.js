@@ -8,6 +8,7 @@ import T from '../../translate';
 
 const request = Promise.promisify(require('request'));
 const gizoogle = Promise.promisifyAll(require('gizoogle'));
+const gtranslate = Promise.promisifyAll(require('google-translate-api'));
 
 function leet(client, evt, suffix, lang) {
   if (!suffix) return Promise.resolve(T('leet_usage', lang));
@@ -37,16 +38,24 @@ function yoda(client, evt, phrase, lang) {
     .then($ => $('textarea[name="YodaSpeak"]').first().text());
 }
 
-function translate(client, evt, suffix, lang) {
+function language(client, evt, suffix, lang) {
+  if (!suffix) return helpText(client, evt, 'translate', lang);
+
   const split_suffix = suffix.split(' ');
-  const cmd = split_suffix[0];
+  const trnsTo = split_suffix[0];
   split_suffix.shift();
   suffix = split_suffix.join(' ');
 
-  if (cmd === 'leet') return leet(client, evt, suffix, lang);
-  if (cmd === 'snoop') return snoop(client, evt, suffix, lang);
-  if (cmd === 'yoda') return yoda(client, evt, suffix, lang);
-  return helpText(client, evt, 'translate', lang);
+  gtranslate(suffix, {to: trnsTo}).then(res => {
+    return Promise.resolve(evt.message.channel.sendMessage(res.text));
+  })
+  .catch(err => {
+    return Promise.resolve(evt.message.channel.sendMessage('', false, { color: 16763981, description: `\u26A0  ${err}  |  [Language Code List](https://sites.google.com/site/tomihasa/google-language-codes)` }));
+  });
+}
+
+function translate(client, evt, suffix, lang) {
+  return language(client, evt, suffix, lang);
 }
 
 export default {
@@ -67,7 +76,8 @@ export const help = {
     subcommands: [
       {name: 'leet'},
       {name: 'snoop'},
-      {name: 'yoda'}
+      {name: 'yoda'},
+      {name: 'translate'}
     ]
   }
 };

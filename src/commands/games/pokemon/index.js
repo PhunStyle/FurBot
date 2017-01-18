@@ -5,6 +5,7 @@ import Pokedex from 'pokedex-promise-v2'
 
 import { poke_list } from '../../../data';
 import { getOrdinal, numberWithCommas, secondDec, toTitleCase } from '../../../helpers';
+import T from '../../../translate';
 
 
 const P = new Pokedex();
