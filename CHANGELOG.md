@@ -1,3 +1,9 @@
+<a name="3.4.1" />
+## 3.4.0 (January 21st, 2016)
+
+### Bug Fixes
+- Fixed `!chat`.
+
 <a name="3.4.0" />
 ## 3.4.0 (January 18th, 2016)
 
