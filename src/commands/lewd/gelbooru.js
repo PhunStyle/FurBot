@@ -68,7 +68,9 @@ function tags(client, evt, suffix) {
         let randomid = Math.floor(Math.random() * body.length);
         // Grab the data
         let id = body[randomid].id;
-        let file = body[randomid].file_url;
+        let file = body[randomid].image;
+        let directory = body[randomid].directory;
+        let fileurl = `https://gelbooru.com/images/${directory}/${file}`;
         let height = body[randomid].height;
         let width = body[randomid].width;
         let score = body[randomid].score;
@@ -80,7 +82,7 @@ function tags(client, evt, suffix) {
           },
           url: 'http://gelbooru.com/index.php?page=post&s=view&id=' + id,
           description: `**Score:** ${score} | **Resolution: ** ${width} x ${height}`,
-          image: { url: file }
+          image: { url: fileurl }
         }
         return evt.message.channel.sendMessage('', false, embed);
       })

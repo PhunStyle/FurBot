@@ -1,3 +1,10 @@
+<a name="3.4.2" />
+## 3.4.2 (February 11th, 2016)
+
+### Bug Fixes
+- Fixed `!chat`
+- Fixed `!gelbooru`
+
 <a name="3.4.1" />
 ## 3.4.1 (January 21st, 2016)
 
