@@ -47,8 +47,8 @@ function tags(client, evt, suffix) {
     } else {
       query = suffix.toLowerCase().replace('tags ', '');
     }
-    query = query.replace(' ', ',');
-    query = query.replace('_', '+');
+    query = query.replace(/ /gi, ',');
+    query = query.replace(/_/gi, '+');
 
     if (query == '') return Promise.resolve(`\u26A0  |  No tags were supplied`);
     let checkLength = query.split(' ');
@@ -64,6 +64,16 @@ function tags(client, evt, suffix) {
     return Promise.resolve(R.repeat('tags', count))
     .map(() => {
       return _makeRequest(options)
+      .then(count => {
+        let pages = Math.ceil(count.total / count.search.length);
+        return _makeRequest({
+          url: `https://derpibooru.org/search.json?q=${query}`,
+          qs: {
+            key: `${apikey}`,
+            page: `${pages}`
+          }
+        })
+      })
       .then(body => {
         if (!body || typeof body === 'undefined' || body.search.length == 0) return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
         // Do some math
