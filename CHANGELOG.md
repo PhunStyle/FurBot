@@ -1,15 +1,20 @@
-<a name="3.4.2" />
-## 3.4.2 (February 11th, 2016)
+<a name="3.5.0" />
+## 3.5.0 (February 11th, 2016)
+
+### Features
+- Added `!dp` derpibooru image searching to the lewd commands.
 
 ### Bug Fixes
 - Fixed `!chat`
-- Fixed `!gelbooru`
+- Fixed `!gb` gelbooru
+
 
 <a name="3.4.1" />
 ## 3.4.1 (January 21st, 2016)
 
 ### Bug Fixes
 - Fixed `!chat`.
+
 
 <a name="3.4.0" />
 ## 3.4.0 (January 18th, 2016)
@@ -33,6 +38,7 @@
 - Fixed a bug that caused Errors in the log file
 - Fixed a bug that allowed the `!e6` command to be repeated more than the allowed number of times
 
+
 <a name="3.3.2" />
 ## 3.3.2 (January 12th, 2016)
 
@@ -40,12 +46,14 @@
 - Hopefully optimized a lot of the lewd commands, they should also be less large and bulky now.
 - Optimized all the commands that use embeds.
 
+
 <a name="3.3.1" />
 ## 3.3.1 (January 11th, 2016)
 
 ### Bug Fixes
 - Fixed `!db` returning a TypeError, new API rules since yesterday. You can only search for 2 tags on Danbooru at once now!
 - Fixed `!youtube` command returning an error.
+
 
 <a name="3.3.0" />
 ## 3.3.0 (January 10th, 2016)
@@ -65,6 +73,7 @@
 ### Technical Note
 I noticed FurBot crashed last night - not sure why. If you see errors or anything use the feedback or info commands to get in touch.
 
+
 <a name="3.2.4" />
 ## 3.2.4 (January 10th, 2016)
 
@@ -74,6 +83,7 @@ I noticed FurBot crashed last night - not sure why. If you see errors or anythin
 
 ### Technical Note
 I have seen FurBot crash and i am trying to figure out why - for now the bot may randomly go offline which is something i really hate seeing. I will try to keep a close eye on things moving forward.
+
 
 <a name="3.2.3" />
 ## 3.2.3 (January 9th, 2016)
@@ -90,6 +100,7 @@ I have seen FurBot crash and i am trying to figure out why - for now the bot may
 
 ### Technical Features
 - NSFW Restrictions coming soonTM?
+
 
 <a name="3.2.2" />
 ## 3.2.2 (December 13th, 2016)
