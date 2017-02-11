@@ -104,7 +104,7 @@ function tags(client, evt, suffix) {
 export default {
   dp: (client, evt, suffix, lang) => {
     const command = suffix.toLowerCase().split(' ')[0];
-    /*if (command === 'latest') return latest(client, evt, suffix);*/
+    //if (command === 'latest') return latest(client, evt, suffix);
     if (command === 'tags') return tags(client, evt, suffix);
     if (command !== 'tags' || command !== 'latest') return tags(client, evt, suffix);
   }
