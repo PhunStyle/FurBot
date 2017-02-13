@@ -164,6 +164,7 @@
   "youtube_usage": "Usage: **`!youtube`** `video tags`",
   "e6": "Search **e621** for images with your tag(s). A number as last tag will repeat the command. (Ex:) `pikachu 3`",
   "db": "Search **danbooru** for images with your tag(s). A number as last tag will repeat the command. (Ex:) `3girls`",
+  "dp": "Search **derpibooru** for images with your tag(s). A number as last tag will repeat the command. (Ex:) `cum ponut`",
   "gb": "Search **gelbooru** for images with your tag(s). A number as last tag will repeat the command. (Ex:) `yaoi 2boys`",
   "fb": "Search **furrybooru** for images with your tag(s). A number as last tag will repeat the command. (Ex:) `-male order:score`",
   "r34": "Search **rule34** for images with your tag(s). A number as last tag will repeat the command. (Ex:) `furry`",

@@ -63,6 +63,31 @@ function snake(client, evt, suffix) {
     .then(R.join('\n'));
 }
 
+function dog(client, evt, suffix) {
+  let count = 1;
+  if (suffix && suffix.split(' ')[0] === 'bomb') {
+    count = Number(suffix.split(' ')[1]) || 5;
+    if (count > 15) count = 15;
+    if (count < 0) count = 5;
+  }
+
+  const options = {
+    url: 'http://random.dog/woof',
+    json: true
+  };
+
+  return Promise.resolve(R.repeat('dog', count))
+    .map(() => {
+      return request(options)
+        .then(req => {
+          let result = 'http://random.dog/';
+          return result += req.body
+        })
+        .then(encodeURI);
+    })
+    .then(R.join('\n'));
+}
+
 function animals(client, evt, suffix, lang) {
   const split_suffix = suffix.split(' ');
   const cmd = split_suffix[0];
@@ -70,6 +95,7 @@ function animals(client, evt, suffix, lang) {
   suffix = split_suffix.join(' ');
 
   if (cmd === 'cat') return cat(client, evt, suffix);
+  if (cmd === 'dog') return dog(client, evt, suffix);
   if (cmd === 'pug') return pug(client, evt, suffix);
   if (cmd === 'snake') return snake(client, evt, suffix);
   return helpText(client, evt, 'animals', lang);
@@ -81,6 +107,9 @@ export default {
   cat,
   cats: cat,
   '\ud83d\udc31': cat,
+  dog,
+  dogs: dog,
+  '\ud83d\udc36': dog,
   pug,
   pugs: pug,
   snake,
@@ -96,6 +125,7 @@ export const help = {
     header_text: 'animals_header_text',
     subcommands: [
       {name: 'cat'},
+      {name: 'dog'},
       {name: 'pug'},
       {name: 'snake'}
     ]

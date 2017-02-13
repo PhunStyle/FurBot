@@ -1,3 +1,13 @@
+<a name="3.5.1" />
+## 3.5.1 (February 13th, 2016)
+
+### Features
+- Added `!dog` for adorable dogs as a new random animal image thingamabob.
+
+### Bug Fixes
+- Added some missing language strings.
+
+
 <a name="3.5.0" />
 ## 3.5.0 (February 11th, 2016)
 
