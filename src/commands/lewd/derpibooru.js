@@ -65,7 +65,7 @@ function tags(client, evt, suffix) {
     .map(() => {
       return _makeRequest(options)
       .then(count => {
-        let pages = Math.ceil(count.total / count.search.length);
+        let pages = Math.floor(Math.random() * Math.ceil(count.total / count.search.length));
         return _makeRequest({
           url: `https://derpibooru.org/search.json?q=${query}`,
           qs: {
