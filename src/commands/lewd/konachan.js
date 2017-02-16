@@ -94,7 +94,7 @@ function tags(client, evt, suffix) {
           let embed = {
             color: 15632519,
             author: {
-              name: 'Searched: ' + query,
+              name: query,
               icon_url: evt.message.author.avatarURL
             },
             url: 'http://konachan.com/post/show/' + id,

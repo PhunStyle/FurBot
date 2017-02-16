@@ -96,7 +96,7 @@ function tags(client, evt, suffix) {
           let embed = {
             color: 29695,
             author: {
-              name: 'Searched: ' + query,
+              name: query,
               icon_url: evt.message.author.avatarURL
             },
             url: 'http://furry.booru.org/index.php?page=post&s=view&id=' + id,

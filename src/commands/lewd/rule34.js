@@ -96,7 +96,7 @@ function tags(client, evt, suffix) {
           let embed = {
             color: 11199907,
             author: {
-              name: 'Searched: ' + query,
+              name: query,
               icon_url: evt.message.author.avatarURL
             },
             url: 'http://rule34.xxx/index.php?page=post&s=view&id=' + id,

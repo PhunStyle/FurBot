@@ -107,7 +107,7 @@ function tags(client, evt, suffix) {
           let embed = {
             color: 4035280,
             author: {
-              name: 'Searched: ' + suffix,
+              name: suffix,
               icon_url: evt.message.author.avatarURL
             },
             url: 'https://derpibooru.org/' + id,
