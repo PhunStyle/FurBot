@@ -57,9 +57,8 @@ function popkey(client, evt, suffix, lang) {
 
 function gif(client, evt, suffix, lang) {
   if (!suffix) return Promise.resolve(T('gif_usage', lang));
-
-  const number = Math.floor(Math.random() * 2) + 1;
-  if (number === 1) return popkey(client, evt, suffix, lang);
+  // const number = Math.floor(Math.random() * 2) + 1;
+  // if (number === 1) return popkey(client, evt, suffix, lang);
   return giphy(client, evt, suffix, lang);
 }
 
