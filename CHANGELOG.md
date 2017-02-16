@@ -1,4 +1,14 @@
 <a name="3.5.1" />
+## 3.6.0 (February 16th, 2016)
+
+### Features
+- Added blacklisting for the lewd commands. This is a major feature that will allow you to filter out nasty images you don't want to see. However if you're still curious you can click the link at the top of the embed to still visit the site's page with the image on there. (Did you know this was a feature all along? Clicking the tags you searched for?).
+
+### Bug Fixes
+- Updated `!chat` but now requires API key. Limited to 5000 calls per month so not sure how long it will last.
+
+
+<a name="3.5.1" />
 ## 3.5.1 (February 13th, 2016)
 
 ### Features

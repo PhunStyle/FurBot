@@ -1,9 +1,11 @@
 import Promise from 'bluebird';
 import Cleverbot from 'cleverbot-node';
 import ent from 'entities';
+import nconf from 'nconf';
 
 
 const clever = new Cleverbot();
+clever.configure({botapi: nconf.get('CLEVERBOT_KEY')});
 
 function chat(client, evt, suffix, lang) {
   if (!suffix) suffix = 'Hello.';

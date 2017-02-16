@@ -83,6 +83,32 @@ export function getNSFWChannel(channel_id) {
     });
 }
 
+export function setBlackListChannel(channel_id, blacklist) {
+  return client.hsetAsync(`channel_${channel_id}`, 'blacklist', blacklist)
+    .timeout(2000)
+    .catch(err => {
+      sentry(err, 'setBlackListChannel');
+    });
+}
+
+export function getBlackListChannel(channel_id) {
+  return client.hgetAsync(`channel_${channel_id}`, 'blacklist')
+    .then(blacklist => blacklist || null)
+    .timeout(2000)
+    .catch(err => {
+      sentry(err, 'getBlackListChannel');
+      return;
+    });
+}
+
+export function delBlackListChannel(channel_id) {
+  return client.hdelAsync(`channel_${channel_id}`, 'blacklist')
+    .timeout(2000)
+    .catch(err => {
+      sentry(err, 'delBlackListChannel');
+    });
+}
+
 export function getMessageTTL(user_id) {
   return client.getAsync(`ttl_${user_id}`)
     .timeout(2000)
