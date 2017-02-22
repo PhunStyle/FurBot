@@ -108,7 +108,7 @@ function tags(client, evt, suffix) {
             color: 4035280,
             author: {
               name: suffix,
-              icon_url: evt.message.author.avatarURL
+              icon_url: 'http://i.imgur.com/qeJd6ST.png'
             },
             url: 'https://derpibooru.org/' + id,
             description: `**Score:** ${score} | **Resolution: ** ${width} x ${height}`,

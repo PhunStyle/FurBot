@@ -61,19 +61,19 @@ function tags(client, evt, suffix) {
 
       if (query == '') return Promise.resolve(`\u26A0  |  No tags were supplied`);
       let checkLength = query.split(' ');
-      if (checkLength.length > 6) return Promise.resolve(`\u26A0  |  You can only search up to 6 tags`);
+      if (checkLength.length > 5) return Promise.resolve(`\u26A0  |  You can only search up to 5 tags`);
 
       const options = {
-        url: `https://e621.net/post/index.json?tags=${query}`,
+        url: `https://e621.net/post/index.json?tags=${query} order:random`,
         qs: {
-          limit: 300
+          limit: 100
         }
       };
 
-      return Promise.resolve(R.repeat('tags', count))
-      .map(() => {
-        return _makeRequest(options)
-        .then(body => {
+      return _makeRequest(options)
+      .then(body => {
+        return Promise.resolve(R.repeat('tags', count))
+        .map(() => {
           if (!body || typeof body === 'undefined' || body.length == 0) return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
           // Do some math
           let randomid = Math.floor(Math.random() * body.length);
@@ -98,7 +98,7 @@ function tags(client, evt, suffix) {
             color: 77399,
             author: {
               name: query,
-              icon_url: evt.message.author.avatarURL
+              icon_url: 'http://i.imgur.com/RrHrSOi.png'
             },
             url: 'https://e621.net/post/show/' + id,
             description: `**Artist(s):** ${artist}\n**Score:** ${score} | **Resolution: ** ${width} x ${height}`,

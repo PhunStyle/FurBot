@@ -1,4 +1,17 @@
-<a name="3.5.1" />
+<a name="3.7.0" />
+## 3.7.0 (February 22nd, 2016)
+
+### Features
+- Changed the lewd commands to only retrieve the tag list for your search once. This should improve performance and not fire as many requests at the target website.
+- Added the lewd sites' respective icons to the search results.
+- Added a little pokeball icon to `!pokemon` results.
+
+### Bug Fixes
+- Updated `!wiki` to their new preferred code style. Nothing changed on user end but it should stop putting errors in my log files now.
+- Changed some language strings. Better wording, hooray!
+
+
+<a name="3.6.0" />
 ## 3.6.0 (February 16th, 2016)
 
 ### Features

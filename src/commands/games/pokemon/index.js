@@ -43,7 +43,7 @@ function findPoke(client, evt, suffix, lang) {
       color: 13384507,
       author: {
         name: toTitleCase(data[0].name),
-        icon_url: data[0].sprites.front_default // eslint-disable-line camelcase
+        icon_url: 'http://i.imgur.com/M96kSgo.png' // eslint-disable-line camelcase
       },
       url: 'http://bulbapedia.bulbagarden.net/wiki/' + data[0].name, // The url for the title.
       description: flavorText.replace(/\n|\r/g, ' '),

@@ -22,7 +22,7 @@ function botinfo(client, evt) {
         value: 'Discordie',
         inline: true },
       { name: 'Version:',
-        value: '3.6.0',
+        value: '3.7.0',
         inline: true },
       { name: 'Servers:',
         value: client.Guilds.length,

@@ -1,15 +1,15 @@
 import Promise from 'bluebird';
-import Wiki from 'wikijs';
+import wiki from 'wikijs';
 
 import T from '../../translate';
 
 
-function wiki(client, evt, suffix, lang) {
+function wikipedia(client, evt, suffix, lang) {
   if (!suffix) return Promise.resolve(T('wiki_usage', lang));
 
   return new Promise(resolve => {
-    new Wiki().search(suffix, 1).then(data => {
-      new Wiki().page(data.results[0]).then(page => {
+    wiki().search(suffix, 1).then(data => {
+      wiki().page(data.results[0]).then(page => {
         page.summary().then(summary => {
           resolve(summary.toString().split('\n'));
         });
@@ -22,8 +22,8 @@ function wiki(client, evt, suffix, lang) {
 }
 
 export default {
-  wiki,
-  wikipedia: wiki
+  wiki: wikipedia,
+  wikipedia
 };
 
 export const help = {

@@ -71,10 +71,10 @@ function tags(client, evt, suffix) {
         }
       };
 
-      return Promise.resolve(R.repeat('tags', count))
-      .map(() => {
-        return _makeRequest(options)
-        .then(body => {
+      return _makeRequest(options)
+      .then(body => {
+        return Promise.resolve(R.repeat('tags', count))
+        .map(() => {
           if (!body || typeof body === 'undefined' || body.length == 0) return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
           // Do some math
           let randomid = Math.floor(Math.random() * body.length);
@@ -97,7 +97,7 @@ function tags(client, evt, suffix) {
             color: 11199907,
             author: {
               name: query,
-              icon_url: evt.message.author.avatarURL
+              icon_url: 'http://i.imgur.com/JtqlUfF.png'
             },
             url: 'http://rule34.xxx/index.php?page=post&s=view&id=' + id,
             description: `**Score:** ${score} | **Resolution: ** ${width} x ${height}`,
