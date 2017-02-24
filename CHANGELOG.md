@@ -1,3 +1,10 @@
+<a name="3.7.1" />
+## 3.7.1 (February 24th, 2016)
+
+### Bug Fixes
+- Fixed over 300 code lines to be compliant with the JavaScript linter.
+
+
 <a name="3.7.0" />
 ## 3.7.0 (February 22nd, 2016)
 
