@@ -1,7 +1,6 @@
 import Promise from 'bluebird';
-import nconf from 'nconf';
 import R from 'ramda';
-import { getOrdinal, numberWithCommas, secondDec, toTitleCase } from '../../helpers';
+import { toTitleCase } from '../../helpers';
 
 
 function userinfo(client, evt, suffix) {
@@ -30,7 +29,7 @@ function userinfo(client, evt, suffix) {
       thumbnail: { url: evt.message.author.avatarURL },
       timestamp: new Date(evt.message.author.registeredAt),
       footer: { text: 'Registered at' }
-    }
+    };
     return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   } else if (!suffix && !evt.message.mentions.length) {
     let embed = {
@@ -56,7 +55,7 @@ function userinfo(client, evt, suffix) {
       thumbnail: { url: evt.message.author.avatarURL },
       timestamp: new Date(evt.message.author.registeredAt),
       footer: { text: 'Registered at' }
-    }
+    };
     return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   } else if (evt.message.mentions.length) {
     R.forEach(user => {
@@ -83,7 +82,7 @@ function userinfo(client, evt, suffix) {
         thumbnail: { url: user.avatarURL },
         timestamp: new Date(user.registeredAt),
         footer: { text: 'Registered at' }
-      }
+      };
       return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
     }, evt.message.mentions);
   } else {
@@ -112,7 +111,7 @@ function userinfo(client, evt, suffix) {
       thumbnail: { url: user.avatarURL },
       timestamp: new Date(user.registeredAt),
       footer: { text: 'Registered at' }
-    }
+    };
     return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   }
   return Promise.resolve(userinfo);

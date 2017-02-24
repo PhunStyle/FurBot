@@ -1,5 +1,4 @@
 import Promise from 'bluebird';
-import nconf from 'nconf';
 import R from 'ramda';
 
 

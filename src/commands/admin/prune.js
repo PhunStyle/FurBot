@@ -1,9 +1,4 @@
 import Promise from 'bluebird';
-import nconf from 'nconf';
-import R from 'ramda';
-
-import { getShardsCmdResults } from '../../redis';
-import T from '../../translate';
 
 
 function prune(client, evt, suffix, lang) {
@@ -14,18 +9,18 @@ function prune(client, evt, suffix, lang) {
     Promise.all(prunePromises) // with Promise
     .then(function(messageArray) {
       messageArray.reverse();
-      var cleanArray = messageArray.filter(msg => {return msg.deleted == false});
+      var cleanArray = messageArray.filter(msg => { return msg.deleted === false; });
       var i;
       if (!suffix) suffix = 2;
       if (suffix >= cleanArray.length) suffix = cleanArray.length;
-      var maxLength = parseInt(suffix);
+      var maxLength = parseInt(suffix, 10);
       var messageIdArray = [];
-      for (i = maxLength-1; i >= 0; i--) {
+      for (i = maxLength - 1; i >= 0; i--) {
         messageIdArray.push(cleanArray[i].id);
       }
       client.Messages.deleteMessages(messageIdArray, evt.message.channel.id);
     });
-    return Promise.resolve(evt.message.channel.sendMessage('\u2705  |  Deleted!'))
+    return Promise.resolve(evt.message.channel.sendMessage('\u2705  |  Deleted!'));
   }
 }
 

@@ -1,10 +1,10 @@
 import Promise from 'bluebird';
 import didyoumean from 'didyoumean';
 import R from 'ramda';
-import Pokedex from 'pokedex-promise-v2'
+import Pokedex from 'pokedex-promise-v2';
 
 import { poke_list } from '../../../data';
-import { getOrdinal, numberWithCommas, secondDec, toTitleCase } from '../../../helpers';
+import { toTitleCase } from '../../../helpers';
 import T from '../../../translate';
 
 
@@ -31,13 +31,13 @@ function findPoke(client, evt, suffix, lang) {
   evt.message.channel.sendMessage(`\uD83D\uDD0D Searching for ${poke_reg}...`)
   .then(function(message) {
     setTimeout(function() {
-        client.Messages.deleteMessage(message.id, evt.message.channel.id);
+      client.Messages.deleteMessage(message.id, evt.message.channel.id);
     }, 5000);
-    return Promise.all(PokePromises)
+    return Promise.all(PokePromises);
   })
   .then(function(data) {
     let typesArray = [];
-    let typesData = data[0].types.forEach(types => {typesArray.push(types.type.name)});
+    data[0].types.forEach(types => { typesArray.push(types.type.name); });
     let flavorText = data[1].flavor_text_entries[1].flavor_text;
     let embed = {
       color: 13384507,
@@ -86,12 +86,14 @@ function findPoke(client, evt, suffix, lang) {
           inline: true }
       ],
       image: { url: 'http://www.pokestadium.com/sprites/xy/' + data[0].name + '.gif' }
-    }
+    };
     return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   })
-  .catch(function(err){
-    return Promise.resolve(evt.message.channel.sendMessage(`\u26A0  |  No results for: \`${suffix}\``))
-  })
+  .catch(function(err) {
+    if (err) {
+      return Promise.resolve(evt.message.channel.sendMessage(`\u26A0  |  No results for: \`${suffix}\``));
+    }
+  });
 }
 
 export default {

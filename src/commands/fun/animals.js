@@ -81,7 +81,8 @@ function dog(client, evt, suffix) {
       return request(options)
         .then(req => {
           let result = 'http://random.dog/';
-          return result += req.body
+          result += req.body;
+          return result;
         })
         .then(encodeURI);
     })

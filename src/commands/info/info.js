@@ -1,13 +1,10 @@
 import Promise from 'bluebird';
-import nconf from 'nconf';
-import R from 'ramda';
 
 
 function botinfo(client, evt) {
   const uptimeh = Math.floor(process.uptime() / (60 * 60));
   const uptimem = Math.floor(process.uptime() % (60 * 60) / 60);
   const uptimes = Math.floor(process.uptime() % 60);
-  const botinfo = [];
   let embed = {
     color: 2455143,
     author: {
@@ -21,8 +18,8 @@ function botinfo(client, evt) {
       { name: 'Library:',
         value: 'Discordie',
         inline: true },
-      { name: 'Version:',
-        value: '3.7.0',
+      { name: 'FurBot Version:',
+        value: '3.7.1',
         inline: true },
       { name: 'Servers:',
         value: client.Guilds.length,
@@ -43,8 +40,8 @@ function botinfo(client, evt) {
         value: `[Click Here](https://discord.gg/rnvEFzQ)`,
         inline: true }
     ]
-  }
-    return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
+  };
+  return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
 }
 
 export const help = {info: {}};

@@ -11,7 +11,7 @@ import startExpress from './express';
 import { init as initPhantom } from './phantom';
 import SegfaultHandler from 'segfault-handler';
 
-SegfaultHandler.registerHandler("crash.log");
+SegfaultHandler.registerHandler('crash.log');
 
 import { startPortalTimeouts, startPortalIntervals } from './portals';
 import {
@@ -148,7 +148,7 @@ function connect() {
 function forceFetchUsers() {
   logger.info('Force fetching users');
   client.Users.fetchMembers();
-  logger.info('Setting Game')
+  logger.info('Setting Game');
   client.User.setGame('!help - !info');
 }
 
@@ -206,9 +206,10 @@ export function start() {
   });
 
   client.Dispatcher.on('DISCONNECTED', err => {
-    logger.warn('Disconnected. Attempting to reconnect in 10 seconds...');
-    // sentry(err, 'discord'); # Disable sentry logging
-    setTimeout(connect, 10000);
+    if (err) {
+      logger.warn('Disconnected. Attempting to reconnect in 10 seconds...');
+      setTimeout(connect, 10000);
+    }
   });
 
   startPortalIntervals(client);

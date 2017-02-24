@@ -12,24 +12,24 @@ function _makeRequest(options) {
   let default_options = {
     json: true,
     headers: {
-      'User-Agent' : 'FurBot/1.0 (Phun @ e621)'
+      'User-Agent': 'FurBot/1.0 (Phun @ e621)'
     }
   };
 
   if (options.qs) options.qs = R.merge(default_options.qs, options.qs);
   return request(R.merge(default_options, options, true))
     .tap(res => {
-      if (res.statusCode === 521) throw new ApiDown();
+      // if (res.statusCode === 521) throw new ApiDown();
     })
     .then(R.prop('body'))
     .tap(body => {
-      //if (body.error) throw new Error(body.error);
+      // if (body.error) throw new Error(body.error);
     });
 }
 
 function findOne(haystack, arr) {
-    return arr.some(v => haystack.includes(v))
-};
+  return arr.some(v => haystack.includes(v));
+}
 
 function tags(client, evt, suffix) {
   const channel_id = evt.message.channel_id;
@@ -46,7 +46,7 @@ function tags(client, evt, suffix) {
         }
       }
       let query;
-      let lastTag = Number.parseInt(array[array.length-1]);
+      let lastTag = Number.parseInt(array[array.length - 1], 10);
       let count = 1;
       if (suffix && Number.isInteger(lastTag)) {
         count = lastTag;
@@ -59,7 +59,7 @@ function tags(client, evt, suffix) {
         query = suffix.toLowerCase().replace('tags ', '');
       }
 
-      if (query == '') return Promise.resolve(`\u26A0  |  No tags were supplied`);
+      if (query === '') return Promise.resolve(`\u26A0  |  No tags were supplied`);
       let checkLength = query.split(' ');
       if (checkLength.length > 2) return Promise.resolve(`\u26A0  |  You can only search up to 2 tags`);
 
@@ -74,7 +74,7 @@ function tags(client, evt, suffix) {
       .then(body => {
         return Promise.resolve(R.repeat('tags', count))
         .map(() => {
-          if (!body || typeof body === 'undefined' || body.length == 0) return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
+          if (!body || typeof body === 'undefined' || body.length === 0) return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
           // Do some math
           let randomid = Math.floor(Math.random() * body.length);
           // Grab the data
@@ -100,18 +100,18 @@ function tags(client, evt, suffix) {
             url: 'http://danbooru.donmai.us/posts/' + id,
             description: `**Score:** ${score} | **Resolution: ** ${width} x ${height}`,
             image: { url: fileurl }
-          }
+          };
           return evt.message.channel.sendMessage('', false, embed);
-        })
-      })
-    })
-  })
+        });
+      });
+    });
+  });
 }
 
 export default {
   db: (client, evt, suffix, lang) => {
     const command = suffix.toLowerCase().split(' ')[0];
-    //if (command === 'latest') return latest(client, evt, suffix);
+    // if (command === 'latest') return latest(client, evt, suffix);
     if (command === 'tags') return tags(client, evt, suffix);
     if (command !== 'tags' || command !== 'latest') return tags(client, evt, suffix);
   }
