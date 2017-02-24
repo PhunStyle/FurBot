@@ -37,7 +37,7 @@ function botinfo(client, evt) {
         value: `[Click Here](https://paypal.me/phunbun)`,
         inline: true },
       { name: 'FurBot Server:',
-        value: `[Click Here](https://discord.gg/rnvEFzQ)`,
+        value: `[Click Here](https://discord.gg/H7W49Ps)`,
         inline: true }
     ]
   };
