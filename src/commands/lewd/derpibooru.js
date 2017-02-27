@@ -36,8 +36,8 @@ function tags(client, evt, suffix) {
   const channel_id = evt.message.channel_id;
   return getNSFWChannel(channel_id).then(value => {
     if (evt.message.channel.isPrivate) value = true;
+    if (value === 'false') return Promise.resolve(`\u26A0  |  Please use this command in a NSFW channel. Admins can enable NSFW with the command \`!setnsfw\``);
     return getBlackListChannel(channel_id).then(value => {
-      if (value === 'false') return Promise.resolve(`\u26A0  |  Please use this command in a NSFW channel. Admins can enable NSFW with the command \`!setnsfw\``);
       let array = suffix.split(' ');
       let blacklist;
       if (value) {

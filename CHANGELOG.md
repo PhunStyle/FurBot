@@ -1,3 +1,10 @@
+<a name="3.7.2" />
+## 3.7.2 (February 27th, 2016)
+
+### Bug Fixes
+- Fixed a bug where DerpiBooru could post images in all channels regardless of `!setnsfw`
+
+
 <a name="3.7.1" />
 ## 3.7.1 (February 24th, 2016)
 

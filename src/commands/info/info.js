@@ -19,7 +19,7 @@ function botinfo(client, evt) {
         value: 'Discordie',
         inline: true },
       { name: 'FurBot Version:',
-        value: '3.7.1',
+        value: '3.7.2',
         inline: true },
       { name: 'Servers:',
         value: client.Guilds.length,
