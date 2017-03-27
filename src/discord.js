@@ -149,7 +149,9 @@ function forceFetchUsers() {
   logger.info('Force fetching users');
   client.Users.fetchMembers();
   logger.info('Setting Game');
-  client.User.setGame('!help - !info');
+  const shard_number = Number(nconf.get('SHARD_NUMBER') + 1);
+  const shard_count = Number(nconf.get('SHARD_COUNT'));
+  client.User.setGame(`!info | Shard ${shard_number}/${shard_count}`);
 }
 
 if (nconf.get('SHARDING')) {

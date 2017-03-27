@@ -31,7 +31,7 @@ function carbon(client) {
 
 function dbots(client) {
   if (nconf.get('DBOTS_KEY')) {
-    logger.info('Submitting to dboys');
+    logger.info('Submitting to dbots');
     return getGuildCount(client)
       .then(count => request({
         method: 'POST',
