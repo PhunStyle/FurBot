@@ -9,7 +9,6 @@ const request = Promise.promisify(require('request'));
 function getGuildCount(client) {
   if (nconf.get('SHARDING')) return commands.servercount(client, {}, '', '')
     .then(res => Number(res.match(/\d+/g)[0]));
-    console.log(res);
   return Promise.resolve(client.Guilds.length);
 }
 
@@ -32,6 +31,7 @@ function carbon(client) {
 function dbots(client) {
   if (nconf.get('DBOTS_KEY')) {
     logger.info('Submitting to dbots');
+    console.log(getGuildCount(client));
     return getGuildCount(client)
       .then(count => request({
         method: 'POST',
@@ -41,8 +41,6 @@ function dbots(client) {
           'Content-Type': 'application/json'
         },
         json: {
-          'shard_id': Number(nconf.get('SHARD_NUMBER')),
-          'shard_count': Number(nconf.get('SHARD_COUNT')),
           'server_count': count
         }
       }))
@@ -55,7 +53,7 @@ export function startPortalIntervals(client) {
   setInterval(() => dbots(client), 3600000);
 }
 
-export function startPortalTimeouts(client, time = 20000) {
+export function startPortalTimeouts(client, time = 30000) {
   setTimeout(() => carbon(client), time);
   setTimeout(() => dbots(client), time);
 }

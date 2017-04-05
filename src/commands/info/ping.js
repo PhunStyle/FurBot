@@ -1,5 +1,5 @@
 function ping(client, evt) {
-  evt.message.channel.sendMessage(`\u2139  |  Pong!`)
+  return evt.message.channel.sendMessage(`\u2139  |  Pong!`)
   .then(m => {
     let outTime = new Date(m.timestamp).getTime();
     let inTime = new Date(evt.message.timestamp).getTime();
