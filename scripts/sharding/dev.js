@@ -3,7 +3,7 @@ import R from 'ramda';
 import path from 'path';
 
 const root_dir = path.join(__dirname, '../../');
-const total_shards = 6;
+const total_shards = 4;
 
 R.forEach(num => {
   const instance = spawn('npm', ['run', 'dev-nodebug'], {
