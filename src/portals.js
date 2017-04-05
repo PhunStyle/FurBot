@@ -7,7 +7,7 @@ import logger from './logger';
 const request = Promise.promisify(require('request'));
 
 function getGuildCount(client) {
-  if (nconf.get('SHARDING')) return commands.servers(client, {}, '', '')
+  if (nconf.get('SHARDING')) return commands.botinfo(client, {}, '', '')
     .then(res => Number(res.match(/\d+/g)[0]));
 
   return Promise.resolve(client.Guilds.length);
