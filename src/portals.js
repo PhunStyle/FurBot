@@ -7,9 +7,9 @@ import logger from './logger';
 const request = Promise.promisify(require('request'));
 
 function getGuildCount(client) {
-  if (nconf.get('SHARDING')) return commands.info(client, {}, '', '')
+  if (nconf.get('SHARDING')) return commands.servercount(client, {}, '', '')
     .then(res => Number(res.match(/\d+/g)[0]));
-
+    console.log(res);
   return Promise.resolve(client.Guilds.length);
 }
 
@@ -41,7 +41,9 @@ function dbots(client) {
           'Content-Type': 'application/json'
         },
         json: {
-          server_count: count
+          'shard_id': Number(nconf.get('SHARD_NUMBER')),
+          'shard_count': Number(nconf.get('SHARD_COUNT')),
+          'server_count': count
         }
       }))
       .catch(console.log);
