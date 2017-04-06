@@ -177,5 +177,6 @@
   "kc": "Search **konachan** for images with your tag(s)",
   "yd": "Search **yandere** for images with your tag(s)",
   "pokemon": "Get pokedex information for your given pokemon",
-  "pokemon_usage": "Usage: **`!pokemon`** `pikachu`"
+  "pokemon_usage": "Usage: **`!pokemon`** `pikachu`",
+  "slap_usage": "Usage: **`!slap`** @User"
 }
