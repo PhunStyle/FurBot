@@ -1,7 +1,7 @@
 {
-  "name": "gravebot",
-  "version": "3.0.0",
-  "description": "A bot for the chat program Discord",
+  "name": "furbot",
+  "version": "4.0.0",
+  "description": "A furry bot for Discord",
   "main": "index.js",
   "dependencies": {
     "babel-cli": "^6.5.0",
@@ -118,20 +118,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Gravebot/Gravebot.git"
+    "url": "git+https://github.com/PhunStyle/FurBot.git"
   },
   "keywords": [
     "Discord",
     "Bot"
   ],
   "contributors": [
+    "PhunStyle",
     "Gravestorm",
     "Dustin Blackman"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Gravebot/Gravebot/issues"
+    "url": "https://github.com/PhunStyle/FurBot/issues"
   },
-  "homepage": "https://github.com/Gravebot/Gravebot#readme",
-  "snyk": true
+  "homepage": "https://github.com/PhunStyle/FurBot#readme"
 }

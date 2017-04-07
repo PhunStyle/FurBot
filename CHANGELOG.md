@@ -1,5 +1,5 @@
-<a name="3.8.0" />
-## 3.7.2 (February 27th, 2016)
+<a name="4.0.0" />
+## 4.0.0 (____th, 2017)
 
 ### Bug Fixes
 - Fixed a bug where DerpiBooru could post images in all channels regardless of `!setnsfw`

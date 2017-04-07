@@ -20,7 +20,8 @@ function prune(client, evt, suffix, lang) {
       }
       client.Messages.deleteMessages(messageIdArray, evt.message.channel.id);
     });
-    return Promise.resolve(evt.message.channel.sendMessage('\u2705  |  Deleted!'));
+    let embed = { color: 7844437, description: '\u2705  Deleted!' };
+    return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   }
 }
 

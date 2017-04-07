@@ -108,11 +108,12 @@ function tags(client, evt, suffix) {
             color: 4035280,
             author: {
               name: suffix,
-              icon_url: 'http://i.imgur.com/qeJd6ST.png'
+              icon_url: evt.message.author.avatarURL
             },
             url: 'https://derpibooru.org/' + id,
             description: `**Score:** ${score} | **Resolution: ** ${width} x ${height}`,
-            image: { url: fileurl }
+            image: { url: fileurl },
+            footer: { icon_url: 'http://i.imgur.com/qeJd6ST.png', text: 'derpibooru' }
           };
           return evt.message.channel.sendMessage('', false, embed);
         });

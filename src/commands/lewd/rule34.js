@@ -97,11 +97,12 @@ function tags(client, evt, suffix) {
             color: 11199907,
             author: {
               name: query,
-              icon_url: 'http://i.imgur.com/JtqlUfF.png'
+              icon_url: evt.message.author.avatarURL
             },
             url: 'http://rule34.xxx/index.php?page=post&s=view&id=' + id,
             description: `**Score:** ${score} | **Resolution: ** ${width} x ${height}`,
-            image: { url: fileurl }
+            image: { url: fileurl },
+            footer: { icon_url: 'http://i.imgur.com/JtqlUfF.png', text: 'rule34.xxx' }
           };
           return evt.message.channel.sendMessage('', false, embed);
         });

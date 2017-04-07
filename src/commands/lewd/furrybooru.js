@@ -97,11 +97,12 @@ function tags(client, evt, suffix) {
             color: 29695,
             author: {
               name: query,
-              icon_url: 'http://i.imgur.com/zrdxCfF.png'
+              icon_url: evt.message.author.avatarURL
             },
             url: 'http://furry.booru.org/index.php?page=post&s=view&id=' + id,
             description: `**Score:** ${score} | **Resolution: ** ${width} x ${height}`,
-            image: { url: fileurl }
+            image: { url: fileurl },
+            footer: { icon_url: 'http://i.imgur.com/zrdxCfF.png', text: 'furrybooru' }
           };
           return evt.message.channel.sendMessage('', false, embed);
         });

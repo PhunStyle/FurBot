@@ -98,11 +98,12 @@ function tags(client, evt, suffix) {
             color: 77399,
             author: {
               name: query,
-              icon_url: 'http://i.imgur.com/RrHrSOi.png'
+              icon_url: evt.message.author.avatarURL
             },
             url: 'https://e621.net/post/show/' + id,
             description: `**Artist(s):** ${artist}\n**Score:** ${score} | **Resolution: ** ${width} x ${height}`,
-            image: { url: file }
+            image: { url: file },
+            footer: { icon_url: 'http://i.imgur.com/RrHrSOi.png', text: 'e621' }
           };
           return evt.message.channel.sendMessage('', false, embed);
         });

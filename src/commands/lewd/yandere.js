@@ -94,11 +94,12 @@ function tags(client, evt, suffix) {
             color: 15632519,
             author: {
               name: query,
-              icon_url: 'http://i.imgur.com/Gq1SpOc.png'
+              icon_url: evt.message.author.avatarURL
             },
             url: 'https://yande.re/post/show/' + id,
             description: `**Score:** ${score} | **Resolution: ** ${width} x ${height}`,
-            image: { url: file }
+            image: { url: file },
+            footer: { icon_url: 'http://i.imgur.com/Gq1SpOc.png', text: 'yandere' }
           };
           return evt.message.channel.sendMessage('', false, embed);
         });

@@ -7,7 +7,7 @@ function userinfo(client, evt, suffix) {
   const userinfo = [];
   if (evt.message.channel.isPrivate) {
     let embed = {
-      color: 29695,
+      color: 3901635,
       author: {
         name: `User Info`,
         icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase
@@ -33,7 +33,7 @@ function userinfo(client, evt, suffix) {
     return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   } else if (!suffix && !evt.message.mentions.length) {
     let embed = {
-      color: 29695,
+      color: 3901635,
       author: {
         name: `User Info`,
         icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase
@@ -60,7 +60,7 @@ function userinfo(client, evt, suffix) {
   } else if (evt.message.mentions.length) {
     R.forEach(user => {
       let embed = {
-        color: 29695,
+        color: 3901635,
         author: {
           name: `User Info`,
           icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase
@@ -89,7 +89,7 @@ function userinfo(client, evt, suffix) {
     const user = R.find(R.propEq('username', suffix))(evt.message.guild.members);
     if (!user) return;
     let embed = {
-      color: 29695,
+      color: 3901635,
       author: {
         name: `User Info`,
         icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase

@@ -13,7 +13,11 @@ function decide(client, evt, suffix, lang) {
 
   const split = suffix.split(` or `);
   const rand = Math.floor(Math.random() * choices.length);
-  if (split.length > 1) return Promise.resolve(`\uD83D\uDD2E  |  ${choices[rand]} **${multipleDecide(split)}**`);
+
+  if (split.length > 1) {
+    let embed = { color: 6139372, description: `\uD83D\uDD2E  ${choices[rand]} **${multipleDecide(split)}**` };
+    return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
+  }
 
   return Promise.resolve(T('decide_usage', lang));
 }
