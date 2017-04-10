@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 
-import { choices } from '../../data';
+import { choices } from '../../static';
 import T from '../../translate';
 
 

@@ -43,3 +43,6 @@ web/css
 # Sharding testing
 .env
 sharding.yml
+
+# Do not upload rethinkdb
+rethinkdb_data

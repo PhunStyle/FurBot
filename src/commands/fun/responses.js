@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 
-import { drama as _drama, emoji as _emoji, quotes } from '../../data';
+import { drama as _drama, emoji as _emoji, quotes } from '../../static';
 
 
 function drama(client, evt, suffix) {

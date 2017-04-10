@@ -40,7 +40,7 @@ function dbots(client) {
           'Content-Type': 'application/json'
         },
         json: {
-          'server_count': count
+          server_count: count
         }
       }))
       .catch(console.log);
@@ -52,7 +52,7 @@ export function startPortalIntervals(client) {
   setInterval(() => dbots(client), 3600000);
 }
 
-export function startPortalTimeouts(client, time = 30000) {
+export function startPortalTimeouts(client, time = 60000) {
   setTimeout(() => carbon(client), time);
   setTimeout(() => dbots(client), time);
 }

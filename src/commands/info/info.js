@@ -74,7 +74,7 @@ function botinfo(client, evt, suffix, lang, json) {
               value: `${server_count.users}`,
               inline: true },
             { name: '\uD83D\uDC8E Shard ID:',
-              value: `Shard ${Number(nconf.get('SHARD_NUMBER')+1)} of ${Number(nconf.get('SHARD_COUNT'))}`,
+              value: `Shard ${Number(nconf.get('SHARD_NUMBER') + 1)} of ${Number(nconf.get('SHARD_COUNT'))}`,
               inline: true },
             { name: '\uD83E\uDD16 Shard Uptime:',
               value: `${uptimeh}h ${uptimem}m ${uptimes}s`,
@@ -86,7 +86,7 @@ function botinfo(client, evt, suffix, lang, json) {
         };
         Promise.resolve(evt.message.channel.sendMessage('', false, embed));
         return Promise.resolve(evt.message.channel.sendMessage('', false, embedShard));
-     });
+      });
   }
   if (json) return Promise.resolve(server_count);
 

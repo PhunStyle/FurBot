@@ -3,7 +3,7 @@ import didyoumean from 'didyoumean';
 import R from 'ramda';
 import Pokedex from 'pokedex-promise-v2';
 
-import { poke_list } from '../../../data';
+import { poke_list } from '../../../static';
 import { toTitleCase } from '../../../helpers';
 import T from '../../../translate';
 

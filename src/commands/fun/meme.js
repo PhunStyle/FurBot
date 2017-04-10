@@ -3,7 +3,7 @@ import Imgflipper from 'imgflipper';
 import nconf from 'nconf';
 
 import T from '../../translate';
-import { memes } from '../../data';
+import { memes } from '../../static';
 
 
 const imgflipper = new Imgflipper(nconf.get('IMGFLIP_USERNAME'), nconf.get('IMGFLIP_PASSWORD'));

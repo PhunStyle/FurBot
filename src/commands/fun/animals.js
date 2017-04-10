@@ -2,7 +2,7 @@ import Promise from 'bluebird';
 import R from 'ramda';
 
 import { subCommands as helpText } from '../help';
-import pug_urls from '../../data/pugs.json';
+import pug_urls from '../../static/pugs.json';
 
 const request = Promise.promisify(require('request'));
 

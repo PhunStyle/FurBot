@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 
-import { eightball } from '../../data';
+import { eightball } from '../../static';
 import T from '../../translate';
 
 
