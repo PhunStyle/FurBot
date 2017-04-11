@@ -91,7 +91,8 @@ function findPoke(client, evt, suffix, lang) {
   })
   .catch(function(err) {
     if (err) {
-      return Promise.resolve(evt.message.channel.sendMessage(`\u26A0  |  No results for: \`${suffix}\``));
+      let embed = { color: 16763981, description: `\u26A0  No results for: \`${suffix}\`` };
+      return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
     }
   });
 }
