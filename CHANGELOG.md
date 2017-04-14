@@ -1,8 +1,26 @@
 <a name="4.0.0" />
-## 4.0.0 (____th, 2017)
+## 4.0.0 (April 14th, 2017)
+
+### Features
+- New `!info` command layout plus shard specific information
+- New `!8ball` command layout
+- New `!decide` command layout
+- New action commands, type `!help actions` to see them
+- Some new `!drama` images
+- Changed `!ping` to an embed aswell
+- Changed lewd commands to have site icon in footer plus user icon in header
+- Changed most command responses to respond with a fancy embed color + icon
+- New `!weather` command to lookup the current weather forecast for your place
+- New welcome message when FurBot joins a guild for the first time.
 
 ### Bug Fixes
-- Fixed a bug where DerpiBooru could post images in all channels regardless of `!setnsfw`
+- Fixed the dates in the changelog, it's 2017 dammit!
+- Fixed google translate API unofficially. Might break again
+- Changed `!feedback` to include username so i can chat with you, hi!
+- Changed `!{user/server/channel}info` commands embed color to match icon
+
+### Technical Notes
+- Moved /data/ folder inside /src/ and renamed it to /static/ (images are there now too)
 
 
 <a name="3.7.3" />
