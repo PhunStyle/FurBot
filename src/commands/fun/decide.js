@@ -15,7 +15,7 @@ function decide(client, evt, suffix, lang) {
   const rand = Math.floor(Math.random() * choices.length);
 
   if (split.length > 1) {
-    let embed = { color: 6139372, description: `\uD83D\uDD2E  ${choices[rand]} **${multipleDecide(split)}**` };
+    let embed = { color: 6139372, description: `\uD83D\uDD2E  ${choices[rand]} **${multipleDecide(split)}** ${evt.message.author.mention}` };
     return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   }
 

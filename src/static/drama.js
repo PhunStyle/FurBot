@@ -24,5 +24,11 @@ export default [
   'http://i.imgur.com/BIJdWtz.gif',
   'http://i.imgur.com/rRAKiSv.gif',
   'http://i.imgur.com/lj1UGpj.gif',
-  'http://i.imgur.com/jqr2gUM.gif'
+  'http://i.imgur.com/jqr2gUM.gif',
+  'http://i.imgur.com/nWGfD3V.gif',
+  'http://i.imgur.com/rmxvst3.gif',
+  'http://i.imgur.com/NIoALQk.png',
+  'http://i.imgur.com/rbNQkew.png',
+  'http://i.imgur.com/oxjN19P.png',
+  'http://i.imgur.com/YfYGLQB.png'
 ];

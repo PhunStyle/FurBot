@@ -2,7 +2,7 @@ import NodeGeocoder from 'node-geocoder';
 import Promise from 'bluebird';
 import nconf from 'nconf';
 import DarkSky from 'dark-sky';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 const forecast = new DarkSky(nconf.get('DARKSKY_KEY'));
 const options = { provider: 'google' };
@@ -16,32 +16,33 @@ function weather(client, evt, suffix) {
     .then(res => {
       weatherData = res;
       return forecast.latitude(res[0].latitude).longitude(res[0].longitude).units('auto').get();
-    })
+    });
   };
   getGeolocation(suffix)
   .then(final => {
-    console.log(weatherData);
-    console.log(final.daily.data[0]);
     let units;
-    if (final.flags.units === 'si'){
-      units = ['° C', ' km', 'km/h'];
+
+    if (final.flags.units === 'si') {
+      units = ['° C', ' km', 'km/h', 'HH:MM:ss'];
     } else {
-      units = ['° F', ' Miles', 'mph'];
+      units = ['° F', ' Miles', 'mph', 'h:mm:ss a'];
     }
 
     let sunriseTime;
     let sunsetTime;
+    let humidity;
 
     if (!final.currently.visibility) final.currently.visibility = '10+';
     if (!final.daily.data[0].sunriseTime) sunriseTime = 'Unknown';
     if (!final.daily.data[0].sunsetTime) sunsetTime = 'Unknown';
+    if (final.currently.humidity) humidity = final.currently.humidity * 100;
 
     if (final.daily.data[0].sunsetTime) {
       let t = moment.unix(final.daily.data[0].sunriseTime);
-      sunriseTime = moment(t).format("HH:MM:ss");
+      sunriseTime = moment(t).tz(final.timezone).format(units[3]);
 
       let u = moment.unix(final.daily.data[0].sunsetTime);
-      sunsetTime = moment(u).format("HH:MM:ss");
+      sunsetTime = moment(u).tz(final.timezone).format(units[3]);
     }
 
     let embed = {
@@ -65,7 +66,7 @@ function weather(client, evt, suffix) {
           value: `${final.currently.windSpeed}${units[2]}`,
           inline: true },
         { name: '\uD83D\uDCA7 Humidity:',
-          value: `${final.currently.humidity}`,
+          value: `${humidity}%`,
           inline: true },
         { name: '\uD83D\uDC41 Visibility:',
           value: `${final.currently.visibility}${units[1]}`,
@@ -74,7 +75,7 @@ function weather(client, evt, suffix) {
       timestamp: new Date()
     };
     return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
-  })
+  });
   return Promise.resolve(true);
 }
 

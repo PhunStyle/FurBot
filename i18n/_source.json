@@ -16,7 +16,7 @@
     "done": true
   },
   "animals_cat": {
-    "text": "Bombs chat with adorable cats",
+    "text": "Posts pictures of adorable cats",
     "done": true
   },
   "animals_header_text": {
@@ -24,11 +24,11 @@
     "done": true
   },
   "animals_pug": {
-    "text": "Bombs chat with adorable pugs",
+    "text": "Posts pictures of adorable pugs",
     "done": true
   },
   "animals_snake": {
-    "text": "Bombs chat with adorable snakes",
+    "text": "Posts pictures of adorable snakes",
     "done": true
   },
   "avatar": {
@@ -156,7 +156,7 @@
     "done": true
   },
   "feedback": {
-    "text": "Give feedback and report bugs about the bot",
+    "text": "Submit feedback, ideas, bugs or errors. This will notify the bot owner.",
     "done": true
   },
   "feedback_reply": {
@@ -420,7 +420,7 @@
     "done": true
   },
   "robohash_header_text": {
-    "text": "Responds with an image according to your ID.\nYou can specify a suffix after a command to get a different picture. (e.g. `!robot Testie`)",
+    "text": "Responds with an image according to your ID.\nYou can type a name after the command to get a different picture. (e.g. `!robot Testie`)",
     "done": true
   },
   "robohash_monster": {
@@ -521,6 +521,10 @@
   },
   "videocall": {
     "text": "Start a one click video call or screenshare directly on Appear.in. Mention users to make it private.",
+    "done": true
+  },
+  "weather": {
+    "text": "Returns the weather report for the place you specified",
     "done": true
   },
   "wiki": {

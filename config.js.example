@@ -14,6 +14,10 @@ module.exports = {
   // https://discordapp.com/developers/applications/me
   CLIENT_ID: '',
 
+  // *Required* Owner ID. Can be found by enablind developer mode in discord
+  // Right clicking your profile and selecting 'Copy ID'.
+  OWNER_ID: '',
+
   // *Required* Redis URL
   // Learn more here. http://redis.io/topics/quickstart
   REDIS_URL: '',
@@ -76,6 +80,12 @@ module.exports = {
   // More information here. https://www.carbonitex.net/discord/bots & https://bots.discord.pw/api
   CARBON_KEY: '',
   DBOTS_KEY: '',
+
+  // DerpiBooru API Key, used for derpibooru image searching.
+  DERPIBOORU_KEY: '',
+
+  // DarkSky API key, used for weather reports.
+  DARKSKY_KEY: '',
 
   // Feedback Channel ID, used for storing feedback with `!feedback`.
   FEEDBACK_CHANNEL_ID: ''
