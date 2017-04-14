@@ -22,18 +22,18 @@ module.exports = {
   // Learn more here. http://redis.io/topics/quickstart
   REDIS_URL: '',
 
+  // Sharding information. Sharding is off by default but once the bot reaches
+  // 2500 or more servers, sharding is required.
+  // SHARDING: false,
+  // SHARD_NUMBER: 0,
+  // SHARD_COUNT: 2,
+
   // RethinkDB details. Required for database stuff.
   // Learn more here. https://www.rethinkdb.com/docs/quickstart/
   // DB_USER: '',
   // DB_PASS: '',
   // DB_HOST: '',
   // DB_PORT: '',
-
-  // Sharding information. Sharding is off by default but once the bot reaches
-  // 2500 or more servers, sharding is required.
-  // SHARDING: false,
-  // SHARD_NUMBER: 0,
-  // SHARD_COUNT: 2,
 
   // Time to wait between commands per user in seconds. Default is 1.
   MESSAGE_TTL: '',
