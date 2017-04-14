@@ -1,9 +1,11 @@
 function ping(client, evt) {
-  return evt.message.channel.sendMessage(`\u2139  |  Pong!`)
+  let pong = { color: 3901635, description: '\u2139  Pong!' };
+  return evt.message.channel.sendMessage('', false, pong)
   .then(m => {
     let outTime = new Date(m.timestamp).getTime();
     let inTime = new Date(evt.message.timestamp).getTime();
-    client.Messages.editMessage(`${m.content} - Time taken: **${outTime - inTime}ms**`, m.id, evt.message.channel.id);
+    pong.description = `\u2139  Pong! - Time taken: **${outTime - inTime}ms**`;
+    client.Messages.editMessage('', m.id, evt.message.channel.id, pong);
   });
 }
 

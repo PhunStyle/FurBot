@@ -136,6 +136,11 @@ function onMessage(evt) {
   }
 }
 
+function onGuild(evt) {
+  if (evt.guild.becameAvailable) return;
+  return Promise.resolve(evt.guild.generalChannel.sendMessage('Hey there, I\'m FurBot. Nice to meet you :hugging:! To get started, use `!help` to see my commands.\nIf you have tips, ideas, feedback or wanna chat with my creator - there\'s an invite link to my server when you use `!info`'));
+}
+
 function connect() {
   if (!nconf.get('TOKEN') || !nconf.get('CLIENT_ID')) {
     logger.error('Please setup TOKEN and CLIENT_ID in config.js to use FurBot');
@@ -200,6 +205,7 @@ export function start() {
 
       client.Dispatcher.on('MESSAGE_CREATE', onMessage);
       client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
+      client.Dispatcher.on('GUILD_CREATE', onGuild);
       if (nconf.get('SHARDING')) {
         subscriber.subscribe('active_shard');
         publisher.publish('shard_done', discordie_options.shardId);

@@ -3,7 +3,7 @@ import didyoumean from 'didyoumean';
 import R from 'ramda';
 import Pokedex from 'pokedex-promise-v2';
 
-import { poke_list } from '../../../data';
+import { poke_list } from '../../../static';
 import { toTitleCase } from '../../../helpers';
 import T from '../../../translate';
 
@@ -91,7 +91,8 @@ function findPoke(client, evt, suffix, lang) {
   })
   .catch(function(err) {
     if (err) {
-      return Promise.resolve(evt.message.channel.sendMessage(`\u26A0  |  No results for: \`${suffix}\``));
+      let embed = { color: 16763981, description: `\u26A0  No results for: \`${suffix}\`` };
+      return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
     }
   });
 }

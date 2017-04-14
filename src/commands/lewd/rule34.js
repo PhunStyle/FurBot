@@ -35,14 +35,14 @@ function tags(client, evt, suffix) {
   const channel_id = evt.message.channel_id;
   return getNSFWChannel(channel_id).then(value => {
     if (evt.message.channel.isPrivate) value = true;
-    if (value === 'false') return Promise.resolve(`\u26A0  |  Please use this command in a NSFW channel. Admins can enable NSFW with the command \`!setnsfw\``);
+    if (value === 'false') return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  Please use this command in a NSFW-enabled channel.\nIf you are an Admin, use the command \`!setnsfw\``}));
     return getBlackListChannel(channel_id).then(value => {
       let array = suffix.split(' ');
       let blacklist;
       if (value) {
         blacklist = value.split(', ');
         if (findOne(blacklist, array)) {
-          return Promise.resolve(`\u26A0  |  One of the tags you entered is blacklisted in this channel. Please try again with different tags!`);
+          return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  One of the tags you entered is blacklisted in this channel!\nTo see the blacklist use \`!blacklist-get\``}));
         }
       }
       let query;
@@ -90,18 +90,19 @@ function tags(client, evt, suffix) {
           if (value) {
             let tags = body[randomid].tags.split(' ');
             if (findOne(blacklist, tags)) {
-              fileurl = 'http://fur.im/i/blacklisted_tag.png';
+              fileurl = 'http://i.imgur.com/oKq3RdK.png';
             }
           }
           let embed = {
             color: 11199907,
             author: {
               name: query,
-              icon_url: 'http://i.imgur.com/JtqlUfF.png'
+              icon_url: evt.message.author.avatarURL
             },
             url: 'http://rule34.xxx/index.php?page=post&s=view&id=' + id,
             description: `**Score:** ${score} | **Resolution: ** ${width} x ${height}`,
-            image: { url: fileurl }
+            image: { url: fileurl },
+            footer: { icon_url: 'http://i.imgur.com/JtqlUfF.png', text: 'rule34.xxx' }
           };
           return evt.message.channel.sendMessage('', false, embed);
         });

@@ -4,7 +4,7 @@ import R from 'ramda';
 import _request from 'request';
 import SuperError from 'super-error';
 
-import { lol_champs } from '../../../data';
+import { lol_champs } from '../../../static';
 import { subCommands as helpText } from '../../help';
 import { secondDec, toTitleCase } from '../../../helpers';
 import T from '../../../translate';

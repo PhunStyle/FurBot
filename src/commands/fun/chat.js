@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 import Cleverbot from 'cleverbot-node';
-import ent from 'entities';
+// import ent from 'entities';
 import nconf from 'nconf';
 
 
@@ -27,7 +27,7 @@ function chat(client, evt, suffix, lang) {
   //     }
   //   });
   // });
-  return evt.message.channel.sendMessage('`!chat` functionality in FurBot will be removed soon due to Cleverbot now being a paid API service. Stay updated with FurBot changes in the FurBot Discord Server. Type `!info` for an invite link.');
+  return Promise.resolve(evt.message.channel.sendMessage('`!chat` functionality in FurBot will be removed soon due to Cleverbot now being a paid API service. Stay updated with FurBot changes in the FurBot Discord Server. Type `!info` for an invite link.'));
 }
 
 export default {

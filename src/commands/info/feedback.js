@@ -14,7 +14,7 @@ function feedback(client, evt, suffix, lang, shard_message) {
   if (shard_message) {
     message = suffix;
   } else {
-    message = `**(${evt.message.author.username}) [${evt.message.author.id}]\n(${R.path(['guild', 'name'], evt.message) || 'DM'}) [${R.path(['guild', 'id'], evt.message) || 'DM'}]**\n${suffix.replace(/([@#*_~`])/g, '\\$1')}`;
+    message = `**[${evt.message.author.id}] (${evt.message.author.username}#${evt.message.author.discriminator})\n[${R.path(['guild', 'id'], evt.message) || 'DM'}] (${R.path(['guild', 'name'], evt.message) || 'DM'})**\n${suffix.replace(/([@#*_~`])/g, '\\$1')}`;
   }
 
   const channel = client.Channels.find(channel => channel.id === nconf.get('FEEDBACK_CHANNEL_ID'));

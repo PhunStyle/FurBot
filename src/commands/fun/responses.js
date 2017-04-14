@@ -1,12 +1,12 @@
 import Promise from 'bluebird';
 
-import { drama as _drama, emoji as _emoji, quotes } from '../../data';
+import { drama as _drama, emoji as _emoji, quotes } from '../../static';
 
 
 function drama(client, evt, suffix) {
   const rand = Math.floor(Math.random() * _drama.length);
   if (suffix && suffix >= 0 && suffix <= (_drama.length - 1)) return Promise.resolve(_drama[suffix]);
-  return Promise.resolve(_drama[rand]);
+  return Promise.resolve('\ud83c\udf7f ' + _drama[rand]);
 }
 
 function emoji(client, evt, suffix) {

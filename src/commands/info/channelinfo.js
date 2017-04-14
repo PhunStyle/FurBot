@@ -7,7 +7,7 @@ function channelinfo(client, evt, suffix) {
   if (evt.message.channel.isPrivate) return Promise.resolve('\u2139  |  Use this command in a server!');
   if (!suffix && evt.message.content.indexOf('<#') === -1) {
     let embed = {
-      color: 29695,
+      color: 3901635,
       author: {
         name: `Channel Info`,
         icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase
@@ -41,7 +41,7 @@ function channelinfo(client, evt, suffix) {
       const channel = R.find(R.propEq('id', suffix.substring(2, suffix.length - 1)))(evt.message.guild.channels);
       if (channel.type === 0) {
         let embed = {
-          color: 29695,
+          color: 3901635,
           author: {
             name: `Channel Info`,
             icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase
@@ -72,7 +72,7 @@ function channelinfo(client, evt, suffix) {
         return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
       }
       let embed = {
-        color: 29695,
+        color: 3901635,
         author: {
           name: `Channel Info`,
           icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase
@@ -107,7 +107,7 @@ function channelinfo(client, evt, suffix) {
     if (!channel) return;
     if (channel.type === 0) {
       let embed = {
-        color: 29695,
+        color: 3901635,
         author: {
           name: `Channel Info`,
           icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase
@@ -138,7 +138,7 @@ function channelinfo(client, evt, suffix) {
       return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
     }
     let embed = {
-      color: 29695,
+      color: 3901635,
       author: {
         name: `Channel Info`,
         icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase

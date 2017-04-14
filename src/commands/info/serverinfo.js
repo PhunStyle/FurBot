@@ -8,7 +8,7 @@ function serverinfo(client, evt, suffix) {
   if (evt.message.channel.isPrivate) return Promise.resolve('\u2139  |  Use this command in a server!');
   if (!suffix) {
     let embed = {
-      color: 29695,
+      color: 3901635,
       author: {
         name: `Server Info`,
         icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase
@@ -42,7 +42,7 @@ function serverinfo(client, evt, suffix) {
   const guild = R.find(R.propEq('name', suffix))(client.Guilds);
   if (!guild || nconf.get('SHARDING')) return;
   let embed = {
-    color: 29695,
+    color: 3901635,
     author: {
       name: `Server Info`,
       icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase

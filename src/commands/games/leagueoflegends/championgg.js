@@ -5,7 +5,7 @@ import R from 'ramda';
 import _request from 'request';
 import SuperError from 'super-error';
 
-import { lol_champs, lol_items } from '../../../data';
+import { lol_champs, lol_items } from '../../../static';
 import { getOrdinal, toTitleCase } from '../../../helpers';
 import phantom from '../../../phantom';
 import T from '../../../translate';
