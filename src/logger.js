@@ -17,8 +17,8 @@ function _submitToLogger(type, msg) {
 
 function cmd(cmd, evt, suffix) {
   if (production) return logger.info({cmd, evt, suffix}, 'cmd');
-  let guildid = '';
-  if (!evt.message.guild.id) guildid = 'Direct Message';
+  let guildid;
+  if (evt.message.channel.isPrivate) guildid = 'Direct Message';
   if (evt.message.guild.id) guildid = evt.message.guild.id;
   console.log(chalk.magenta.bold(`[FurBot]`), chalk.blue(`[${moment().format('DD-MM-YYYY HH:mm:ss')}]`), chalk.bold.green(`[${guildid}]`), chalk.bold.green(`[${evt.message.author.username}]`), chalk.green(`${nconf.get('PREFIX')}${cmd}`), suffix);
 }
