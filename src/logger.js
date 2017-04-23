@@ -16,10 +16,8 @@ function _submitToLogger(type, msg) {
 }
 
 function cmd(cmd, evt, suffix) {
-  let guildid = 'Direct Message';
   if (production) return logger.info({cmd, evt, suffix}, 'cmd');
-  if (evt.message.guild.id) guildid = evt.message.guild.id;
-  console.log(chalk.magenta.bold(`[FurBot]`), chalk.blue(`[${moment().format('DD-MM-YYYY HH:mm:ss')}]`), chalk.bold.green(`[${guildid}]`), chalk.bold.green(`[${evt.message.author.username}]`), chalk.green(`${nconf.get('PREFIX')}${cmd}`), suffix);
+  console.log(chalk.magenta.bold(`[FurBot]`), chalk.blue(`[${moment().format('DD-MM-YYYY HH:mm:ss')}]`), chalk.bold.green(`[${evt.message.author.username}]`), chalk.green(`${nconf.get('PREFIX')}${cmd}`), suffix);
 }
 
 function info(msg) {
