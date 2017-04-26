@@ -135,6 +135,5 @@ export const help = {info: {}};
 export default {
   info: botinfo,
   servers: botinfo,
-  statistics: botinfo,
-  stats: botinfo
+  statistics: botinfo
 };
