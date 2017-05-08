@@ -20,9 +20,9 @@ import {
   getUserLang,
   subscriber,
   publisher,
-  ee
+  ee,
+  getShardsCmdResults
 } from './redis';
-
 
 // Init
 let client;
@@ -150,15 +150,6 @@ function connect() {
   client.connect({token: nconf.get('TOKEN')});
 }
 
-function forceFetchUsers() {
-  logger.info('Force fetching users');
-  client.Users.fetchMembers();
-  logger.info('Setting Game');
-  const shard_number = Number(nconf.get('SHARD_NUMBER') + 1);
-  const shard_count = Number(nconf.get('SHARD_COUNT'));
-  client.User.setGame(`!info | Shard ${shard_number}/${shard_count}`);
-}
-
 if (nconf.get('SHARDING')) {
   ee.on('cmd', message => {
     const { channel_name, instance, request: { cmd, suffix, lang } } = JSON.parse(message);
@@ -175,6 +166,66 @@ if (nconf.get('SHARDING')) {
   subscriber.subscribe('cmd');
 }
 
+const shard_number = Number(nconf.get('SHARD_NUMBER') + 1);
+const shard_count = Number(nconf.get('SHARD_COUNT'));
+//--v-- Game info changing block for the loop --v--
+function gameInfo1() {
+  client.User.setGame(`!info | Shard ${shard_number}/${shard_count}`);
+  //logger.info('Game set to shard info');
+}
+function gameInfo2() {
+  client.User.setGame(`!info | Shard ${shard_number} serving ${client.Guilds.length} servers!`);
+  //logger.info('Game set to server total');
+}
+function gameInfo3() {
+  client.User.setGame(`!info | Shard ${shard_number} serving ${client.Channels.length} channels!`);
+  //logger.info('Game set to channel total');
+}
+function gameInfo4() {
+  client.User.setGame(`!info | Shard ${shard_number} serving ${client.Users.length} users!`);
+  //logger.info('Game set to user total');
+}
+//--^-- Game info changing block for the loop --^--
+//--v-- Game setting loop block --v--
+var i = 1
+function setGameLoop() {
+  return Promise.delay(30000)
+    .then(function() {
+      if (i > 0) {
+        gameInfo1();
+        return Promise.delay(30000)
+          .then(function() {
+            if (i > 0) {
+              gameInfo2();
+              return Promise.delay(30000)
+                .then(function() {
+                  if (i > 0) {
+                    gameInfo3();
+                    return Promise.delay(30000)
+                      .then(function() {
+                        if (i > 0) {
+                          gameInfo4();
+                          setGameLoop();
+                        }
+                      });
+                  }
+                });
+            }
+          });
+      }
+    });
+}
+//--^-- Game setting loop block --^--
+function forceFetchUsers() {
+  logger.info('Force fetching users');
+  client.Users.fetchMembers();
+  logger.info('Setting Game');
+  setGameLoop();
+  //const shard_number = Number(nconf.get('SHARD_NUMBER') + 1);
+  //const shard_count = Number(nconf.get('SHARD_COUNT'));
+  //client.User.setGame(`!info | Shard ${shard_number}/${shard_count}`);
+}
+
 // Start connects to discord and starts receiving messages. It also emits to a shard pub/sub to notifiy it's booted if
 export function start() {
   const discordie_options = {};
@@ -189,6 +240,7 @@ export function start() {
   // Listen for events on Discord
   client.Dispatcher.on('GATEWAY_READY', () => {
     logger.success(`Started successfully. Connected to ${client.Guilds.length} servers.`);
+
     setTimeout(forceFetchUsers, 45000);
 
     if (!initialized) {
