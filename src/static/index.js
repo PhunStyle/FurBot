@@ -7,3 +7,4 @@ export const lol_items = require('./lol_items.json');
 export const poke_list = require('./poke_list.json');
 export memes from './memes';
 export quotes from './quotes';
+export guild_blacklist from './guild_blacklist';
