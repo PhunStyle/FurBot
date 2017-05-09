@@ -1,3 +1,10 @@
+<a name="3.7.2" />
+## 4.0.1 (May 9th, 2017)
+
+### Technical Notes
+- Changed all the lewd commands to check channel NSFW setting instead of `!setnsfw`. Thus `!setnsfw` has been removed.
+
+
 <a name="4.0.0" />
 ## 4.0.0 (April 14th, 2017)
 
