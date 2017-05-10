@@ -183,5 +183,6 @@
   "slap": "Slap one or multiple users.. ouch :(",
   "hug": "Give one or multiple users a hug!",
   "shoot": "Aim and fire, point a gun at one or multiple users",
-  "food": "Give one or multiple users something delicious!"
+  "food": "Give one or multiple users something delicious!",
+  "teaminfo": "Display a list of the contributors towards FurBot."
 }
