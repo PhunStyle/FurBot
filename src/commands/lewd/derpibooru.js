@@ -3,7 +3,7 @@ import R from 'ramda';
 import _request from 'request';
 import nconf from 'nconf';
 
-import { getNSFWChannel, getBlackListChannel } from '../../redis';
+import { getBlackListChannel } from '../../redis';
 
 const apikey = nconf.get('DERPIBOORU_KEY');
 const request = Promise.promisify(_request);

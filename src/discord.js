@@ -145,7 +145,7 @@ function onGuild(evt) {
   if (!evt.guild.becameAvailable) {
     let blacklistCheck = guild_blacklist.includes(evt.guild.id);
     if (blacklistCheck) {
-      console.log('Leaving Blacklisted Guild')
+      console.log('Leaving Blacklisted Guild');
       evt.guild.generalChannel.sendMessage(':warning: This guild has been blacklisted! Leaving...');
       return Promise.resolve(evt.guild.leave());
     }

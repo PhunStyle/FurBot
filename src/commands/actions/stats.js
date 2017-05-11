@@ -15,7 +15,7 @@ function userStatistics(client, evt, suffix) {
     let embed = {
       color: 16737843,
       author: {
-        name: `Action statistics for ${userToCheck.username}#${userToCheck.discriminator}`,
+        name: `Action statistics for ${userToCheck.username}#${userToCheck.discriminator}`
       },
       fields: [
         { name: 'Fruits Eaten:',
@@ -33,7 +33,7 @@ function userStatistics(client, evt, suffix) {
           inline: false },
         { name: 'Actions Received:',
           value: `\uD83E\uDD17 Hugs: ${results.actions_hugs || 0} - \uD83D\uDE19 Kisses: ${results.actions_kisses || 0} - \uD83D\uDC49 Boops: ${results.actions_boops || 0} - \uD83D\uDD2B Shots: ${results.actions_shots || 0} - \uD83D\uDE35 Slaps: ${results.actions_slaps || 0}`,
-          inline: false },
+          inline: false }
       ]
     };
     return Promise.resolve(evt.message.channel.sendMessage('', false, embed));

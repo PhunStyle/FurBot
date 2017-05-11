@@ -7,12 +7,12 @@ import { getBlackListChannel } from '../../redis';
 
 const request = Promise.promisify(_request);
 
-// Setup and makes request to e621 API
+// Setup and makes request to e926 API
 function _makeRequest(options) {
   let default_options = {
     json: true,
     headers: {
-      'User-Agent': 'FurBot/1.0 (Phun @ e621)'
+      'User-Agent': 'FurBot/1.0 (Phun @ e926)'
     }
   };
 
@@ -32,11 +32,6 @@ function findOne(haystack, arr) {
 }
 
 function tags(client, evt, suffix) {
-  let channelName = evt.message.channel.name;
-  const patt = new RegExp(/^nsfw(-|$)/);
-  let channelTest = patt.test(channelName);
-  if (evt.message.channel.isPrivate) channelTest = true;
-  if (channelTest === false) return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  Please use this command in a NSFW-enabled channel.\nIf you are an Admin, edit the channel and enable NSFW.`}));
   return getBlackListChannel(evt.message.channel_id).then(value => {
     let array = suffix.split(' ');
     let blacklist;
@@ -65,7 +60,7 @@ function tags(client, evt, suffix) {
     if (checkLength.length > 5) return Promise.resolve(`\u26A0  |  You can only search up to 5 tags`);
 
     const options = {
-      url: `https://e621.net/post/index.json?tags=${query} order:random`,
+      url: `https://e926.net/post/index.json?tags=${query} order:random`,
       qs: {
         limit: 100
       }
@@ -97,10 +92,10 @@ function tags(client, evt, suffix) {
             name: query,
             icon_url: evt.message.author.avatarURL
           },
-          url: 'https://e621.net/post/show/' + id,
+          url: 'https://e926.net/post/show/' + id,
           description: `**Score:** ${score} | **Resolution: ** ${width} x ${height}`,
           image: { url: file },
-          footer: { icon_url: 'http://i.imgur.com/RrHrSOi.png', text: 'e621' }
+          footer: { icon_url: 'http://i.imgur.com/RrHrSOi.png', text: 'e926' }
         };
         return evt.message.channel.sendMessage('', false, embed);
       });
@@ -109,7 +104,7 @@ function tags(client, evt, suffix) {
 }
 
 export default {
-  e6: (client, evt, suffix, lang) => {
+  e9: (client, evt, suffix, lang) => {
     const command = suffix.toLowerCase().split(' ')[0];
     // if (command === 'latest') return latest(client, evt, suffix);
     if (command === 'tags') return tags(client, evt, suffix);
@@ -118,5 +113,5 @@ export default {
 };
 
 export const help = {
-  e6: {parameters: ['tags', 'number']}
+  e9: {parameters: ['tags', 'number']}
 };

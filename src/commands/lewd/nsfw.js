@@ -1,6 +1,6 @@
 import T from '../../translate';
 
-import { setNSFWChannel, getNSFWChannel, setBlackListChannel, getBlackListChannel, delBlackListChannel } from '../../redis';
+import { setBlackListChannel, getBlackListChannel, delBlackListChannel } from '../../redis';
 
 const patt = new RegExp(/[A-Za-z0-9.,_ ]+/i);
 

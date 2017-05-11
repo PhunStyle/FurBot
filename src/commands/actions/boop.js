@@ -36,7 +36,7 @@ function boop(client, evt) {
 
       evt.message.mentions.map(user => {
         if (user !== evt.message.author) {
-          return setUserAction(user.id, 'actions_boops')
+          return setUserAction(user.id, 'actions_boops');
         }
       });
 
