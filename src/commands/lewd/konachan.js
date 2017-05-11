@@ -2,7 +2,7 @@ import Promise from 'bluebird';
 import R from 'ramda';
 import _request from 'request';
 
-import { getNSFWChannel, getBlackListChannel } from '../../redis';
+import { getBlackListChannel } from '../../redis';
 
 
 const request = Promise.promisify(_request);

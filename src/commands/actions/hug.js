@@ -38,7 +38,7 @@ function hug(client, evt) {
 
       evt.message.mentions.map(user => {
         if (user !== evt.message.author) {
-          return setUserAction(user.id, 'actions_hugs')
+          return setUserAction(user.id, 'actions_hugs');
         }
       });
 

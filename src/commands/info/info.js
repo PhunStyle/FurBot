@@ -8,7 +8,7 @@ import { getShardsCmdResults } from '../../redis';
 function botinfo(client, evt, suffix, lang, json) {
   const server_count = {guilds: client.Guilds.length, channels: client.Channels.length, users: client.Users.length};
   const clientID = nconf.get('CLIENT_ID');
-  const botVersion = '4.1.0';
+  const bot_version = '4.1.0';
 
   if (nconf.get('SHARDING') && !json) {
     return getShardsCmdResults('servers')
@@ -32,7 +32,7 @@ function botinfo(client, evt, suffix, lang, json) {
               value: 'Phun#5241',
               inline: true },
             { name: '\uD83E\uDD16 Version:',
-              value: `FurBot ${botVersion}`,
+              value: `FurBot ${bot_version}`,
               inline: true },
             { name: '\uD83D\uDCDA Library:',
               value: 'Discordie^0.11.0',
@@ -102,7 +102,7 @@ function botinfo(client, evt, suffix, lang, json) {
         value: 'Phun#5241',
         inline: true },
       { name: '\uD83E\uDD16 Version:',
-        value: `FurBot ${botVersion}`,
+        value: `FurBot ${bot_version}`,
         inline: true },
       { name: '\uD83D\uDCDA Library:',
         value: 'Discordie^0.11.0',

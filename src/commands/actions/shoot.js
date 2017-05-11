@@ -39,7 +39,7 @@ function shoot(client, evt) {
 
       evt.message.mentions.map(user => {
         if (user !== evt.message.author) {
-          return setUserAction(user.id, 'actions_shots')
+          return setUserAction(user.id, 'actions_shots');
         }
       });
 

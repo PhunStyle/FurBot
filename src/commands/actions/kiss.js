@@ -34,7 +34,7 @@ function kiss(client, evt) {
         `smiles and kisses ${receivers}! \uD83D\uDE19`,
         `smiles and gives ${receivers} a little kiss! \uD83D\uDE19`,
         `gladly kisses ${receivers}! \uD83D\uDE19`,
-        `blushes and gives ${recievers} a quick kiss! \uD83D\uDE19`,
+        `blushes and gives ${receivers} a quick kiss! \uD83D\uDE19`,
         `blushes and kisses ${receivers}! \uD83D\uDE19`,
         `completely covers ${receivers} in kisses! \uD83D\uDE19`
       ];
@@ -43,7 +43,7 @@ function kiss(client, evt) {
 
       evt.message.mentions.map(user => {
         if (user !== evt.message.author) {
-          return setUserAction(user.id, 'actions_kisses')
+          return setUserAction(user.id, 'actions_kisses');
         }
       });
 

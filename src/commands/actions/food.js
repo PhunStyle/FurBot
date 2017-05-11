@@ -44,7 +44,7 @@ function food(client, evt) {
 
       let action;
 
-      switch(rand) {
+      switch (rand) {
         case 0:
           action = 'actions_foods_apple';
           break;
@@ -112,7 +112,7 @@ function food(client, evt) {
 
       evt.message.mentions.map(user => {
         if (user !== evt.message.author) {
-          return setUserAction(user.id, action)
+          return setUserAction(user.id, action);
         }
       });
 
