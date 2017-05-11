@@ -5,6 +5,7 @@
 - Added `!boop` command for those exquisite nose booping moments!
 - Added `!kiss` command. Sometimes you just want to smooch someone!
 - Added `!ustats` command. Now you can see how many times you've been hugged, booped or fed!
+- Added `!e9` command. This will search **e926** for safe for work images. It skips the NSFW check.
 - Removed `!chat` command response for now. We'll see how patreon goes and if we need it back.
 - Removed some old administrative features.
 
