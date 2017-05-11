@@ -29,6 +29,8 @@ import { guild_blacklist } from './static';
 let client;
 let initialized = false;
 
+const bot_prefix = nconf.get('PREFIX');
+
 
 function callCmd(cmd, name, client, evt, suffix) {
   logger.cmd(name, evt, suffix);
@@ -96,10 +98,11 @@ function onMessage(evt) {
   if (evt.message.author.bot) return;
 
   // Checks for PREFIX
-  if (evt.message.content[0] === nconf.get('PREFIX')) {
-    const command = evt.message.content.toLowerCase().split(' ')[0].substring(1);
-    const suffix = evt.message.content.substring(command.length + 2);
+  if (evt.message.content.startsWith(bot_prefix)) {
+    const command = evt.message.content.toLowerCase().split(' ')[0].substring(bot_prefix.length);
+    const suffix = evt.message.content.substring(command.length + bot_prefix.length + 1);
     const cmd = commands[command];
+
 
     if (cmd) callCmd(cmd, command, client, evt, suffix);
     return;
@@ -114,7 +117,7 @@ function onMessage(evt) {
 
     const suffix = R.join(' ', R.slice(2, msg_split.length, msg_split));
     let cmd_name = msg_split[1].toLowerCase();
-    if (cmd_name[0] === nconf.get('PREFIX')) cmd_name = cmd_name.slice(1);
+    if (cmd_name[0] === bot_prefix) cmd_name = cmd_name.slice(1);
     const cmd = commands[cmd_name];
 
     if (cmd) callCmd(cmd, cmd_name, client, evt, suffix);
@@ -166,11 +169,11 @@ function forceFetchUsers() {
     logger.info('Setting Game');
     const shard_number = Number(nconf.get('SHARD_NUMBER') + 1);
     const shard_count = Number(nconf.get('SHARD_COUNT'));
-    client.User.setGame(`!info | Shard ${shard_number}/${shard_count}`);
+    client.User.setGame(`${bot_prefix}info | Shard ${shard_number}/${shard_count}`);
   }
   if (!nconf.get('SHARDING')) {
     logger.info('Setting Game');
-    client.User.setGame(`!help | !info`);
+    client.User.setGame(`${bot_prefix}help | ${bot_prefix}info`);
   }
 }
 

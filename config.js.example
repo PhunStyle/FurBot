@@ -1,7 +1,4 @@
 module.exports = {
-  // Version of FurBot - for now only used in !info but might change in future. Do not change.
-  BOT_VERSION: '4.0.1',
-
   // *Required* Prefix for commands.
   PREFIX: '!',
   PORT: 5000,

@@ -1,12 +1,16 @@
 import Promise from 'bluebird';
 
+import { setUserAction } from '../../redis';
+
 
 function hug(client, evt) {
+  if (evt.message.channel.isPrivate) return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139  Use this command in a server!`});
+
   let receiverArray = [];
 
   if (evt.message.mentions.length !== 0) {
     evt.message.mentions.map(user => {
-      if (user !== evt.message.author) receiverArray.push(user.mention);
+      if (user !== evt.message.author && !user.bot) receiverArray.push(user.mention);
     });
 
     if (receiverArray.length !== 0) {
@@ -31,6 +35,13 @@ function hug(client, evt) {
       ];
 
       const rand = Math.floor(Math.random() * hugs.length);
+
+      evt.message.mentions.map(user => {
+        if (user !== evt.message.author) {
+          return setUserAction(user.id, 'actions_hugs')
+        }
+      });
+
       return Promise.resolve(evt.message.author.mention + ` ${hugs[rand]}`);
     }
   }
