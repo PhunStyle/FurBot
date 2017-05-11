@@ -111,7 +111,6 @@ function helpCategory(client, evt, category, lang = 'en') {
 function help(client, evt, suffix, lang) {
   const category = suffix.toLowerCase();
   if (categories[category] || category === 'all') return helpCategory(client, evt, category, lang);
-
   const help_methods = R.keys(categories).sort();
   help_methods.push('all');
   help_methods.splice(help_methods.indexOf('help'), 1);

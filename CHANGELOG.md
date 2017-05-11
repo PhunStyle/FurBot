@@ -1,4 +1,21 @@
-<a name="3.7.2" />
+<a name="4.1.0" />
+## 4.1.0 (May 11th, 2017)
+
+### Features
+- Added `!boop` command for those exquisite nose booping moments!
+- Added `!kiss` command. Sometimes you just want to smooch someone!
+- Added `!ustats` command. Now you can see how many times you've been hugged, booped or fed!
+- Removed `!chat` command response for now. We'll see how patreon goes and if we need it back.
+- Removed some old administrative features.
+
+### Bug Fixes
+- Changed `!drama [number]` to also include a popcorn emoji. Before this was only on random drama images.
+- Fixed the bot being incapable of having more than 1 character for a prefix.
+
+### Technical Notes
+- Updated some package information. More libs are up to date now.
+
+<a name="4.0.1" />
 ## 4.0.1 (May 9th, 2017)
 
 ### Technical Notes

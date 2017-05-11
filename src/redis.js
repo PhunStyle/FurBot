@@ -101,6 +101,22 @@ export function getBlackListChannel(channel_id) {
     });
 }
 
+export function setUserAction(user_id, action) {
+  return client.hincrbyAsync(`user_${user_id}`, action, 1)
+    .timeout(2000)
+    .catch(err => {
+      sentry(err, 'setUserAction');
+    });
+}
+
+export function getUserAction(user_id) {
+  return client.hgetallAsync(`user_${user_id}`)
+    .timeout(2000)
+    .catch(err => {
+      sentry(err, 'setUserAction');
+    });
+}
+
 export function delBlackListChannel(channel_id) {
   return client.hdelAsync(`channel_${channel_id}`, 'blacklist')
     .timeout(2000)

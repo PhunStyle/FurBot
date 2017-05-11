@@ -7,10 +7,7 @@ function evaluateMessage(client, evt, suffix, all) {
     return new Promise((resolve, reject) => {
       try {
         var result = eval(suffix); //eslint-disable-line
-        if (typeof result !== 'object') {
-          return evt.message.channel.sendMessage('\u25B6 **INPUT:** ```js\n' + suffix + '```\n \u2705 **OUTPUT:**```js\n' + result + '```');
-        }
-        return evt.message.channel.sendMessage('Currently unavailable.');
+        return evt.message.channel.sendMessage('\u25B6 **INPUT:** ```js\n' + suffix + '```\n \u2705 **OUTPUT:**```js\n' + result + '```');
       } catch (err) {
         if (err) {
           return evt.message.channel.sendMessage('\u25B6 **INPUT:** ```js\n' + suffix + '```\n \u274C **OUTPUT:**```js\n' + result + '```');

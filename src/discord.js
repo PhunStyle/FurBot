@@ -23,10 +23,13 @@ import {
   ee
 } from './redis';
 
+import { guild_blacklist } from './static';
 
 // Init
 let client;
 let initialized = false;
+
+const bot_prefix = nconf.get('PREFIX');
 
 
 function callCmd(cmd, name, client, evt, suffix) {
@@ -92,12 +95,14 @@ function callCmd(cmd, name, client, evt, suffix) {
 function onMessage(evt) {
   if (!evt.message) return;
   if (client.User.id === evt.message.author.id) return;
+  if (evt.message.author.bot) return;
 
   // Checks for PREFIX
-  if (evt.message.content[0] === nconf.get('PREFIX')) {
-    const command = evt.message.content.toLowerCase().split(' ')[0].substring(1);
-    const suffix = evt.message.content.substring(command.length + 2);
+  if (evt.message.content.startsWith(bot_prefix)) {
+    const command = evt.message.content.toLowerCase().split(' ')[0].substring(bot_prefix.length);
+    const suffix = evt.message.content.substring(command.length + bot_prefix.length + 1);
     const cmd = commands[command];
+
 
     if (cmd) callCmd(cmd, command, client, evt, suffix);
     return;
@@ -112,7 +117,7 @@ function onMessage(evt) {
 
     const suffix = R.join(' ', R.slice(2, msg_split.length, msg_split));
     let cmd_name = msg_split[1].toLowerCase();
-    if (cmd_name[0] === nconf.get('PREFIX')) cmd_name = cmd_name.slice(1);
+    if (cmd_name[0] === bot_prefix) cmd_name = cmd_name.slice(1);
     const cmd = commands[cmd_name];
 
     if (cmd) callCmd(cmd, cmd_name, client, evt, suffix);
@@ -137,8 +142,15 @@ function onMessage(evt) {
 }
 
 function onGuild(evt) {
-  if (evt.guild.becameAvailable) return;
-  return Promise.resolve(evt.guild.generalChannel.sendMessage('Hey there, I\'m FurBot. Nice to meet you :hugging:! To get started, use `!help` to see my commands.\nIf you have tips, ideas, feedback or wanna chat with my creator - there\'s an invite link to my server when you use `!info`'));
+  if (!evt.guild.becameAvailable) {
+    let blacklistCheck = guild_blacklist.includes(evt.guild.id);
+    if (blacklistCheck) {
+      console.log('Leaving Blacklisted Guild')
+      evt.guild.generalChannel.sendMessage(':warning: This guild has been blacklisted! Leaving...');
+      return Promise.resolve(evt.guild.leave());
+    }
+    return Promise.resolve(evt.guild.generalChannel.sendMessage('Hey there, I\'m FurBot. Nice to meet you :hugging:! To get started, use `!help` to see my commands.\nIf you have tips, ideas, feedback or wanna chat with my creator - there\'s an invite link to my server when you use `!info`'));
+  }
 }
 
 function connect() {
@@ -153,10 +165,16 @@ function connect() {
 function forceFetchUsers() {
   logger.info('Force fetching users');
   client.Users.fetchMembers();
-  logger.info('Setting Game');
-  const shard_number = Number(nconf.get('SHARD_NUMBER') + 1);
-  const shard_count = Number(nconf.get('SHARD_COUNT'));
-  client.User.setGame(`!info | Shard ${shard_number}/${shard_count}`);
+  if (nconf.get('SHARDING')) {
+    logger.info('Setting Game');
+    const shard_number = Number(nconf.get('SHARD_NUMBER') + 1);
+    const shard_count = Number(nconf.get('SHARD_COUNT'));
+    client.User.setGame(`${bot_prefix}info | Shard ${shard_number}/${shard_count}`);
+  }
+  if (!nconf.get('SHARDING')) {
+    logger.info('Setting Game');
+    client.User.setGame(`${bot_prefix}help | ${bot_prefix}info`);
+  }
 }
 
 if (nconf.get('SHARDING')) {
@@ -206,6 +224,7 @@ export function start() {
       client.Dispatcher.on('MESSAGE_CREATE', onMessage);
       client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
       client.Dispatcher.on('GUILD_CREATE', onGuild);
+
       if (nconf.get('SHARDING')) {
         subscriber.subscribe('active_shard');
         publisher.publish('shard_done', discordie_options.shardId);
