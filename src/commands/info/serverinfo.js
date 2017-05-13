@@ -74,10 +74,10 @@ function serverinfo(client, evt, suffix) {
   return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
 }
 
-export const help = {
-  serverinfo: {parameters: ['servername']}
-};
-
 export default {
   serverinfo
+};
+
+export const help = {
+  serverinfo: { parameters: 'servername' }
 };

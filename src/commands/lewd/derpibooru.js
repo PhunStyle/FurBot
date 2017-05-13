@@ -132,5 +132,5 @@ export default {
 };
 
 export const help = {
-  dp: {parameters: ['tags', 'number']}
+  dp: { parameters: 'tags' }
 };

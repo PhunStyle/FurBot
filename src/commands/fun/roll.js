@@ -43,5 +43,5 @@ export default {
 };
 
 export const help = {
-  roll: {parameters: ['times', 'sides']}
+  roll: { parameters: ['times', 'sides'] }
 };

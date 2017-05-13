@@ -48,7 +48,5 @@ export default {
 };
 
 export const help = {
-  ustats: {
-    parameters: ['@User']
-  }
+  ustats: { parameters: '@User' }
 };

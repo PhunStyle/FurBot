@@ -69,5 +69,5 @@ export default {
 };
 
 export const help = {
-  gif: {parameters: 'gif tags'}
+  gif: { parameters: 'gif tags' }
 };

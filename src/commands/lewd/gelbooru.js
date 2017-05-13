@@ -121,5 +121,5 @@ export default {
 };
 
 export const help = {
-  gb: {parameters: ['tags', 'number']}
+  gb: { parameters: 'tags' }
 };

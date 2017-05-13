@@ -54,7 +54,5 @@ export default {
 };
 
 export const help = {
-  shoot: {
-    parameters: ['@User']
-  }
+  shoot: { parameters: '@User' }
 };

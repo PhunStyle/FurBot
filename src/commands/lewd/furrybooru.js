@@ -121,5 +121,5 @@ export default {
 };
 
 export const help = {
-  fb: {parameters: ['tags', 'number']}
+  fb: { parameters: 'tags' }
 };

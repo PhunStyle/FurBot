@@ -119,5 +119,5 @@ export default {
 };
 
 export const help = {
-  kc: {parameters: ['tags', 'number']}
+  kc: { parameters: 'tags' }
 };

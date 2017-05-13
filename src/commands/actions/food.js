@@ -3,7 +3,7 @@ import Promise from 'bluebird';
 import { setUserAction } from '../../redis';
 
 
-function food(client, evt) {
+function feed(client, evt) {
   if (evt.message.channel.isPrivate) return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139  Use this command in a server!`});
 
   let receiverArray = [];
@@ -19,7 +19,7 @@ function food(client, evt) {
       const foods = [
         `gives ${receivers} a delicious \uD83C\uDF4E Mmmm!`,
         `gives ${receivers} a delicious \uD83C\uDF50 Tasty!`,
-        `gives ${receivers} a delicious \uD83C\uDF4A Delicious!`,
+        `gives ${receivers} a delicious \uD83C\uDF4A Nom!`,
         `gives ${receivers} a delicious \uD83C\uDF4C Nice!`,
         `gives ${receivers} a delicious \uD83C\uDF49 Mmmmm!`,
         `gives ${receivers} a delicious \uD83C\uDF53 Tastes good!`,
@@ -123,11 +123,9 @@ function food(client, evt) {
 }
 
 export default {
-  food
+  feed
 };
 
 export const help = {
-  food: {
-    parameters: ['@User']
-  }
+  feed: { parameters: '@User' }
 };

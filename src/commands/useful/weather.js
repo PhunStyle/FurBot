@@ -85,5 +85,5 @@ export default {
 };
 
 export const help = {
-  weather: {parameters: ['place']}
+  weather: { parameters: 'place' }
 };

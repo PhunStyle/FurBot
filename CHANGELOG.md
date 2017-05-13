@@ -1,5 +1,27 @@
+<a name="4.1.1" />
+
+# 4.1.1 (May 13th, 2017)
+
+### Features
+- Added more help information to the `!blacklist` command. Should be easier to understand and use now.
+- The blacklist command is now `!blacklist` not `!blacklist-set` etc. Anymore. Keep that in mind.
+- Added more help information to the lewd commands. Should also be easier to understand.
+- Changed `!food` to `!feed`. Made more sense.
+
+### Bug Fixes
+- Fixed `!wolfram` with a temporary workaround provided by the npm package. Thanks `@Waggle` for the bug report.
+- Fixed `!translate` command. Thanks `@Aserani` and `@Komoru` for bringing that up.
+- Fixed `!dota2` command stuff related to roles.
+- Temporary fix for `!wiki` it shouldn't spout out a trillion pages worth of information anymore.
+- Fixed CHANGELOG.md displaying version number incorrectly.
+
+### Technical Notes
+- Updated some code related stuff regarding bracket placement in help export.
+
+
 <a name="4.1.0" />
-## 4.1.0 (May 11th, 2017)
+
+# 4.1.0 (May 11th, 2017)
 
 ### Features
 - Added `!boop` command for those exquisite nose booping moments!
@@ -24,6 +46,7 @@
 
 
 <a name="4.0.0" />
+
 ## 4.0.0 (April 14th, 2017)
 
 ### Features
@@ -49,6 +72,7 @@
 
 
 <a name="3.7.3" />
+
 ## 3.7.3 (April 6th, 2017)
 
 ### Features
@@ -60,12 +84,13 @@
 - Fixed the years in the changelog - ITS TWENTY SEVENTEEN PEOPLE
 - Fixed some command line stuff
 
-### To Do
+### Technical Notes
 - Will probably do something to some command outputs to make them more logical.
 - Will re-visit the lewd commands, they do not show who made certain requests which is bothersome for moderation.
 
 
 <a name="3.7.2" />
+
 ## 3.7.2 (February 27th, 2017)
 
 ### Bug Fixes
@@ -73,6 +98,7 @@
 
 
 <a name="3.7.1" />
+
 ## 3.7.1 (February 24th, 2017)
 
 ### Bug Fixes
@@ -80,6 +106,7 @@
 
 
 <a name="3.7.0" />
+
 ## 3.7.0 (February 22nd, 2017)
 
 ### Features
@@ -93,6 +120,7 @@
 
 
 <a name="3.6.0" />
+
 ## 3.6.0 (February 16th, 2017)
 
 ### Features
@@ -103,6 +131,7 @@
 
 
 <a name="3.5.1" />
+
 ## 3.5.1 (February 13th, 2017)
 
 ### Features
@@ -113,6 +142,7 @@
 
 
 <a name="3.5.0" />
+
 ## 3.5.0 (February 11th, 2017)
 
 ### Features
@@ -124,6 +154,7 @@
 
 
 <a name="3.4.1" />
+
 ## 3.4.1 (January 21st, 2017)
 
 ### Bug Fixes
@@ -131,6 +162,7 @@
 
 
 <a name="3.4.0" />
+
 ## 3.4.0 (January 18th, 2017)
 
 ### Features
@@ -142,6 +174,7 @@
 
 
 <a name="3.3.3" />
+
 ## 3.3.3 (January 16th, 2017)
 
 ### Features
@@ -154,6 +187,7 @@
 
 
 <a name="3.3.2" />
+
 ## 3.3.2 (January 12th, 2017)
 
 ### Technical Features
@@ -162,6 +196,7 @@
 
 
 <a name="3.3.1" />
+
 ## 3.3.1 (January 11th, 2017)
 
 ### Bug Fixes
@@ -170,6 +205,7 @@
 
 
 <a name="3.3.0" />
+
 ## 3.3.0 (January 10th, 2017)
 
 ### Features
@@ -184,22 +220,24 @@
 ### Bug Fixes
 - Fixed some random ass bugs.
 
-### Technical Note
+### Technical Notes
 I noticed FurBot crashed last night - not sure why. If you see errors or anything use the feedback or info commands to get in touch.
 
 
 <a name="3.2.4" />
+
 ## 3.2.4 (January 10th, 2017)
 
 ### Bug Fixes
 - Fixed tag limit to all lewd commands, maximum is now 6
 - Fixed changelog `!version` command. Should now display properly
 
-### Technical Note
+### Technical Notes
 I have seen FurBot crash and i am trying to figure out why - for now the bot may randomly go offline which is something i really hate seeing. I will try to keep a close eye on things moving forward.
 
 
 <a name="3.2.3" />
+
 ## 3.2.3 (January 9th, 2017)
 
 ### Features
@@ -212,11 +250,12 @@ I have seen FurBot crash and i am trying to figure out why - for now the bot may
 ### Bug Fixes
 - Fixed konachan returning `Error: "Bad Request"`
 
-### Technical Features
+### Technical Notes
 - NSFW Restrictions coming soonTM?
 
 
 <a name="3.2.2" />
+
 ## 3.2.2 (December 13th, 2016)
 
 ### Features
@@ -234,6 +273,6 @@ I have seen FurBot crash and i am trying to figure out why - for now the bot may
 - Fixed !chat command
 - Fixed !feedback command
 
-### Technical Features
+### Technical Notes
 - Added admin command to set the game FurBot is playing
 - Created a server for FurBot, type "!feedback" without anything else to get the invite link

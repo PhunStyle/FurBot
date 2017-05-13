@@ -51,7 +51,5 @@ export default {
 };
 
 export const help = {
-  boop: {
-    parameters: ['@User']
-  }
+  boop: { parameters: '@User' }
 };

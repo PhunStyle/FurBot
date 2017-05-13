@@ -131,9 +131,10 @@ function botinfo(client, evt, suffix, lang, json) {
   return Promise.resolve(evt.message.channel.sendMessage('', false, embedNoShard));
 }
 
-export const help = {info: {}};
 export default {
   info: botinfo,
   servers: botinfo,
   statistics: botinfo
 };
+
+export const help = {info: {}};

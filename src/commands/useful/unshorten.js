@@ -20,5 +20,5 @@ export default {
 };
 
 export const help = {
-  unshorten: {parameters: 'url'}
+  unshorten: { parameters: 'url' }
 };

@@ -117,11 +117,11 @@ function userinfo(client, evt, suffix) {
   return Promise.resolve(userinfo);
 }
 
-export const help = {
-  userinfo: {parameters: ['username']}
-};
-
 export default {
   userinfo,
   whois: userinfo
+};
+
+export const help = {
+  userinfo: { parameters: 'username' }
 };

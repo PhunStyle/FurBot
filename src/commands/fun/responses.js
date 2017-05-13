@@ -29,7 +29,7 @@ export default {
 };
 
 export const help = {
-  drama: {parameters: 'number'},
-  emoji: {parameters: 'number'},
-  quote: {parameters: 'number'}
+  drama: { parameters: 'number' },
+  emoji: { parameters: 'number' },
+  quote: { parameters: 'number' }
 };

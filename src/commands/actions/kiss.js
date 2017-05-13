@@ -58,7 +58,5 @@ export default {
 };
 
 export const help = {
-  kiss: {
-    parameters: ['@User']
-  }
+  kiss: { parameters: '@User' }
 };

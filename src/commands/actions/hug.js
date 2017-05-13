@@ -53,7 +53,5 @@ export default {
 };
 
 export const help = {
-  hug: {
-    parameters: ['@User']
-  }
+  hug: { parameters: '@User' }
 };

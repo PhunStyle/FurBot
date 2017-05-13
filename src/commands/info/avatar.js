@@ -21,10 +21,10 @@ function avatar(client, evt, suffix) {
   return Promise.resolve(`${user.username}'s avatar:\n${user.avatarURL}`);
 }
 
-export const help = {
-  avatar: {parameters: ['username']}
-};
-
 export default {
   avatar
+};
+
+export const help = {
+  avatar: { parameters: 'username' }
 };

@@ -102,7 +102,5 @@ export default {
 };
 
 export const help = {
-  pokemon: {
-    category: 'games'
-  }
+  pokemon: { category: 'games' }
 };

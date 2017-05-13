@@ -121,5 +121,5 @@ export default {
 };
 
 export const help = {
-  r34: {parameters: ['tags', 'number']}
+  r34: { parameters: 'tags' }
 };

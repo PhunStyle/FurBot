@@ -47,7 +47,5 @@ export default {
 };
 
 export const help = {
-  slap: {
-    parameters: ['@User']
-  }
+  slap: { parameters: '@User' }
 };

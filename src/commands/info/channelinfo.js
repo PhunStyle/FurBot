@@ -171,10 +171,10 @@ function channelinfo(client, evt, suffix) {
   return Promise.resolve(channelinfo);
 }
 
-export const help = {
-  channelinfo: {parameters: ['channelname']}
-};
-
 export default {
   channelinfo
+};
+
+export const help = {
+  channelinfo: { parameters: 'channelname' }
 };

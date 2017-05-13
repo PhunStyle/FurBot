@@ -50,6 +50,7 @@ function language(client, evt, suffix, lang) {
     return Promise.resolve(evt.message.channel.sendMessage(res.text));
   })
   .catch(err => {
+    console.log(err);
     let embed = { color: 16763981, description: `\u26A0  ${err}  |  [Language Code List](https://sites.google.com/site/tomihasa/google-language-codes)` };
     return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   });

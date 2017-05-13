@@ -9,7 +9,9 @@ function version() {
     .then(R.prop('body'))
     .then(R.split(/<a name="*.*.*" \/>/g))
     .then(R.nth(1))
-    .then(R.replace(/#### /g, ''))
+    .then(R.replace('### Features', '**Features:**'))
+    .then(R.replace('### Bug Fixes', '**Bug Fixes:**'))
+    .then(R.replace('### Technical Notes', '**Technical Notes:**'))
     .then(R.replace(/#/g, ''))
     .then(R.slice(1, -1))
     .then(R.trim);
