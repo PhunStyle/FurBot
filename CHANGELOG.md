@@ -1,3 +1,11 @@
+<a name="4.1.2" />
+
+# 4.1.2 (May 15th, 2017)
+
+### Bug Fixes
+- Fixed `!feed` not showing up in help list. Yeah that's about it for this one.
+
+
 <a name="4.1.1" />
 
 # 4.1.1 (May 13th, 2017)

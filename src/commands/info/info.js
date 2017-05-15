@@ -8,7 +8,7 @@ import { getShardsCmdResults } from '../../redis';
 function botinfo(client, evt, suffix, lang, json) {
   const server_count = {guilds: client.Guilds.length, channels: client.Channels.length, users: client.Users.length};
   const clientID = nconf.get('CLIENT_ID');
-  const bot_version = '4.1.0';
+  const bot_version = '4.1.2';
 
   if (nconf.get('SHARDING') && !json) {
     return getShardsCmdResults('servers')
