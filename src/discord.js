@@ -115,7 +115,7 @@ function onMessage(evt) {
     const cmd = commands[command];
 
     if (cmd && cmd !== 'help') {
-      return Promise.resolve(evt.guild.generalChannel.sendMessage('Please use our new prefix: `f!`');
+      return Promise.resolve(evt.guild.generalChannel.sendMessage('Please use our new prefix: `f!`'));
     }
   }
 
