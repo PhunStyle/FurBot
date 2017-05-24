@@ -6,8 +6,8 @@
 - Fixed lewd commands shitting out 5 error messages when it can't find one tag but you used a number to repeat the command.
 
 ### Technical Notes
-- **FurBot's Prefix is now `f!`**
-- *Example:* `f!8ball Will i get lucky?`
+- **FurBot's Prefix is now `f.`**
+- *Example:* `f.8ball Will i get lucky?`
 
 <a name="4.1.2" />
 

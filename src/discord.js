@@ -115,7 +115,7 @@ function onMessage(evt) {
     const cmd = commands[command];
 
     if (cmd && command !== 'help') {
-      return Promise.resolve(evt.message.channel.sendMessage('Please use our new prefix: `f!`'));
+      return Promise.resolve(evt.message.channel.sendMessage('Please use our new prefix: `f.`'));
     }
   }
 
