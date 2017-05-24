@@ -149,7 +149,7 @@ function onGuild(evt) {
       evt.guild.generalChannel.sendMessage(':warning: This guild has been blacklisted! Leaving...');
       return Promise.resolve(evt.guild.leave());
     }
-    return Promise.resolve(evt.guild.generalChannel.sendMessage('Hey there, I\'m FurBot. Nice to meet you :hugging:! To get started, use `!help` to see my commands.\nIf you have tips, ideas, feedback or wanna chat with my creator - there\'s an invite link to my server when you use `!info`'));
+    return Promise.resolve(evt.guild.generalChannel.sendMessage(`Hey there, I\'m FurBot. Nice to meet you :heart:! To get started, use \`${bot_prefix}help\` to see my commands.\nIf you have tips, ideas, feedback or wanna chat with my creator - there\'s an invite link to my server when you use \`${bot_prefix}info\``));
   }
 }
 
