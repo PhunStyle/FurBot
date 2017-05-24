@@ -38,7 +38,7 @@ function tags(client, evt, suffix) {
     if (value) {
       blacklist = value.split(', ');
       if (findOne(blacklist, array)) {
-        return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  One of the tags you entered is blacklisted in this channel!\nTo see the blacklist use \`!blacklist-get\``}));
+        return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  One of the tags you entered is blacklisted in this channel!\nTo see the blacklist use \`f.blacklist get\``}));
       }
     }
     let query;
