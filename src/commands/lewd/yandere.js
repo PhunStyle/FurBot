@@ -73,9 +73,9 @@ function tags(client, evt, suffix) {
 
     return _makeRequest(options)
     .then(body => {
+      if (!body || typeof body === 'undefined' || body.length === 0) return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
       return Promise.resolve(R.repeat('tags', count))
       .map(() => {
-        if (!body || typeof body === 'undefined' || body.length === 0) return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
         // Do some math
         let randomid = Math.floor(Math.random() * body.length);
         // Grab the data
