@@ -7,7 +7,7 @@ import { getShardsCmdResults } from '../../redis';
 
 function botinfo(client, evt, suffix, lang, json) {
   const server_count = {guilds: client.Guilds.length, channels: client.Channels.length, users: client.Users.length};
-  const clientID = nconf.get('CLIENT_ID');
+  const client_id = nconf.get('CLIENT_ID');
   const bot_version = '4.1.3';
 
   if (nconf.get('SHARDING') && !json) {
@@ -26,7 +26,7 @@ function botinfo(client, evt, suffix, lang, json) {
             name: `FurBot Info`,
             icon_url: 'https://cdn.discordapp.com/avatars/174186616422662144/e6b8c266186a60f6b947d1635c09459e.jpg' // eslint-disable-line camelcase
           },
-          description: 'Hey there! These are my stats, to see all of my commands use `!help`',
+          description: 'Hey there! These are my stats, to see all of my commands use `f!help`',
           fields: [
             { name: '\uD83D\uDD75\uD83C\uDFFC Owner:',
               value: 'Phun#5241',
@@ -47,7 +47,7 @@ function botinfo(client, evt, suffix, lang, json) {
               value: `${res.users}`,
               inline: true },
             { name: '\uD83D\uDCEC Invite:',
-              value: `[Click Here](https://discordapp.com/oauth2/authorize?&client_id=${clientID}&scope=bot&permissions=268561430)`,
+              value: `[Click Here](https://discordapp.com/oauth2/authorize?&client_id=${client_id}&scope=bot&permissions=268561430)`,
               inline: true },
             { name: '\uD83D\uDCB5 Patreon:',
               value: `[Click Here](https://www.patreon.com/bePatron?u=5578447)`,
@@ -117,7 +117,7 @@ function botinfo(client, evt, suffix, lang, json) {
         value: `${server_count.users}`,
         inline: true },
       { name: '\uD83D\uDCEC Invite:',
-        value: `[Click Here](https://discordapp.com/oauth2/authorize?&client_id=${clientID}&scope=bot&permissions=268561430)`,
+        value: `[Click Here](https://discordapp.com/oauth2/authorize?&client_id=${client_id}&scope=bot&permissions=268561430)`,
         inline: true },
       { name: '\uD83D\uDCB5 Patreon:',
         value: `[Click Here](https://www.patreon.com/bePatron?u=5578447)`,
