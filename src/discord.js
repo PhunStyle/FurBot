@@ -114,8 +114,8 @@ function onMessage(evt) {
     const suffix = evt.message.content.substring(command.length + 2);
     const cmd = commands[command];
 
-    if (cmd && cmd !== 'help') {
-      return Promise.resolve(evt.guild.generalChannel.sendMessage('Please use our new prefix: `f!`'));
+    if (cmd && command !== 'help') {
+      return Promise.resolve(evt.message.channel.sendMessage('Please use our new prefix: `f!`'));
     }
   }
 
