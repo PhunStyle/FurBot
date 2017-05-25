@@ -98,7 +98,7 @@ function onMessage(evt) {
   if (evt.message.author.bot) return;
 
   // Checks for PREFIX
-  if (evt.message.content.startsWith(bot_prefix)) {
+  if (evt.message.content.toLowerCase().startsWith(bot_prefix)) {
     const command = evt.message.content.toLowerCase().split(' ')[0].substring(bot_prefix.length);
     const suffix = evt.message.content.substring(command.length + bot_prefix.length + 1);
     const cmd = commands[command];
@@ -107,7 +107,7 @@ function onMessage(evt) {
     if (cmd) callCmd(cmd, command, client, evt, suffix);
     return;
   }
-  
+
   // Checks for OLD PREFIX
   if (evt.message.content[0] === '!') {
     const command = evt.message.content.toLowerCase().split(' ')[0].substring(1);
