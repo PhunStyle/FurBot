@@ -108,17 +108,6 @@ function onMessage(evt) {
     return;
   }
 
-  // Checks for OLD PREFIX
-  if (evt.message.content[0] === '!') {
-    const command = evt.message.content.toLowerCase().split(' ')[0].substring(1);
-    const suffix = evt.message.content.substring(command.length + 2);
-    const cmd = commands[command];
-
-    if (cmd && command !== 'help') {
-      return Promise.resolve(evt.message.channel.sendMessage('Please use our new prefix: `f.`'));
-    }
-  }
-
   // Checks if bot was mentioned
   if (client.User.isMentioned(evt.message)) {
     const msg_split = evt.message.content.split(' ');
