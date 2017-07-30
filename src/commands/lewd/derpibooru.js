@@ -33,9 +33,7 @@ function findOne(haystack, arr) {
 }
 
 function tags(client, evt, suffix) {
-  let channelName = evt.message.channel.name;
-  const patt = new RegExp(/^nsfw(-|$)/);
-  let channelTest = patt.test(channelName);
+  let channelTest = evt.message.channel.nsfw;
   if (evt.message.channel.isPrivate) channelTest = true;
   if (channelTest === false) return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  Please use this command in a NSFW-enabled channel.\nIf you are an Admin, edit the channel and enable NSFW.`}));
   return getBlackListChannel(evt.message.channel_id).then(value => {

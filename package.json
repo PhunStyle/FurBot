@@ -19,7 +19,7 @@
     "dark-sky": "^1.0.10",
     "diacritics": "^1.2.3",
     "didyoumean": "^1.2.1",
-    "discordie": "^0.11.0",
+    "discordie": "github:qeled/discordie#dev",
     "dogapi": "^2.3.0",
     "entities": "^1.1.1",
     "express": "^4.15.2",
