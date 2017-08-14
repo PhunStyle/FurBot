@@ -13,9 +13,9 @@ const P = new Pokedex();
 // Verify name of a pokemon. If pokemon is not found, do a closest string match to find it.
 // If no pokemon can be matched, return the string anyway.
 function _verifyName(poke) {
-  const poke_reg = poke.toLowerCase();
+  let poke_reg = poke.toLowerCase();
   if (!poke_list[poke_reg]) {
-    const poke_search = didyoumean(poke_reg, R.keys(poke_list));
+    let poke_search = didyoumean(poke_reg, R.keys(poke_list));
     if (poke_search) return poke_search;
   }
   return poke_reg;
@@ -24,10 +24,15 @@ function _verifyName(poke) {
 function findPoke(client, evt, suffix, lang) {
   if (!suffix) return Promise.resolve(T('pokemon_usage', lang));
 
-  const poke = suffix;
-  const poke_reg = _verifyName(poke);
+  let poke = suffix;
+  let poke_reg = _verifyName(poke);
+  let poke_reg_species = poke_reg;
 
-  var PokePromises = [P.getPokemonByName(poke_reg), P.getPokemonSpeciesByName(poke_reg)];
+  if (poke_reg.includes('-')) {
+    poke_reg_species = poke_reg.split('-')[0];
+  };
+
+  var PokePromises = [P.getPokemonByName(poke_reg), P.getPokemonSpeciesByName(poke_reg_species)];
   evt.message.channel.sendMessage(`\uD83D\uDD0D Searching for ${poke_reg}...`)
   .then(function(message) {
     setTimeout(function() {
@@ -91,6 +96,7 @@ function findPoke(client, evt, suffix, lang) {
   })
   .catch(function(err) {
     if (err) {
+      //console.log(err);
       let embed = { color: 16763981, description: `\u26A0  No results for: \`${suffix}\`` };
       return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
     }

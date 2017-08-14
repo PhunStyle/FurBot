@@ -1,3 +1,26 @@
+<a name="4.1.5" />
+
+# 4.1.5 (August 14th, 2017)
+
+### Features
+- Added `pet` action in the action commands. (Also added it to `userstats`). Thanks `@skorpina18`.
+
+### Bug Fixes
+- Changed `info` command to grab version from the package file. Idk why i didn't do this a long time ago.
+- Fixed `pokemon` command to now differentiate between pokemon forms. Try using `pokemon giratina origin` or `pokemon shaymin sky`. Thanks `@Dragon Shark`.
+
+
+<a name="4.1.4" />
+
+# 4.1.4 (July 30th, 2017)
+
+### Bug Fixes
+- Changed NSFW channel recognition to the new standard that looks for the NSFW setting when you edit channels.
+
+### Technical Notes
+- Above bugfix means a change to the dev branch of discordie.
+
+
 <a name="4.1.3" />
 
 # 4.1.3 (May 24th, 2017)

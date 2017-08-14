@@ -3,12 +3,13 @@ import nconf from 'nconf';
 import R from 'ramda';
 
 import { getShardsCmdResults } from '../../redis';
+import package_file from '../../../package.json';
 
 
 function botinfo(client, evt, suffix, lang, json) {
   const server_count = {guilds: client.Guilds.length, channels: client.Channels.length, users: client.Users.length};
   const client_id = nconf.get('CLIENT_ID');
-  const bot_version = '4.1.3';
+  const bot_version = package_file.version;
 
   if (nconf.get('SHARDING') && !json) {
     return getShardsCmdResults('servers')
