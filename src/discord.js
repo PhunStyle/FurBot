@@ -141,6 +141,7 @@ function onMessage(evt) {
   }
 }
 
+/*
 function onGuild(evt) {
   if (!evt.guild.becameAvailable) {
     let blacklistCheck = guild_blacklist.includes(evt.guild.id);
@@ -151,7 +152,7 @@ function onGuild(evt) {
     }
     return Promise.resolve(evt.guild.generalChannel.sendMessage(`Hey there, I\'m FurBot. Nice to meet you :heart:! To get started, use \`${bot_prefix}help\` to see my commands.\nIf you have tips, ideas, feedback or wanna chat with my creator - there\'s an invite link to my server when you use \`${bot_prefix}info\``));
   }
-}
+}*/
 
 function connect() {
   if (!nconf.get('TOKEN') || !nconf.get('CLIENT_ID')) {
@@ -223,7 +224,7 @@ export function start() {
 
       client.Dispatcher.on('MESSAGE_CREATE', onMessage);
       client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
-      client.Dispatcher.on('GUILD_CREATE', onGuild);
+      // client.Dispatcher.on('GUILD_CREATE', onGuild);
 
       if (nconf.get('SHARDING')) {
         subscriber.subscribe('active_shard');
