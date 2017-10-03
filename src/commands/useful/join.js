@@ -16,7 +16,6 @@ const permissions = [
   '0x0008000', // Attach files
   '0x0010000', // Read message history
   '0x00040000', // Use External Emoji
-  '0x08000000', // Manage Nicknames
   '0x10000000' // Manage Roles
 ];
 
