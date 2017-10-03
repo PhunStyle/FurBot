@@ -90,6 +90,10 @@ function tags(client, evt, suffix) {
             fileurl = 'http://i.imgur.com/oKq3RdK.png';
           }
         }
+        let imageDescription = `**Score:** ${score} | **Resolution: ** ${width} x ${height} | **Link:** [Click Here](http://konachan.com/post/show/${id})`;
+        if (file.endsWith('webm') || file.endsWith('swf')) {
+          imageDescription = `**Score:** ${score} | **Link:** [Click Here](http://konachan.com/post/show/${id})\n*This file (webm/swf) cannot be previewed or embedded.*`
+        }
         let embed = {
           color: 15632519,
           author: {
@@ -97,7 +101,7 @@ function tags(client, evt, suffix) {
             icon_url: evt.message.author.avatarURL
           },
           url: 'http://konachan.com/post/show/' + id,
-          description: `**Score:** ${score} | **Resolution: ** ${width} x ${height}`,
+          description: imageDescription,
           image: { url: fileurl },
           footer: { icon_url: 'http://i.imgur.com/i6h2bnx.png', text: 'konachan' }
         };

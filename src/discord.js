@@ -141,18 +141,29 @@ function onMessage(evt) {
   }
 }
 
-/*
+
+function onGuildDown(evt) {
+  logger.warn('The following guild has gone UNAVAILABLE: ' + evt.guildId)
+}
+
+
 function onGuild(evt) {
   if (!evt.guild.becameAvailable) {
     let blacklistCheck = guild_blacklist.includes(evt.guild.id);
     if (blacklistCheck) {
-      console.log('Leaving Blacklisted Guild');
+      logger.warn('Leaving Blacklisted Guild');
       evt.guild.generalChannel.sendMessage(':warning: This guild has been blacklisted! Leaving...');
       return Promise.resolve(evt.guild.leave());
     }
-    return Promise.resolve(evt.guild.generalChannel.sendMessage(`Hey there, I\'m FurBot. Nice to meet you :heart:! To get started, use \`${bot_prefix}help\` to see my commands.\nIf you have tips, ideas, feedback or wanna chat with my creator - there\'s an invite link to my server when you use \`${bot_prefix}info\``));
+    let guildChannels = evt.guild.textChannels;
+    for (let i = 0; i < guildChannels.length; i++) {
+      let userPerms = client.User.permissionsFor(guildChannels[i]);
+      if (client.User.can(userPerms.Text.SEND_MESSAGES, guildChannels[i])) {
+        return Promise.resolve(guildChannels[i].sendMessage(`Hey there, I\'m **FurBot**. Nice to meet you! :purple_heart:\n\nI\'m a multi-functional bot with many different features and i'm constantly getting updated.\nTo get started, use \`${bot_prefix}help\` for a complete list of my commands.\n\n:small_blue_diamond: Try out \`${bot_prefix}weather Amsterdam\` to see the weather!\n:small_orange_diamond: Use \`${bot_prefix}8ball Will i get lucky?\` to let me predict the outcome!\n:small_blue_diamond: Or use \`${bot_prefix}e9 Pikachu\` to see a Safe-For-Work picture of Pikachu!\n\n**If you have tips, ideas, feedback or need help, join the FurBot Server: https://discord.gg/H7W49Ps **`));
+      }
+    }
   }
-}*/
+}
 
 function connect() {
   if (!nconf.get('TOKEN') || !nconf.get('CLIENT_ID')) {
@@ -166,16 +177,12 @@ function connect() {
 function forceFetchUsers() {
   logger.info('Force fetching users');
   client.Users.fetchMembers();
-  if (nconf.get('SHARDING')) {
-    logger.info('Setting Game');
-    const shard_number = Number(nconf.get('SHARD_NUMBER') + 1);
-    const shard_count = Number(nconf.get('SHARD_COUNT'));
-    client.User.setGame(`${bot_prefix}info | Shard ${shard_number}/${shard_count}`);
-  }
-  if (!nconf.get('SHARDING')) {
+  setTimeout(forceSetGame, 60000);
+}
+
+function forceSetGame() {
     logger.info('Setting Game');
     client.User.setGame(`${bot_prefix}help | ${bot_prefix}info`);
-  }
 }
 
 if (nconf.get('SHARDING')) {
@@ -208,7 +215,7 @@ export function start() {
   // Listen for events on Discord
   client.Dispatcher.on('GATEWAY_READY', () => {
     logger.success(`Started successfully. Connected to ${client.Guilds.length} servers.`);
-    setTimeout(forceFetchUsers, 45000);
+    setTimeout(forceFetchUsers, 60000);
 
     if (!initialized) {
       initialized = true;
@@ -224,7 +231,8 @@ export function start() {
 
       client.Dispatcher.on('MESSAGE_CREATE', onMessage);
       client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
-      // client.Dispatcher.on('GUILD_CREATE', onGuild);
+      client.Dispatcher.on('GUILD_UNAVAILABLE', onGuildDown);
+      client.Dispatcher.on('GUILD_CREATE', onGuild);
 
       if (nconf.get('SHARDING')) {
         subscriber.subscribe('active_shard');

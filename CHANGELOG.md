@@ -1,3 +1,19 @@
+<a name="4.1.6" />
+
+# 4.1.6 (October 3rd, 2017)
+Some quality of life improvements here, just so the bot functions a little bit better while we put our focus on the re-write.
+
+### Features
+- Changed the new bot welcome message completely. Try kicking & re-inviting FurBot if you want to see it in action!
+- Changed all lewd commands to include a link to the full post on the source website.
+- Changed all lewd commands to tell you if it's a video/webm/flash file or not.
+
+### Bug Fixes
+- Fixed the welcome message so it actually works since .generalChannel is no longer a thing.
+- Fixed the game status no longer displaying. This should make it easier to see how to get a list of help commands.
+- Fixed weather API update (have to stay on old version but hey it works).
+
+
 <a name="4.1.5" />
 
 # 4.1.5 (August 14th, 2017)

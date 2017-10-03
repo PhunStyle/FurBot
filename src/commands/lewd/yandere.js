@@ -89,6 +89,10 @@ function tags(client, evt, suffix) {
             file = 'http://i.imgur.com/oKq3RdK.png';
           }
         }
+        let imageDescription = `**Score:** ${score} | **Resolution: ** ${width} x ${height} | **Link:** [Click Here](https://yande.re/post/show/${id})`;
+        if (file.endsWith('webm') || file.endsWith('swf')) {
+          imageDescription = `**Score:** ${score} | **Link:** [Click Here](https://yande.re/post/show/${id})\n*This file (webm/swf) cannot be previewed or embedded.*`
+        }
         let embed = {
           color: 15632519,
           author: {
@@ -96,7 +100,7 @@ function tags(client, evt, suffix) {
             icon_url: evt.message.author.avatarURL
           },
           url: 'https://yande.re/post/show/' + id,
-          description: `**Score:** ${score} | **Resolution: ** ${width} x ${height}`,
+          description: imageDescription,
           image: { url: file },
           footer: { icon_url: 'http://i.imgur.com/Gq1SpOc.png', text: 'yandere' }
         };

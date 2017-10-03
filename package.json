@@ -1,6 +1,6 @@
 {
   "name": "furbot",
-  "version": "4.1.5",
+  "version": "4.1.6",
   "description": "A furry bot for Discord",
   "main": "index.js",
   "dependencies": {
@@ -16,7 +16,7 @@
     "cheerio": "^0.20.0",
     "cleverbot-node": "^0.3.10",
     "concurrently": "^2.1.0",
-    "dark-sky": "^1.0.10",
+    "dark-sky": "1.0.10",
     "diacritics": "^1.2.3",
     "didyoumean": "^1.2.1",
     "discordie": "github:qeled/discordie#dev",
