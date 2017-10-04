@@ -4,15 +4,20 @@ import T from '../../translate';
 
 
 const permissions = [
+  '0x00000001', // Create Invite
   '0x0000002', // Kick Members
   '0x0000004', // Ban Members
   '0x0000010', // Manage Channels
+  '0x00000040', // Add Reactions
+  '0x00000080', // View Audit Log
   '0x0000400', // Read Messages
   '0x0000800', // Send Messages
   '0x0002000', // Manage messages
   '0x0004000', // Embed Links,
   '0x0008000', // Attach files
   '0x0010000', // Read message history
+  '0x00040000', // Use External Emoji
+  '0x08000000', // Manage Nicknames
   '0x10000000' // Manage Roles
 ];
 
