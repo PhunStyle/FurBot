@@ -91,8 +91,10 @@ function tags(client, evt, suffix) {
           }
         }
         let imageDescription = `**Score:** ${score} | **Resolution: ** ${width} x ${height} | **Link:** [Click Here](http://danbooru.donmai.us/posts/${id})`;
-        if (file.endsWith('webm') || file.endsWith('swf')) {
-          imageDescription = `**Score:** ${score} | **Link:** [Click Here](http://danbooru.donmai.us/posts/${id})\n*This file (webm/swf) cannot be previewed or embedded.*`
+        if (file) {
+          if (file.endsWith('webm') || file.endsWith('swf')) {
+            imageDescription = `**Score:** ${score} | **Link:** [Click Here](http://danbooru.donmai.us/posts/${id})\n*This file (webm/swf) cannot be previewed or embedded.*`
+          }
         }
         let embed = {
           color: 29695,
