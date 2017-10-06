@@ -1,6 +1,6 @@
 <a name="4.1.7" />
 
-# 4.1.7 (October 5th, 2017)
+# 4.1.7 (October 6th, 2017)
 
 ### Features
 - Slightly rewrote the `avatar` command. This now shows you bigger resolution avatars (if available). Thanks to `Fox Wizard`.
