@@ -18,9 +18,8 @@ function avatar(client, evt, suffix) {
       author: {
         name: evt.message.author.username + '\'s Avatar'
       },
-      image: { url: evt.message.author.getAvatarURL({format: 'png', size: 512, preferAnimated: true}) }
+      image: { url: evt.message.author.getAvatarURL({format: 'png', size: 2048, preferAnimated: true}) }
     };
-    console.log(embed.image);
     return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
   } else if (evt.message.mentions.length) {
     return Promise.resolve(evt.message.mentions)
@@ -37,7 +36,7 @@ function avatar(client, evt, suffix) {
           author: {
             name: user.username + '\'s Avatar'
           },
-          image: { url: user.getAvatarURL({format: 'png', size: 512, preferAnimated: true}) }
+          image: { url: user.getAvatarURL({format: 'png', size: 2048, preferAnimated: true}) }
         };
         return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
       });
