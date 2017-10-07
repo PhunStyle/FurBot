@@ -1,3 +1,11 @@
+<a name="4.1.8" />
+
+# 4.1.8 (October 7th, 2017)
+
+### Bug Fixes
+- e926 is the safe for work version of e621. Sadly on the programming side it treats it as an extra search tag. FurBot gave an error when you tried to search for 5 tags on e9. This has now been limited to 4 tags and fixed the error. (Fixes #7)
+
+
 <a name="4.1.7" />
 
 # 4.1.7 (October 6th, 2017)

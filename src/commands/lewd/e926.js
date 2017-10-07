@@ -57,8 +57,8 @@ function tags(client, evt, suffix) {
 
     if (query === '') return Promise.resolve(`\u26A0  |  No tags were supplied`);
     let checkLength = query.split(' ');
-    if (checkLength.length > 5) return Promise.resolve(`\u26A0  |  You can only search up to 5 tags`);
-
+    if (checkLength.length > 4) return Promise.resolve(`\u26A0  |  You can only search up to 4 tags`);
+    // Sadly e9 treats the safe for work tag as a tag which limits us to 4 tags.
     const options = {
       url: `https://e926.net/post/index.json?tags=${query} order:random`,
       qs: {
