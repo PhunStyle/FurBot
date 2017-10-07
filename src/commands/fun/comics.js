@@ -63,7 +63,7 @@ function awkwardZombie() {
 
 // Chain Saw Suit
 function chainsawsuit() {
-  return request('http://chainsawsuit.com/random/?random&nocache=1')
+  return request('http://chainsawsuit.com/comic/random/?random&nocache=1')
     .then(R.prop('body'))
     .then(cheerio.load)
     .then($ => $('#comic').find('img').first().attr('src'));
