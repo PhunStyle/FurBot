@@ -1,6 +1,6 @@
 {
   "name": "furbot",
-  "version": "4.1.8",
+  "version": "4.1.9",
   "description": "A furry bot for Discord",
   "main": "index.js",
   "dependencies": {
@@ -104,8 +104,8 @@
     "transifex:upload": "npm run transifex:review && npm run lint-json && babel-node ./scripts/translations/transifex-upload.js"
   },
   "engines": {
-    "node": "4.8.3",
-    "npm": "3.10.3"
+    "node": "6.11.4",
+    "npm": "3.10.10"
   },
   "babel": {
     "presets": [

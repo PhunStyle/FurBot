@@ -1,5 +1,4 @@
 import Promise from 'bluebird';
-import R from 'ramda';
 import randomColor from 'randomcolor';
 import converter from 'hex2dec';
 

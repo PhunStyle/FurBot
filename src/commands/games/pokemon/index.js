@@ -30,7 +30,7 @@ function findPoke(client, evt, suffix, lang) {
 
   if (poke_reg.includes('-')) {
     poke_reg_species = poke_reg.split('-')[0];
-  };
+  }
 
   var PokePromises = [P.getPokemonByName(poke_reg), P.getPokemonSpeciesByName(poke_reg_species)];
   evt.message.channel.sendMessage(`\uD83D\uDD0D Searching for ${poke_reg}...`)
@@ -96,7 +96,6 @@ function findPoke(client, evt, suffix, lang) {
   })
   .catch(function(err) {
     if (err) {
-      //console.log(err);
       let embed = { color: 16763981, description: `\u26A0  No results for: \`${suffix}\`` };
       return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
     }

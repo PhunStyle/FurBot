@@ -1,3 +1,18 @@
+<a name="4.1.9" />
+
+# 4.1.9 (October 7th, 2017)
+
+### Bug Fixes
+- Fixed `comics css` (chainsawsuit). It now properly gets comics again.
+- Removed `videocall` command since it's integrated into discord now, woo!
+- Fixed `urban` just a tiny bit, added a slight amount of formatting.
+- Changed `invite` (`join`) command to no longer show a huge link embed.
+
+### Technical Notes
+- Bumped node version to 6.11.4 and npm version to 3.10.10 !
+- All js files once again conform to our linter.
+
+
 <a name="4.1.8" />
 
 # 4.1.8 (October 7th, 2017)

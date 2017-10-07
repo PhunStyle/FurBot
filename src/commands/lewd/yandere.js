@@ -92,7 +92,7 @@ function tags(client, evt, suffix) {
         let imageDescription = `**Score:** ${score} | **Resolution: ** ${width} x ${height} | **Link:** [Click Here](https://yande.re/post/show/${id})`;
         if (file) {
           if (file.endsWith('webm') || file.endsWith('swf')) {
-            imageDescription = `**Score:** ${score} | **Link:** [Click Here](https://yande.re/post/show/${id})\n*This file (webm/swf) cannot be previewed or embedded.*`
+            imageDescription = `**Score:** ${score} | **Link:** [Click Here](https://yande.re/post/show/${id})\n*This file (webm/swf) cannot be previewed or embedded.*`;
           }
         }
         let embed = {

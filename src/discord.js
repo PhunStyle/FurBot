@@ -141,11 +141,9 @@ function onMessage(evt) {
   }
 }
 
-
 function onGuildDown(evt) {
-  logger.warn('The following guild has gone UNAVAILABLE: ' + evt.guildId)
+  logger.warn('The following guild has gone UNAVAILABLE: ' + evt.guildId);
 }
-
 
 function onGuild(evt) {
   if (!evt.guild.becameAvailable) {
@@ -174,15 +172,15 @@ function connect() {
   client.connect({token: nconf.get('TOKEN')});
 }
 
+function forceSetGame() {
+  logger.info('Setting Game');
+  client.User.setGame(`${bot_prefix}help | ${bot_prefix}info`);
+}
+
 function forceFetchUsers() {
   logger.info('Force fetching users');
   client.Users.fetchMembers();
   setTimeout(forceSetGame, 60000);
-}
-
-function forceSetGame() {
-    logger.info('Setting Game');
-    client.User.setGame(`${bot_prefix}help | ${bot_prefix}info`);
 }
 
 if (nconf.get('SHARDING')) {

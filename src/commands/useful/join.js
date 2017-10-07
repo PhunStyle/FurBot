@@ -25,11 +25,12 @@ const permission_value = R.sum(R.map(parseInt, permissions));
 const invite_link = `https://discordapp.com/oauth2/authorize?&client_id=${nconf.get('CLIENT_ID')}&scope=bot&permissions=${permission_value}`;
 
 function joinServer(client, evt, suffix, lang) {
-  evt.message.reply(`${T('invite_link', lang)}\n${invite_link}`);
+  evt.message.reply(`${T('invite_link', lang)}\n<${invite_link}>`);
 }
 
 export default {
-  invite: joinServer
+  invite: joinServer,
+  join: joinServer
 };
 
 export const help = {

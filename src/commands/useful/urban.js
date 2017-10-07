@@ -11,9 +11,10 @@ function urban(client, evt, suffix, lang) {
     urbanQuery(suffix).first((json) => {
       if (json) {
         resolve(`${json.word}: ${json.definition}
+
   :arrow_up: ${json.thumbs_up}   :arrow_down: ${json.thumbs_down}
 
-  Example: ${json.example}`);
+  ***Example:*** ${json.example}`);
       } else {
         resolve(`${T('urban_error', lang)}: ${suffix}`);
       }
