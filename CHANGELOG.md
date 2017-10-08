@@ -1,3 +1,11 @@
+<a name="4.1.10" />
+
+# 4.1.10 (October 8th, 2017)
+
+### Features
+- Improved `userinfo` command. Now shows more stats than ever before! Thanks to `Shax`.
+
+
 <a name="4.1.9" />
 
 # 4.1.9 (October 7th, 2017)
