@@ -27,7 +27,7 @@ function ddg(client, evt, suffix, lang) {
   .then(response => {
     let text = '';
     if (response.body.AnswerType === 'ip') {
-      text += `Can't retreive this Answer...`
+      text = `Can't retreive this Answer...`
     }
     if (response.body.Redirect) {
       text += response.body.Redirect;
