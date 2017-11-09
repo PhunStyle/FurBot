@@ -71,6 +71,9 @@ function ddg(client, evt, suffix, lang) {
       }
       if (response.body.AbstractURL) text += `\n<${response.body.AbstractURL}>`;
       if (response.body.Image) text += `\n${response.body.Image}`;
+      if (response.body.AnswerType === 'ip') {
+        text = `Can't retreive this Answer...`
+      }
     } else {
       text += `${T('ddg_error', lang)}: ${suffix}`;
     }

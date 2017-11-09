@@ -203,6 +203,7 @@ if (nconf.get('SHARDING')) {
 export function start() {
   const discordie_options = {};
   if (nconf.get('SHARDING')) {
+    discordie_options.messageCacheLimit = 200;
     discordie_options.shardCount = Number(nconf.get('SHARD_COUNT'));
     discordie_options.shardId = Number(nconf.get('SHARD_NUMBER'));
     logger.info(`Starting shard ${discordie_options.shardId}`);
