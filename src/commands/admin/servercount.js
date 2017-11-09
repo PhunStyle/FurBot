@@ -4,11 +4,13 @@ import R from 'ramda';
 
 import { getShardsCmdResults } from '../../redis';
 
+let argv = require('minimist')(process.argv.slice(2));
+
 
 function servercount(client, evt, suffix, lang, json) {
   const server_count = {guilds: client.Guilds.length, channels: client.Channels.length, users: client.Users.length};
 
-  if (nconf.get('SHARDING') && !json) {
+  if (argv.shardmode && !isNaN(argv.shardid) && !isNaN(argv.shardcount) && !json) {
     return getShardsCmdResults('servers')
       .then(R.append({results: server_count}))
       .then(R.pluck('results'))

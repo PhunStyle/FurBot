@@ -64,6 +64,8 @@
   "gif_error": "I couldn't find a gif for",
   "gif_usage": "Usage: **`f.gif`** `gif tags`",
   "giphy_usage": "Usage: **`f.giphy`** `gif tags`",
+  "hearthstone": "Get hearthstone card info",
+  "hearthstone_usage": "Usage: **`f.hearthstone card`**",
   "hello": "Hello",
   "help_all": "List all available commands in private chat",
   "help_actions": "List of actions commands",
@@ -72,6 +74,7 @@
   "help_info": "List of information commands",
   "help_lewd": "List of lewd (NSFW) commands",
   "help_memelist": "List of meme names for the **`f.meme`** command",
+  "help_moderation": "List of commands useful for moderators",
   "help_other": "List of other commands",
   "help_useful": "List of useful commands",
   "info": "Shows FurBot statistics and how to contact the FurBot owner",
@@ -117,6 +120,7 @@
   "ping": "Sends Pong! back. Check FurBot's response time.",
   "popkey_setup": "Please setup Popkey in config.js to use the **`f.popkey`** command.",
   "popkey_usage": "Usage: **`f.popkey`** `gif tags`",
+  "prune": "Prune the given amount of messages. If no number is written, prunes 50",
   "pug": "Posts pictures of adorable pugs",
   "quote": "Responds with a quote, if no number is written, a random one",
   "random": "Generate truly random numbers and strings",
@@ -189,5 +193,8 @@
   "feed": "Give one or multiple users some delicious food",
   "boop": "Give one or multiple users a boop on the face",
   "kiss": "Kiss one or multiple users",
-  "ustats": "Check how many hugs, apples, slaps and kisses you received"
+  "ustats": "Check how many hugs, apples, slaps and kisses you received",
+  "ban": "Ban a member from your server",
+  "kick": "Kick a member from your server",
+  "softban": "Softban a member from your server (ban + immediate unban)"
 }

@@ -1,7 +1,6 @@
 module.exports = {
   // *Required* Prefix for commands.
   PREFIX: '!',
-  PORT: 5000,
 
   // *Required* Bot token. Can be found in your bots application page.
   // https://discordapp.com/developers/applications/me
@@ -18,12 +17,6 @@ module.exports = {
   // *Required* Redis URL
   // Learn more here. http://redis.io/topics/quickstart
   REDIS_URL: '',
-
-  // Sharding information. Sharding is off by default but once the bot reaches
-  // 2500 or more servers, sharding is required.
-  // SHARDING: false,
-  // SHARD_NUMBER: 0,
-  // SHARD_COUNT: 2,
 
   // RethinkDB details. Required for database stuff.
   // Learn more here. https://www.rethinkdb.com/docs/quickstart/
@@ -52,6 +45,10 @@ module.exports = {
   // BE WARNED, a development key will be very limited and most of the time will not work,
   // as there is a lot of requests made in order to complete these data sets.
   RIOT_KEY: '',
+
+  // Mashape API key, used to query Mashape to get HearthStone card data.
+  // You can acquire a Mashape API account here. https://market.mashape.com/
+  MASHAPE_KEY: '',
 
   // Wolfram Alpha API key, used to query Wolfram Alpha with `!wolfram`.
   // Apply for a key here. http://products.wolframalpha.com/developers

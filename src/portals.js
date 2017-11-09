@@ -5,9 +5,11 @@ import commands from './commands';
 import logger from './logger';
 
 const request = Promise.promisify(require('request'));
+let argv = require('minimist')(process.argv.slice(2));
+
 
 function getGuildCount(client) {
-  if (nconf.get('SHARDING')) return commands.servercount(client, {}, '', '')
+  if (argv.shardmode && !isNaN(argv.shardid) && !isNaN(argv.shardcount)) return commands.servercount(client, {}, '', '')
     .then(res => Number(res.match(/\d+/g)[0]));
   return Promise.resolve(client.Guilds.length);
 }

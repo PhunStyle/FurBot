@@ -12,6 +12,7 @@ const help_parameters = {};
 const categories = {
   help: ['info', 'invite'],
   actions: [],
+  moderation: [],
   info: [],
   fun: ['memelist'],
   lewd: [],

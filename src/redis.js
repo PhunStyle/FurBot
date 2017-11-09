@@ -6,6 +6,8 @@ import redis from 'redis';
 import logger from './logger';
 import sentry from './sentry';
 
+let argv = require('minimist')(process.argv.slice(2));
+
 Promise.promisifyAll(redis.RedisClient.prototype);
 Promise.promisifyAll(redis.Multi.prototype);
 
@@ -153,7 +155,7 @@ export function getShardsCmdResults(cmd, suffix = '', lang = '') {
 
     ee.on(channel_name, result => {
       results.push(JSON.parse(result));
-      if (results.length === (nconf.get('SHARD_COUNT') - 1)) {
+      if (results.length === argv.shardcount - 1) {
         subscriber.unsubscribe(channel_name);
         resolve(results);
       }
@@ -162,7 +164,7 @@ export function getShardsCmdResults(cmd, suffix = '', lang = '') {
     subscriber.subscribe(channel_name);
     publisher.publish('cmd', JSON.stringify({
       channel_name,
-      instance: nconf.get('SHARD_NUMBER'),
+      instance: argv.shardid,
       request: {cmd, suffix, lang}
     }));
   }).timeout(15000);

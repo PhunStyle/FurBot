@@ -46,3 +46,7 @@ sharding.yml
 
 # Do not upload rethinkdb
 rethinkdb_data
+
+# Do not upload PM2 Config
+sharding.json
+sharding_test.json
