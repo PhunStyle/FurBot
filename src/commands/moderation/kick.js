@@ -8,6 +8,7 @@ function kick(client, evt, suffix) {
 
   if (evt.message.mentions.length === 1) {
     let user = evt.message.mentions[0].memberOf(evt.message.guild);
+    if (user.id === client.User.id) return;
     user.kick().then(() => {
       let embed = { color: 7844437, description: `\u2705  Kicked ${user.username}#${user.discriminator}!` };
       evt.message.channel.sendMessage('', false, embed);

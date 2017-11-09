@@ -11,6 +11,8 @@ import stylus from 'stylus';
 
 import logger from './logger';
 
+let argv = require('minimist')(process.argv.slice(2));
+
 
 // Marko template renders
 const marko = R.fromPairs(R.map(file_path => {
@@ -66,7 +68,6 @@ export default function startExpress() {
     res.status(404).json({status: 404});
   });
 
-  if (!nconf.get('PORT')) nconf.set('PORT', 5000);
-  logger.info(`Express listening on port ${nconf.get('PORT')}`);
-  app.listen(nconf.get('PORT'));
+  logger.info(`Express listening on port ${argv.express}`);
+  app.listen(argv.express);
 }

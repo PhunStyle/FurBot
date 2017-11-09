@@ -5,13 +5,15 @@ import R from 'ramda';
 import { getShardsCmdResults } from '../../redis';
 import package_file from '../../../package.json';
 
+let argv = require('minimist')(process.argv.slice(2));
+
 
 function botinfo(client, evt, suffix, lang, json) {
   const server_count = {guilds: client.Guilds.length, channels: client.Channels.length, users: client.Users.length};
   const client_id = nconf.get('CLIENT_ID');
   const bot_version = package_file.version;
 
-  if (nconf.get('SHARDING') && !json) {
+  if (argv.shardmode && !isNaN(argv.shardid) && !isNaN(argv.shardcount) && !json) {
     return getShardsCmdResults('servers')
       .then(R.append({results: server_count}))
       .then(R.pluck('results'))
@@ -75,7 +77,7 @@ function botinfo(client, evt, suffix, lang, json) {
               value: `${server_count.users}`,
               inline: true },
             { name: '\uD83D\uDC8E Shard ID:',
-              value: `Shard ${Number(nconf.get('SHARD_NUMBER') + 1)} of ${Number(nconf.get('SHARD_COUNT'))}`,
+              value: `Shard ${argv.shardid} of ${argv.shardcount}`,
               inline: true },
             { name: '\uD83E\uDD16 Shard Uptime:',
               value: `${uptimeh}h ${uptimem}m ${uptimes}s`,

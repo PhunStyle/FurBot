@@ -8,6 +8,8 @@ import { subscriber, publisher, ee, waitForConnections } from './redis';
 import sentry from './sentry';
 import logger from './logger';
 
+let argv = require('minimist')(process.argv.slice(2));
+
 
 // With sharding enabled, each instance on a machine will boot (CPU-COUNT - 1) concurrently,
 // leaving 1 CPU available for other system process'. When a shard has booted, it'll emit to a redis pub/sub
@@ -17,10 +19,10 @@ import logger from './logger';
 
 let skip_queue_timeout;
 let booting = false;
-if (nconf.get('SHARDING')) {
+if (argv.shardmode) {
   const cpu_count = cpus().length;
   const concurrency = cpu_count === 1 ? 1 : cpu_count - 1; // Leave 1 CPU available for other system processing.
-  const shard_number = Number(nconf.get('SHARD_NUMBER'));
+  const shard_number = Number(argv.shardid);
 
   waitForConnections()
     .then(() => publisher.pubsubAsync('NUMSUB', 'active_shard'))

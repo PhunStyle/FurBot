@@ -9,6 +9,8 @@ import datadog from './datadog';
 import logger from './logger';
 import sentry from './sentry';
 
+let argv = require('minimist')(process.argv.slice(2));
+
 
 // Initialize PhantomJS
 let horseman;
@@ -68,7 +70,7 @@ export default function addQueue(view, data) {
 
     return horseman
       .viewport(1920, 1080)
-      .post(`http://127.0.0.1:${nconf.get('PORT')}/view/${view}`, JSON.stringify(data))
+      .post(`http://127.0.0.1:${argv.express}/view/${view}`, JSON.stringify(data))
       .then(() => Promise.join(horseman.width('.main'), horseman.height('.main')))
       .spread((width, height) => {
         const area = {top: 0, left: 0, width, height};

@@ -19,6 +19,9 @@
 - Slightly rewrote `prune` command.
 - Slight fix in `userinfo` to please the linter.
 
+### Technical Notes
+- Made huge changes to how bot sharding works. Node now takes args instead of passing shard info in config files.
+
 
 <a name="4.1.10" />
 

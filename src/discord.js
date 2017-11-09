@@ -28,6 +28,8 @@ import { guild_blacklist } from './static';
 // Init
 let client;
 let initialized = false;
+let argv = require('minimist')(process.argv.slice(2));
+console.log(argv);
 
 const bot_prefix = nconf.get('PREFIX');
 
@@ -183,17 +185,17 @@ function forceFetchUsers() {
   setTimeout(forceSetGame, 60000);
 }
 
-if (nconf.get('SHARDING')) {
+if (argv.shardmode && !isNaN(argv.shardid) && !isNaN(argv.shardcount)) {
   ee.on('cmd', message => {
     const { channel_name, instance, request: { cmd, suffix, lang } } = JSON.parse(message);
-    if (instance === nconf.get('SHARD_NUMBER')) return;
+    if (instance === argv.shardid) return;
 
     // If this shard isn't ready yet, return empty object.
-    if (!client || !client.bot) return publisher.publish(channel_name, JSON.stringify({shard: nconf.get('SHARD_NUMBER'), results: {}}));
+    if (!client || !client.bot) return publisher.publish(channel_name, JSON.stringify({shard: argv.shardid, results: {}}));
 
     commands[cmd](client, {}, suffix, lang, true)
       .then(results => {
-        publisher.publish(channel_name, JSON.stringify({shard: nconf.get('SHARD_NUMBER'), results}));
+        publisher.publish(channel_name, JSON.stringify({shard: argv.shardid, results}));
       });
   });
   subscriber.subscribe('cmd');
@@ -202,10 +204,10 @@ if (nconf.get('SHARDING')) {
 // Start connects to discord and starts receiving messages. It also emits to a shard pub/sub to notifiy it's booted if
 export function start() {
   const discordie_options = {};
-  if (nconf.get('SHARDING')) {
+  if (argv.shardmode && !isNaN(argv.shardid) && !isNaN(argv.shardcount)) {
     discordie_options.messageCacheLimit = 200;
-    discordie_options.shardCount = Number(nconf.get('SHARD_COUNT'));
-    discordie_options.shardId = Number(nconf.get('SHARD_NUMBER'));
+    discordie_options.shardCount = argv.shardcount;
+    discordie_options.shardId = argv.shardid;
     logger.info(`Starting shard ${discordie_options.shardId}`);
   }
 
@@ -222,7 +224,7 @@ export function start() {
       initPhantom();
 
       // Only the last shard does portal submissions on boot
-      if (nconf.get('SHARDING')) {
+      if (argv.shardmode && !isNaN(argv.shardid) && !isNaN(argv.shardcount)) {
         if ((discordie_options.shardId + 1) === discordie_options.shardCount) startPortalTimeouts(client);
       } else {
         startPortalTimeouts(client);
@@ -233,7 +235,7 @@ export function start() {
       client.Dispatcher.on('GUILD_UNAVAILABLE', onGuildDown);
       client.Dispatcher.on('GUILD_CREATE', onGuild);
 
-      if (nconf.get('SHARDING')) {
+      if (argv.shardmode && !isNaN(argv.shardid) && !isNaN(argv.shardcount)) {
         subscriber.subscribe('active_shard');
         publisher.publish('shard_done', discordie_options.shardId);
       }
