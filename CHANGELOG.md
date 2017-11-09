@@ -1,6 +1,6 @@
 <a name="4.2.0" />
 
-# 4.2.0 (November 8th, 2017)
+# 4.2.0 (November 9th, 2017)
 
 ### Features
 - Added `hearthstone` command that lets you look up Hearthstone card info.
