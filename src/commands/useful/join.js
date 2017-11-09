@@ -33,6 +33,6 @@ export default {
   join: joinServer
 };
 
-export const help = {
-  invite: {}
-};
+// export const help = {
+//   invite: {}
+// };

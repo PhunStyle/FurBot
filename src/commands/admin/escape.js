@@ -9,7 +9,8 @@ function escapeMessage(client, evt, suffix) {
   }
   return Promise.resolve(evt.message.channel.sendMessage('**Escaped output for ' + input + '**\n```js\n' + result + '\n```'))
   .catch(err => {
-    console.log(err);
+    let embed = { color: 16763981, description: `\u26A0  Something went wrong: ${err}` };
+    return evt.message.channel.sendMessage('', false, embed);
   });
 }
 

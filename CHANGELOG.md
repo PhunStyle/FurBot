@@ -1,3 +1,33 @@
+<a name="4.2.0" />
+
+# 4.2.0 (November 8th, 2017)
+
+### Features
+- Added `hearthstone` command that lets you look up Hearthstone card info.
+- Added `advice` command that gives you some helpful life advice.
+
+- Added a new command category titled `moderation` with the following additions:
+- Added `kick` command that lets you kick users.
+- Added `ban` command that lets you ban users.
+- Added `softban` command that lets you softban users. This is a ban and immediate unban to remove messages.
+- Added `nickname` command that lets you change users' nicknames.
+- Added `prune` command in new moderation category that lets you prune messages.
+
+### Bug Fixes
+- Fixed `info` and `invite` command showing up twice when you use `help all`.
+- Fixed an issue related to DuckDuckGo and showing IP Addresses.
+- Slightly rewrote `prune` command.
+- Slight fix in `userinfo` to please the linter.
+
+
+<a name="4.1.10" />
+
+# 4.1.10 (October 8th, 2017)
+
+### Features
+- Improved `userinfo` command. Now shows more stats than ever before! Thanks to `Shax`.
+
+
 <a name="4.1.9" />
 
 # 4.1.9 (October 7th, 2017)
