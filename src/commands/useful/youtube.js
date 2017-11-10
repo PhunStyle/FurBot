@@ -20,6 +20,10 @@ function search(client, evt, suffix, lang) {
       const id_obj = result.items[0].id;
       if (id_obj.playlistId) return `https://www.youtube.com/playlist?list=${id_obj.playlistId}`;
       return `http://www.youtube.com/watch?v=${id_obj.videoId}`;
+    })
+    .catch(err => {
+      let embed = { color: 16763981, description: `\u26A0  Something went wrong: \`${err.errors[0].reason}\`` };
+      evt.message.channel.sendMessage('', false, embed);
     });
 }
 
