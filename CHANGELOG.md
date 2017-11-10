@@ -1,3 +1,17 @@
+<a name="4.2.1" />
+
+# 4.2.1 (November 10th, 2017)
+
+### Features
+- Not mentioning a user in the `nickname` command will now change your own nickname (if permitted).
+- The `ustats` command is now known as `actions`.
+
+### Bug Fixes
+- Fixed `coin` not working properly
+- Fixed `advice` not showing up in `help fun`
+- Fixed `pet` not showing up in `help actions`
+- Fixed `yt` error messages displaying in chat
+
 <a name="4.2.0" />
 
 # 4.2.0 (November 9th, 2017)

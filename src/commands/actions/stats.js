@@ -43,11 +43,10 @@ function userStatistics(client, evt, suffix) {
 }
 
 export default {
-  userstats: userStatistics,
-  actionstats: userStatistics,
+  actions: userStatistics,
   ustats: userStatistics
 };
 
 export const help = {
-  ustats: { parameters: '@User' }
+  actions: { parameters: '@User' }
 };
