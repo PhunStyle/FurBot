@@ -3,32 +3,35 @@ import path from 'path';
 
 
 export default {
-  ayylmao: () => Promise.resolve([
-    'http://i.imgur.com/m7NaGVx.gif',
-    {upload: path.join(__dirname, '../images/Ayylmao.png')}
-  ]),
-  chillinmyb: () => Promise.resolve('http://i.imgur.com/Qh75Dsi.jpg'),
-  endall: () => Promise.resolve('http://i.imgur.com/SNmMCQV.png'),
+  awoo: () => Promise.resolve({upload: path.join(__dirname, '../images/Awoo.png')}),
+  ayylmao: () => Promise.resolve({upload: path.join(__dirname, '../images/Ayylmao.png')}),
+  badfurry: () => Promise.resolve({upload: path.join(__dirname, '../images/Badfurry.png')}),
+  chillinmyb: () => Promise.resolve({upload: path.join(__dirname, '../images/Chillinmyb.png')}),
+  endall: () => Promise.resolve({upload: path.join(__dirname, '../images/Endall.png')}),
+  erp: () => Promise.resolve('https://i.imgur.com/x6ErEX6.gif')
   feelsbadman: () => Promise.resolve({upload: path.join(__dirname, '../images/Feelsbadman.png')}),
+  feelsbadmanhd: () => Promise.resolve({upload: path.join(__dirname, '../images/FeelsbadmanHD.png')}),
   feelsgoodman: () => Promise.resolve({upload: path.join(__dirname, '../images/Feelsgoodman.png')}),
+  feelsgoodmanhd: () => Promise.resolve({upload: path.join(__dirname, '../images/FeelsgoodmanHD.png')}),
   jpeg: () => Promise.resolve('https://www.youtube.com/watch?v=QEzhxP-pdos'),
   kappa: () => Promise.resolve({upload: path.join(__dirname, '../images/Kappa.png')}),
   kappahd: () => Promise.resolve({upload: path.join(__dirname, '../images/Kappahd.png')}),
-  skeltal: () => Promise.resolve('http://i.imgur.com/ZX79Q4S.gif'),
-  starwars4: () => Promise.resolve('http://i.imgur.com/l9VKWWF.gif'),
-  starwars5: () => Promise.resolve('http://i.imgur.com/eCpwo6J.gif')
+  doot: () => Promise.resolve('https://i.imgur.com/ZX79Q4S.gif')
 };
 
 export const help = {
+  awoo: {category: 'other'},
   ayylmao: {category: 'other'},
+  badfurry: {category: 'other'},
   chillinmyb: {category: 'other'},
   endall: {category: 'other'},
+  erp: {category: 'other'},
   feelsbadman: {category: 'other'},
+  feelsbadmanhd: {category: 'other'},
   feelsgoodman: {category: 'other'},
+  feelsgoodmanhd: {category: 'other'},
   jpeg: {category: 'other'},
   kappa: {category: 'other'},
   kappahd: {category: 'other'},
-  skeltal: {category: 'other'},
-  starwars4: {category: 'other'},
-  starwars5: {category: 'other'}
+  doot: {category: 'other'}
 };
