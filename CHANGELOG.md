@@ -1,3 +1,13 @@
+<a name="4.2.2" />
+
+# 4.2.2 (November 18th, 2017)
+
+### Features
+- Added some random `other` images.. idk.
+
+### Bug Fixes
+- Temporarily removed server welcome message because of issues.
+
 <a name="4.2.1" />
 
 # 4.2.1 (November 10th, 2017)
