@@ -8,7 +8,7 @@ export default {
   badfurry: () => Promise.resolve({upload: path.join(__dirname, '../images/Badfurry.png')}),
   chillinmyb: () => Promise.resolve({upload: path.join(__dirname, '../images/Chillinmyb.png')}),
   endall: () => Promise.resolve({upload: path.join(__dirname, '../images/Endall.png')}),
-  erp: () => Promise.resolve('https://i.imgur.com/x6ErEX6.gif')
+  erp: () => Promise.resolve('https://i.imgur.com/x6ErEX6.gif'),
   feelsbadman: () => Promise.resolve({upload: path.join(__dirname, '../images/Feelsbadman.png')}),
   feelsbadmanhd: () => Promise.resolve({upload: path.join(__dirname, '../images/FeelsbadmanHD.png')}),
   feelsgoodman: () => Promise.resolve({upload: path.join(__dirname, '../images/Feelsgoodman.png')}),

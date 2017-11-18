@@ -1,5 +1,4 @@
 import { cpus } from 'os';
-import nconf from 'nconf';
 import R from 'ramda';
 import './init-config';
 

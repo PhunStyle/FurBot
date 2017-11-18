@@ -10,7 +10,7 @@ function _makeRequest(options) {
 
   if (options.qs) options.qs = R.merge(default_options.qs, options.qs);
   return request(R.merge(default_options, options, true))
-    .then(R.prop('body'))
+    .then(R.prop('body'));
 }
 
 function advice(client, evt, suffix) {
@@ -25,7 +25,7 @@ function advice(client, evt, suffix) {
       description: '\uD83D\uDCE2  ' + body.slip.advice
     };
     return evt.message.channel.sendMessage('', false, embed);
-  })
+  });
 }
 
 export default {
