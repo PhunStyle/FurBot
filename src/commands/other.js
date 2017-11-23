@@ -5,8 +5,8 @@ import path from 'path';
 export default {
   awoo: () => Promise.resolve({upload: path.join(__dirname, '../images/Awoo.png')}),
   ayylmao: () => Promise.resolve({upload: path.join(__dirname, '../images/Ayylmao.png')}),
-  badfurry: () => Promise.resolve({upload: path.join(__dirname, '../images/Badfurry.png')}),
-  chillinmyb: () => Promise.resolve({upload: path.join(__dirname, '../images/Chillinmyb.png')}),
+  badfurry: () => Promise.resolve({upload: path.join(__dirname, '../images/Badfurry.jpg')}),
+  chillinmyb: () => Promise.resolve({upload: path.join(__dirname, '../images/Chillinmyb.jpg')}),
   endall: () => Promise.resolve({upload: path.join(__dirname, '../images/Endall.png')}),
   erp: () => Promise.resolve('https://i.imgur.com/x6ErEX6.gif'),
   feelsbadman: () => Promise.resolve({upload: path.join(__dirname, '../images/Feelsbadman.png')}),
