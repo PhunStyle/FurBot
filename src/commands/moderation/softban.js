@@ -12,7 +12,8 @@ function softban(client, evt, suffix) {
     user.ban(7).then(() => {
       user.unban().then(() => {
         let embed = { color: 7844437, description: `\u2705  Softbanned ${user.username}#${user.discriminator}!` };
-        return evt.message.channel.sendMessage('', false, embed);
+        return evt.message.channel.sendMessage('', false, embed)
+        .then(message => { setTimeout(() => { message.delete(); }, 10000); });
       });
     })
     .catch(err => {

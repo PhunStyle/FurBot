@@ -11,7 +11,8 @@ function ban(client, evt, suffix) {
     if (user.id === client.User.id) return;
     user.ban(7).then(() => {
       let embed = { color: 7844437, description: `\u2705  Banned ${user.username}#${user.discriminator}!` };
-      evt.message.channel.sendMessage('', false, embed);
+      evt.message.channel.sendMessage('', false, embed)
+      .then(message => { setTimeout(() => { message.delete(); }, 10000); });
     })
     .catch(err => {
       let error = JSON.parse(err.response.error.text);

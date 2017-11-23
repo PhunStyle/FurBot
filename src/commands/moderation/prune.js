@@ -9,23 +9,26 @@ function prune(client, evt, suffix, lang) {
     return evt.message.channel.sendMessage('', false, embed);
   }
 
-  var prunePromises = client.Messages.forChannel(evt.message.channel.id);
-  Promise.all(prunePromises) // with Promise
-  .then(function(messageArray) {
-    messageArray.reverse();
-    var cleanArray = messageArray.filter(msg => { return msg.deleted === false; });
-    var i;
-    if (!suffix) suffix = 50;
-    if (suffix >= cleanArray.length) suffix = cleanArray.length;
-    var maxLength = parseInt(suffix, 10);
-    var messageIdArray = [];
-    for (i = maxLength - 1; i >= 0; i--) {
-      messageIdArray.push(cleanArray[i].id);
-    }
-    client.Messages.deleteMessages(messageIdArray, evt.message.channel.id);
-  });
+  let messageArray = client.Messages.forChannel(evt.message.channel.id);
+  messageArray.reverse();
+
+  let cleanArray = messageArray.filter(msg => { return msg.deleted === false; });
+
+  if (!suffix) suffix = 50;
+  if (suffix >= cleanArray.length) suffix = cleanArray.length;
+  let maxLength = parseInt(suffix, 10);
+  let messageIdArray = [];
+
+  let i;
+  for (i = maxLength - 1; i >= 0; i--) {
+    messageIdArray.push(cleanArray[i].id);
+  }
+
+  client.Messages.deleteMessages(messageIdArray, evt.message.channel.id);
+
   let embed = { color: 7844437, description: '\u2705  Deleted!' };
-  return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
+  return evt.message.channel.sendMessage('', false, embed)
+  .then(message => { setTimeout(() => { message.delete(); }, 10000); });
 }
 
 export default {

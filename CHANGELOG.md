@@ -1,3 +1,14 @@
+<a name="4.2.3" />
+
+# 4.2.3 (November 23rd, 2017)
+
+### Features
+- NEW `shindan` command where you can get a diagnosis on several different topics.
+- All of the action commands now use the receivers' nicknames instead of mentions (less spammy, yay!)
+- Added more lines to the `hug`, `kiss`, `slap`, `shoot` actions and a nice addition to when you shoot yourself.
+- Moderation commands that have a SUCCESS or WARNING response now delete that response after 10 seconds.
+
+
 <a name="4.2.2" />
 
 # 4.2.2 (November 18th, 2017)
@@ -7,6 +18,7 @@
 
 ### Bug Fixes
 - Temporarily removed server welcome message because of issues.
+
 
 <a name="4.2.1" />
 
@@ -21,6 +33,7 @@
 - Fixed `advice` not showing up in `help fun`
 - Fixed `pet` not showing up in `help actions`
 - Fixed `yt` error messages displaying in chat
+
 
 <a name="4.2.0" />
 

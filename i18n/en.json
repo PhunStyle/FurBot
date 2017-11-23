@@ -142,6 +142,7 @@
   "serverlist": "Lists all the servers the bot is connected to",
   "servers": "Lists how many servers, channels and users the bot is connected to",
   "set-language": "Set all help text to respond in a specified language",
+  "shindan": "Get funny fortunes or diagnoses for your name",
   "snoop": "Snoopifies tha sentence",
   "snoop_usage": "Usage: **`f.snoop`** `sentence`",
   "snoopify": "Snoopifies tha sentence",

@@ -10,7 +10,8 @@ function slap(client, evt) {
 
   if (evt.message.mentions.length !== 0) {
     evt.message.mentions.map(user => {
-      if (user !== evt.message.author && !user.bot) receiverArray.push(user.mention);
+      let guildUser = user.memberOf(evt.message.guild);
+      if (user !== evt.message.author && !user.bot) receiverArray.push(guildUser.name);
     });
 
     if (receiverArray.length !== 0) {
@@ -25,7 +26,12 @@ function slap(client, evt) {
         `smacks ${receivers} hard, ouch! :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
         `beats some sense into ${receivers} :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
         `sends out slaps to ${receivers} :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
-        `slaps ${receivers} hard, leaving a red mark! :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`
+        `slaps ${receivers} hard, leaving a red mark! :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
+        `slappity slap slap slaps ${receivers} :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
+        `gives ${receivers} a real good slappin'! :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
+        `whacks ${receivers} real good! :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
+        `do the slappy to ${receivers} :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
+        `SLAP FIGHT! ${receivers}, get ready to get SLAPPED! :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`
       ];
 
       const rand = Math.floor(Math.random() * slaps.length);
@@ -36,10 +42,10 @@ function slap(client, evt) {
         }
       });
 
-      return Promise.resolve(evt.message.author.mention + ` ${slaps[rand]}`);
+      return Promise.resolve(evt.message.member.name + ` ${slaps[rand]}`);
     }
   }
-  return Promise.resolve(evt.message.author.mention + ` slaps themselves..?`);
+  return Promise.resolve(evt.message.member.name + ` slaps themselves..?`);
 }
 
 export default {
