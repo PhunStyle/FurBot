@@ -10,7 +10,8 @@ function feed(client, evt) {
 
   if (evt.message.mentions.length !== 0) {
     evt.message.mentions.map(user => {
-      if (user !== evt.message.author && !user.bot) receiverArray.push(user.mention);
+      let guildUser = user.memberOf(evt.message.guild);
+      if (user !== evt.message.author && !user.bot) receiverArray.push(guildUser.name);
     });
 
     if (receiverArray.length !== 0) {
@@ -116,10 +117,10 @@ function feed(client, evt) {
         }
       });
 
-      return Promise.resolve(evt.message.author.mention + ` ${foods[rand]}`);
+      return Promise.resolve(evt.message.member.name + ` ${foods[rand]}`);
     }
   }
-  return Promise.resolve(evt.message.author.mention + ` eats all the food themselves! How greedy! :angry:`);
+  return Promise.resolve(evt.message.member.name + ` eats all the food themselves! How greedy! :angry:`);
 }
 
 export default {

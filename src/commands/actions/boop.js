@@ -10,7 +10,8 @@ function boop(client, evt) {
 
   if (evt.message.mentions.length !== 0) {
     evt.message.mentions.map(user => {
-      if (user !== evt.message.author && !user.bot) receiverArray.push(user.mention);
+      let guildUser = user.memberOf(evt.message.guild);
+      if (user !== evt.message.author && !user.bot) receiverArray.push(guildUser.name);
     });
 
     if (receiverArray.length !== 0) {
@@ -40,10 +41,10 @@ function boop(client, evt) {
         }
       });
 
-      return Promise.resolve(evt.message.author.mention + ` ${boops[rand]}`);
+      return Promise.resolve(evt.message.member.name + ` ${boops[rand]}`);
     }
   }
-  return Promise.resolve(evt.message.author.mention + ` boops themselves! 'o'`);
+  return Promise.resolve(evt.message.member.name + ` boops themselves! 'o'`);
 }
 
 export default {

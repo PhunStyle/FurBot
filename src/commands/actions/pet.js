@@ -10,7 +10,8 @@ function pet(client, evt) {
 
   if (evt.message.mentions.length !== 0) {
     evt.message.mentions.map(user => {
-      if (user !== evt.message.author && !user.bot) receiverArray.push(user.mention);
+      let guildUser = user.memberOf(evt.message.guild);
+      if (user !== evt.message.author && !user.bot) receiverArray.push(guildUser.name);
     });
 
     if (receiverArray.length !== 0) {
@@ -43,10 +44,10 @@ function pet(client, evt) {
         }
       });
 
-      return Promise.resolve(evt.message.author.mention + ` ${pets[rand]}`);
+      return Promise.resolve(evt.message.member.name + ` ${pets[rand]}`);
     }
   }
-  return Promise.resolve(evt.message.author.mention + ` pets themselves! 'o'`);
+  return Promise.resolve(evt.message.member.name + ` pets themselves!? 'o'`);
 }
 
 export default {

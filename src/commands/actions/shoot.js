@@ -10,7 +10,8 @@ function shoot(client, evt) {
 
   if (evt.message.mentions.length !== 0) {
     evt.message.mentions.map(user => {
-      if (user !== evt.message.author && !user.bot) receiverArray.push(user.mention);
+      let guildUser = user.memberOf(evt.message.guild);
+      if (user !== evt.message.author && !user.bot) receiverArray.push(guildUser.name);
     });
 
     if (receiverArray.length !== 0) {
@@ -32,7 +33,12 @@ function shoot(client, evt) {
         `pulls out their :gun: and fires some rounds into the legs of ${receivers}`,
         `pulls out their MP7 and shoots at ${receivers}. Bloody!`,
         `pulls out their gun but forgot they don't even own a gun... whoops.`,
-        `takes aim with their finger and fires some imaginary bullets at ${receivers}`
+        `takes aim with their finger and fires some imaginary bullets at ${receivers}`,
+        `no-scopes ${receivers} :gun:`,
+        `shot ${receivers} with their sniper from a bedroom window :gun:`,
+        `hey ${receivers}.. it's high noon :gun:`,
+        `just shot ${receivers} in the chest with their pistol :gun:`,
+        `just shot ${receivers} THROUGH THE HEART AND YOU'RE TO BLAME. DARLIN' YOU GIVE LOOOOVE A BAD NAME! :gun:\nhttps://www.youtube.com/watch?v=KrZHPOeOxQQ`
       ];
 
       const rand = Math.floor(Math.random() * shoots.length);
@@ -43,10 +49,11 @@ function shoot(client, evt) {
         }
       });
 
-      return Promise.resolve(evt.message.author.mention + ` ${shoots[rand]}`);
+      return Promise.resolve(evt.message.member.name + ` ${shoots[rand]}`);
     }
   }
-  return Promise.resolve(evt.message.author.mention + ` shoots themselves! :dizzy_face::gun: R.I.P. Press [F] to pay respects.`);
+  return evt.message.channel.sendMessage(`${evt.message.member.name} shoots themselves! :dizzy_face::gun: R.I.P. Press [F] to pay respects.`)
+  .then(message => { message.addReaction('\ud83c\uddeb'); });
 }
 
 export default {

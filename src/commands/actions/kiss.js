@@ -10,7 +10,8 @@ function kiss(client, evt) {
 
   if (evt.message.mentions.length !== 0) {
     evt.message.mentions.map(user => {
-      if (user !== evt.message.author && !user.bot) receiverArray.push(user.mention);
+      let guildUser = user.memberOf(evt.message.guild);
+      if (user !== evt.message.author && !user.bot) receiverArray.push(guildUser.name);
     });
 
     if (receiverArray.length !== 0) {
@@ -36,7 +37,9 @@ function kiss(client, evt) {
         `gladly kisses ${receivers}! \uD83D\uDE19`,
         `blushes and gives ${receivers} a quick kiss! \uD83D\uDE19`,
         `blushes and kisses ${receivers}! \uD83D\uDE19`,
-        `completely covers ${receivers} in kisses! \uD83D\uDE19`
+        `completely covers ${receivers} in kisses! \uD83D\uDE19`,
+        `hangs some mistletoe over the heads of ${receivers} and smooches them \uD83D\uDE19`,
+        `shouts "Gimme some sugar baby!" and kisses ${receivers} \uD83D\uDE19`
       ];
 
       const rand = Math.floor(Math.random() * kisses.length);
@@ -47,10 +50,10 @@ function kiss(client, evt) {
         }
       });
 
-      return Promise.resolve(evt.message.author.mention + ` ${kisses[rand]}`);
+      return Promise.resolve(evt.message.member.name + ` ${kisses[rand]}`);
     }
   }
-  return Promise.resolve(evt.message.author.mention + ` walks up to a mirror and kisses themselves! How odd..`);
+  return Promise.resolve(evt.message.member.name + ` walks up to a mirror and kisses themselves! How odd..`);
 }
 
 export default {

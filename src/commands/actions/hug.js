@@ -10,7 +10,8 @@ function hug(client, evt) {
 
   if (evt.message.mentions.length !== 0) {
     evt.message.mentions.map(user => {
-      if (user !== evt.message.author && !user.bot) receiverArray.push(user.mention);
+      let guildUser = user.memberOf(evt.message.guild);
+      if (user !== evt.message.author && !user.bot) receiverArray.push(guildUser.name);
     });
 
     if (receiverArray.length !== 0) {
@@ -31,7 +32,13 @@ function hug(client, evt) {
         `smiles and hugs ${receivers}! :hugging:`,
         `cuddles ${receivers} :hugging:`,
         `cozily cuddles with ${receivers} :hugging:`,
-        `warmly cuddles up to ${receivers} :hugging:`
+        `warmly cuddles up to ${receivers} :hugging:`,
+        `covers ${receivers} in floof! :hugging:`,
+        `soaks up ${receivers} into their fluff to keep them warm :hugging:`,
+        `wraps ${receivers} in hundreds of layers of blankets and hugs them :hugging:`,
+        `places ${receivers} in front of a warm campfire and hugs them :hugging:`,
+        `huddles together with ${receivers} :hugging:`,
+        `FREE HUGS FOR ${receivers}!! :hugging:`
       ];
 
       const rand = Math.floor(Math.random() * hugs.length);
@@ -42,10 +49,10 @@ function hug(client, evt) {
         }
       });
 
-      return Promise.resolve(evt.message.author.mention + ` ${hugs[rand]}`);
+      return Promise.resolve(evt.message.member.name + ` ${hugs[rand]}`);
     }
   }
-  return Promise.resolve(evt.message.author.mention + ` hugs themselves! :hugging:`);
+  return Promise.resolve(evt.message.member.name + ` hugs themselves! :hugging:`);
 }
 
 export default {

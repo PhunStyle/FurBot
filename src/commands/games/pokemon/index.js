@@ -34,9 +34,9 @@ function findPoke(client, evt, suffix, lang) {
 
   var PokePromises = [P.getPokemonByName(poke_reg), P.getPokemonSpeciesByName(poke_reg_species)];
   evt.message.channel.sendMessage(`\uD83D\uDD0D Searching for ${poke_reg}...`)
-  .then(function(message) {
+  .then(message => {
     setTimeout(function() {
-      client.Messages.deleteMessage(message.id, evt.message.channel.id);
+      message.delete();
     }, 5000);
     return Promise.all(PokePromises);
   })
