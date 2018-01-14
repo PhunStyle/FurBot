@@ -50,11 +50,55 @@ function snake(client, evt, suffix) {
   }
 
   const options = {
-    url: 'http://fur.im/snek/snek.php',
+    url: 'http://fur.im/snek/',
     json: true
   };
 
   return Promise.resolve(R.repeat('snake', count))
+    .map(() => {
+      return request(options)
+        .then(R.path(['body', 'file']))
+        .then(encodeURI);
+    })
+    .then(R.join('\n'));
+}
+
+function fox(client, evt, suffix) {
+  let count = 1;
+  if (suffix && suffix.split(' ')[0] === 'bomb') {
+    count = Number(suffix.split(' ')[1]) || 5;
+    if (count > 15) count = 15;
+    if (count < 0) count = 5;
+  }
+
+  const options = {
+    url: 'http://fur.im/fox/',
+    json: true
+  };
+
+  return Promise.resolve(R.repeat('fox', count))
+    .map(() => {
+      return request(options)
+        .then(R.path(['body', 'file']))
+        .then(encodeURI);
+    })
+    .then(R.join('\n'));
+}
+
+function bun(client, evt, suffix) {
+  let count = 1;
+  if (suffix && suffix.split(' ')[0] === 'bomb') {
+    count = Number(suffix.split(' ')[1]) || 5;
+    if (count > 15) count = 15;
+    if (count < 0) count = 5;
+  }
+
+  const options = {
+    url: 'http://fur.im/bun/',
+    json: true
+  };
+
+  return Promise.resolve(R.repeat('bun', count))
     .map(() => {
       return request(options)
         .then(R.path(['body', 'file']))
@@ -72,7 +116,7 @@ function dog(client, evt, suffix) {
   }
 
   const options = {
-    url: 'http://random.dog/woof',
+    url: 'http://random.dog/woof/',
     json: true
   };
 
@@ -99,6 +143,8 @@ function animals(client, evt, suffix, lang) {
   if (cmd === 'dog') return dog(client, evt, suffix);
   if (cmd === 'pug') return pug(client, evt, suffix);
   if (cmd === 'snake') return snake(client, evt, suffix);
+  // if (cmd === 'fox') return snake(client, evt, suffix);
+  // if (cmd === 'bun') return snake(client, evt, suffix);
   return helpText(client, evt, 'animals', lang);
 }
 
@@ -117,7 +163,13 @@ export default {
   snakes: snake,
   snek: snake,
   sneks: snake,
-  '\ud83d\udc0d': snake
+  '\ud83d\udc0d': snake,
+  // fox,
+  // '\ud83e\udd8a': fox,
+  // bun,
+  // bunny: bun,
+  // rabbit: bun,
+  // '\ud83d\udc30': bun
 };
 
 export const help = {
@@ -129,6 +181,8 @@ export const help = {
       {name: 'dog'},
       {name: 'pug'},
       {name: 'snake'}
+      // {name: 'fox'},
+      // {name: 'bun'}
     ]
   }
 };
