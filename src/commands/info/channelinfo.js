@@ -10,7 +10,7 @@ function channelinfo(client, evt, suffix) {
       color: 3901635,
       author: {
         name: `Channel Info`,
-        icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase
+        icon_url: 'https://i.imgur.com/hWPDJuv.png' // eslint-disable-line camelcase
       },
       fields: [
         { name: 'Name:',
@@ -44,7 +44,7 @@ function channelinfo(client, evt, suffix) {
           color: 3901635,
           author: {
             name: `Channel Info`,
-            icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase
+            icon_url: 'https://i.imgur.com/hWPDJuv.png' // eslint-disable-line camelcase
           },
           fields: [
             { name: 'Name:',
@@ -75,7 +75,7 @@ function channelinfo(client, evt, suffix) {
         color: 3901635,
         author: {
           name: `Channel Info`,
-          icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase
+          icon_url: 'https://i.imgur.com/hWPDJuv.png' // eslint-disable-line camelcase
         },
         fields: [
           { name: 'Name:',
@@ -110,7 +110,7 @@ function channelinfo(client, evt, suffix) {
         color: 3901635,
         author: {
           name: `Channel Info`,
-          icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase
+          icon_url: 'https://i.imgur.com/hWPDJuv.png' // eslint-disable-line camelcase
         },
         fields: [
           { name: 'Name:',
@@ -141,7 +141,7 @@ function channelinfo(client, evt, suffix) {
       color: 3901635,
       author: {
         name: `Channel Info`,
-        icon_url: 'http://emojipedia-us.s3.amazonaws.com/cache/bc/59/bc59d0c4fa9831e72e59d9fbb6db1c66.png' // eslint-disable-line camelcase
+        icon_url: 'https://i.imgur.com/hWPDJuv.png' // eslint-disable-line camelcase
       },
       fields: [
         { name: 'Name:',

@@ -1,3 +1,22 @@
+<a name="4.2.4" />
+
+# 4.2.4 (January 12th, 2018)
+
+### Features
+- [NEW] `crypto` command that will look up information, pricing, trends about your given cryptocurrency. Will be improved a little bit in the next update.
+
+### Bug Fixes
+- [FIX] `userinfo` `serverinfo` `channelinfo` commands. They weren displaying the (I) image.
+- [FIX] Changed image emoji for shindan to be a little more readable
+- [FIX] `snake` command will now once again post snakes.
+- [FIX] Slight typo in `translate`
+
+### In the next one
+- More animal commands (send imgur albums to me if you have tons of pics of a certain animal!)
+- Strawpoll command (was gonna add it today but apparently it's a little dead)
+- Lewd command optimizations. I'll see what i can do in terms of re-rolling blacklisted tags, showing blacklisted words, etc.
+
+
 <a name="4.2.3" />
 
 # 4.2.3 (November 23rd, 2017)

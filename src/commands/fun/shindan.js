@@ -76,7 +76,7 @@ function shindan(client, evt, suffix) {
 
   shin.diagnose(shindanID, authorName)
   .then(diagnosis => {
-    let embed = { color: 3329023, description: `<:shindanmaker:383245861683200001> ${diagnosis.result}` };
+    let embed = { color: 3329023, description: `<:icon_shindan:402174157166608384> ${diagnosis.result}` };
     evt.message.channel.sendMessage('', false, embed);
   })
   .catch(err => {

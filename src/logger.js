@@ -24,7 +24,7 @@ function cmd(cmd, evt, suffix) {
 
 function info(msg) {
   if (production) return _submitToLogger('info', msg);
-  console.log(chalk.magenta.bold(`[FurBot]`), chalk.blue(`[${moment().format('DD-MM-YYYY HH:mm:ss')}]`), msg);
+  console.log(chalk.magenta.bold(`[FurBot]`), chalk.blue(`[${moment().format('DD-MM-YYYY HH:mm:ss')}]`), chalk.cyan(`[INFO] ${msg}`));
 }
 
 function blank(msg) {
