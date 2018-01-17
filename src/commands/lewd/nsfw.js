@@ -1,25 +1,25 @@
 import T from '../../translate';
 
-import { setBlackListChannel, getBlackListChannel, delBlackListChannel } from '../../redis';
+import { setBlackListRemove, getBlackListRemove, setBlackListChannel, getBlackListChannel, delBlackListChannel } from '../../redis';
 import { subCommands as helpText } from '../help';
 
 const patt = new RegExp(/[A-Za-z0-9.,_ ]+/i);
 
-// function setNSFW(client, evt, suffix) {
-//   if (evt.message.channel.isPrivate) return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139  Use this command in a server!`});
-//   let userPerms = evt.message.author.permissionsFor(evt.message.channel);
-//   if (evt.message.author.can(userPerms.General.MANAGE_CHANNELS, evt.message.channel)) {
-//     return getNSFWChannel(evt.message.channel_id).then(value => {
-//       if (value === 'false') {
-//         return setNSFWChannel(evt.message.channel_id, 'true')
-//         .then(() => evt.message.channel.sendMessage('', false, {color: 7844437, description: `\u2705  NSFW is now **enabled** in this channel!`}));
-//       }
-//       return setNSFWChannel(evt.message.channel_id, 'false')
-//         .then(() => evt.message.channel.sendMessage('', false, {color: 7844437, description: `\u274E  NSFW is now **disabled** in this channel!`}));
-//     });
-//   }
-//   return evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  You do not have the "Manage Channels" permission.`});
-// }
+function setBlacklistStrictness(client, evt, suffix) {
+  if (evt.message.channel.isPrivate) return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139  Use this command in a server!`});
+  let userPerms = evt.message.author.permissionsFor(evt.message.channel);
+  if (evt.message.author.can(userPerms.General.MANAGE_CHANNELS, evt.message.channel)) {
+    return getBlackListRemove(evt.message.channel_id).then(value => {
+      if (value === 'false') {
+        return setBlackListRemove(evt.message.channel_id, 'true')
+        .then(() => evt.message.channel.sendMessage('', false, {color: 7844437, description: `\u2705  Blacklist Removal is now **enabled** in this channel!`}));
+      }
+      return setBlackListRemove(evt.message.channel_id, 'false')
+        .then(() => evt.message.channel.sendMessage('', false, {color: 7844437, description: `\u274E  Blacklist Removal is now **disabled** in this channel!`}));
+    });
+  }
+  return evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  You do not have the "Manage Channels" permission.`});
+}
 
 function setBlackList(client, evt, suffix, lang) {
   if (evt.message.channel.isPrivate) return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139  Use this command in a server!`});
@@ -94,6 +94,7 @@ export default {
     if (cmd === 'add') return addBlackList(client, evt, suffix);
     if (cmd === 'get') return getBlackList(client, evt, suffix);
     if (cmd === 'del') return delBlackList(client, evt, suffix);
+    if (cmd === 'strict') return setBlacklistStrictness(client, evt, suffix);
     return helpText(client, evt, 'blacklist', lang);
   }
 };
@@ -105,7 +106,8 @@ export const help = {
       {name: 'set'},
       {name: 'add'},
       {name: 'get'},
-      {name: 'del'}
+      {name: 'del'},
+      {name: 'strict'}
     ]
   }
 };

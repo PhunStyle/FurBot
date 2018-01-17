@@ -1,6 +1,24 @@
+<a name="4.3.0" />
+
+# 4.3.0 (January 18th, 2018)
+
+### Features
+- [NEW] `bun` command in animal commands, posts pictures of adorable bunnies. **I NEED IMAGES FOR THIS. SEND IMGUR ALBUMS TO ME.**
+- [NEW] `fox` command in animal commands, posts pictures of adorable foxes. **I NEED IMAGES FOR THIS. SEND IMGUR ALBUMS TO ME.**
+- [NEW] `poll` command that allows you to create a strawpoll from within discord.
+
+- **[NEW] `blacklist strict` command.**
+This will toggle blacklist strictness in a channel. If it's on, results that match your blacklist will not be shown at all.
+
+### Bug Fixes
+- [FIX] `crypto` command, it didn't have 24H Volume in USD yet.
+- [FIX] Some code consistency issues in the last few code additions have been addressed.
+
+
+
 <a name="4.2.4" />
 
-# 4.2.4 (January 12th, 2018)
+# 4.2.4 (January 15th, 2018)
 
 ### Features
 - [NEW] `crypto` command that will look up information, pricing, trends about your given cryptocurrency. Will be improved a little bit in the next update.

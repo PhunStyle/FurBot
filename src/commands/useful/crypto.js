@@ -1,15 +1,12 @@
 import Promise from 'bluebird';
 import fs from 'fs';
 import path from 'path';
-import R from 'ramda';
 import request from 'request';
 import moment from 'moment';
 
 import T from '../../translate';
 import logger from '../../logger';
-import { getObjects, getValues, getKeys } from '../../helpers';
-
-const requester = Promise.promisify(require('request'));
+import { getObjects } from '../../helpers';
 
 
 function downloadFile(url, target, cb) {
@@ -67,13 +64,14 @@ function crypto(client, evt, suffix) {
   });
 
   function handleFile(err, file) {
+    if (err) throw err;
     oldFile = false;
 
     let coin_list_raw = fs.readFileSync(path.join(__dirname, '../../static/coin_list.json'));
     let coin_list = JSON.parse(coin_list_raw);
 
-    let foundName = getObjects(coin_list,'name',suffix);
-    let foundSymbol = getObjects(coin_list,'symbol',suffix);
+    let foundName = getObjects(coin_list, 'name', suffix);
+    let foundSymbol = getObjects(coin_list, 'symbol', suffix);
 
     if (foundName.length === 1) {
       coinID = foundName[0].id;
@@ -83,7 +81,7 @@ function crypto(client, evt, suffix) {
       coinPriceUSD = foundName[0].price_usd;
       coinPriceEUR = foundName[0].price_eur;
       coinRank = foundName[0].rank;
-      coinVolume = foundName[0]["24h_volume_usd"];;
+      coinVolume = foundName[0]['24h_volume_usd'];
       coinMarketCap = foundName[0].market_cap_usd;
       coinSupply = foundName[0].available_supply;
       coinChange1h = `**Hour:** ${coinUp} ${foundName[0].percent_change_1h}%`;
@@ -109,7 +107,7 @@ function crypto(client, evt, suffix) {
       coinPriceUSD = foundSymbol[0].price_usd;
       coinPriceEUR = foundSymbol[0].price_eur;
       coinRank = foundSymbol[0].rank;
-      coinVolume = foundSymbol[0]["24h_volume_usd"];
+      coinVolume = foundSymbol[0]['24h_volume_usd'];
       coinMarketCap = foundSymbol[0].market_cap_usd;
       coinSupply = foundSymbol[0].available_supply;
       coinChange1h = `**Hour:** ${coinUp} ${foundSymbol[0].percent_change_1h}%`;
@@ -129,10 +127,6 @@ function crypto(client, evt, suffix) {
     }
   }
 
-  function getCoinInfo (err, coin) {
-
-  }
-
   function presentData() {
     let embed = {
       color: 16225050,
@@ -149,16 +143,13 @@ function crypto(client, evt, suffix) {
           value: ` ${coinChange1h}\n${coinChange24h}\n${coinChange7d}`,
           inline: true },
         { name: 'Coin Information',
-          value: `**Rank:** ${coinRank}\n**Market Cap:** ${coinMarketCap}\n**Supply:** ${coinSupply}`,
+          value: `**Rank:** ${coinRank}\n**Market Cap:** ${coinMarketCap}\n**24H Volume (USD)** ${coinVolume}\n**Supply:** ${coinSupply}`,
           inline: true }
       ],
       thumbnail: { url: coinImage }
     };
     return evt.message.channel.sendMessage('', false, embed);
   }
-
-
-
 }
 
 export default {

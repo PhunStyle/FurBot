@@ -2,7 +2,7 @@ import Promise from 'bluebird';
 import R from 'ramda';
 import _request from 'request';
 
-import { getBlackListChannel } from '../../redis';
+import { getBlackListRemove, getBlackListChannel } from '../../redis';
 
 
 const request = Promise.promisify(_request);
@@ -32,84 +32,102 @@ function findOne(haystack, arr) {
 }
 
 function tags(client, evt, suffix) {
-  let channelTest = evt.message.channel.nsfw;
-  if (evt.message.channel.isPrivate) channelTest = true;
-  if (channelTest === false) return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  Please use this command in a NSFW-enabled channel.\nIf you are an Admin, edit the channel and enable NSFW.`}));
-  return getBlackListChannel(evt.message.channel_id).then(value => {
-    let array = suffix.split(' ');
-    let blacklist;
-    if (value) {
-      blacklist = value.split(', ');
-      if (findOne(blacklist, array)) {
-        return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  One of the tags you entered is blacklisted in this channel!\nTo see the blacklist use \`f.blacklist get\``}));
-      }
-    }
-    let query;
-    let lastTag = Number.parseInt(array[array.length - 1], 10);
-    let count = 1;
-    if (suffix && Number.isInteger(lastTag)) {
-      count = lastTag;
-      if (count > 5) count = 5;
-      if (count < 0) count = 1;
-      let removeCount = R.slice(0, -1, array);
-      let cleanSuffix = R.join(' ', removeCount);
-      query = cleanSuffix.toLowerCase().replace('tags ', '');
-    } else {
-      query = suffix.toLowerCase().replace('tags ', '');
-    }
-
-    if (query === '') return Promise.resolve(`\u26A0  |  No tags were supplied`);
-    let checkLength = query.split(' ');
-    if (checkLength.length > 6) return Promise.resolve(`\u26A0  |  You can only search up to 6 tags`);
-
-    const options = {
-      url: `http://furry.booru.org/index.php?page=dapi&s=post&q=index&tags=${query}`,
-      qs: {
-        limit: 200,
-        json: 1
-      }
-    };
-
-    return _makeRequest(options)
-    .then(body => {
-      if (!body || typeof body === 'undefined' || body.length === 0) return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
-      return Promise.resolve(R.repeat('tags', count))
-      .map(() => {
-        // Do some math
-        let randomid = Math.floor(Math.random() * body.length);
-        // Grab the data
-        let id = body[randomid].id;
-        let file = body[randomid].image;
-        let directory = body[randomid].directory;
-        let fileurl = `http://img.booru.org/furry/images/${directory}/${file}`;
-        let height = body[randomid].height;
-        let width = body[randomid].width;
-        let score = body[randomid].score;
-        // Apply blacklisting
-        if (value) {
-          let tags = body[randomid].tags.split(' ');
-          if (findOne(blacklist, tags)) {
-            fileurl = 'http://i.imgur.com/oKq3RdK.png';
-          }
+  return getBlackListRemove(evt.message.channel_id).then(removeValue => {
+    let channelTest = evt.message.channel.nsfw;
+    if (evt.message.channel.isPrivate) channelTest = true;
+    if (channelTest === false) return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  Please use this command in a NSFW-enabled channel.\nIf you are an Admin, edit the channel and enable NSFW.`}));
+    return getBlackListChannel(evt.message.channel_id).then(value => {
+      let array = suffix.split(' ');
+      let blacklist;
+      if (value) {
+        blacklist = value.split(', ');
+        if (findOne(blacklist, array)) {
+          return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  One of the tags you entered is blacklisted in this channel!\nTo see the blacklist use \`f.blacklist get\``}));
         }
-        let imageDescription = `**Score:** ${score} | **Resolution: ** ${width} x ${height} | **Link:** [Click Here](http://furry.booru.org/index.php?page=post&s=view&id=${id})`;
-        if (file) {
-          if (file.endsWith('webm') || file.endsWith('swf')) {
-            imageDescription = `**Score:** ${score} | **Link:** [Click Here](http://furry.booru.org/index.php?page=post&s=view&id=${id})\n*This file (webm/swf) cannot be previewed or embedded.*`;
-          }
+      }
+      let query;
+      let lastTag = Number.parseInt(array[array.length - 1], 10);
+      let count = 1;
+      if (suffix && Number.isInteger(lastTag)) {
+        count = lastTag;
+        if (count > 5) count = 5;
+        if (count < 0) count = 1;
+        let removeCount = R.slice(0, -1, array);
+        let cleanSuffix = R.join(' ', removeCount);
+        query = cleanSuffix.toLowerCase().replace('tags ', '');
+      } else {
+        query = suffix.toLowerCase().replace('tags ', '');
+      }
+
+      if (query === '') return Promise.resolve(`\u26A0  |  No tags were supplied`);
+      let checkLength = query.split(' ');
+      if (checkLength.length > 6) return Promise.resolve(`\u26A0  |  You can only search up to 6 tags`);
+
+      const options = {
+        url: `http://furry.booru.org/index.php?page=dapi&s=post&q=index&tags=${query}`,
+        qs: {
+          limit: 200,
+          json: 1
         }
-        let embed = {
-          color: 29695,
-          author: {
-            name: query,
-            icon_url: evt.message.author.avatarURL
-          },
-          url: 'http://furry.booru.org/index.php?page=post&s=view&id=' + id,
-          description: imageDescription,
-          image: { url: fileurl },
-          footer: { icon_url: 'http://i.imgur.com/zrdxCfF.png', text: 'furrybooru' }
-        };
-        return evt.message.channel.sendMessage('', false, embed);
+      };
+
+      // Keep count of current position & blacklist matches
+      let currentPosition = 0;
+      let blacklistHits = 0;
+
+      return _makeRequest(options)
+      .then(body => {
+        if (!body || typeof body === 'undefined' || body.length === 0) return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
+        return Promise.resolve(R.repeat('tags', count))
+        .map(() => {
+          // Do some math
+          let randomid = Math.floor(Math.random() * body.length);
+          currentPosition++;
+          // Grab the data
+          let id = body[randomid].id;
+          let file = body[randomid].image;
+          let directory = body[randomid].directory;
+          let fileurl = `http://img.booru.org/furry/images/${directory}/${file}`;
+          let height = body[randomid].height;
+          let width = body[randomid].width;
+          let score = body[randomid].score;
+          let imageDescription = `**Score:** ${score} | **Resolution: ** ${width} x ${height} | **Link:** [Click Here](http://furry.booru.org/index.php?page=post&s=view&id=${id})`;
+          if (file) {
+            if (file.endsWith('webm') || file.endsWith('swf')) {
+              imageDescription = `**Score:** ${score} | **Link:** [Click Here](http://furry.booru.org/index.php?page=post&s=view&id=${id})\n*This file (webm/swf) cannot be previewed or embedded.*`;
+            }
+          }
+
+          // Apply blacklisting
+          if (value) {
+            let tags = body[randomid].tags.split(' ');
+            if (findOne(blacklist, tags)) {
+              if (removeValue === 'true') {
+                blacklistHits++;
+                if (blacklistHits > 0 && currentPosition === count) {
+                  return evt.message.channel.sendMessage('', false, {color: 7844437, description: `\u2705  Skipped \`${blacklistHits}\` blacklisted results.`})
+                  .then(message => { setTimeout(() => { message.delete(); }, 5000); });
+                }
+                return;
+              }
+              fileurl = null;
+              imageDescription = `**BLACKLISTED RESULT** | **Link:** [Click Here](http://furry.booru.org/index.php?page=post&s=view&id=${id})`;
+            }
+          }
+
+          let embed = {
+            color: 29695,
+            author: {
+              name: query,
+              icon_url: evt.message.author.avatarURL
+            },
+            url: 'http://furry.booru.org/index.php?page=post&s=view&id=' + id,
+            description: imageDescription,
+            image: { url: fileurl },
+            footer: { icon_url: 'http://i.imgur.com/zrdxCfF.png', text: 'furrybooru' }
+          };
+          return evt.message.channel.sendMessage('', false, embed);
+        });
       });
     });
   });

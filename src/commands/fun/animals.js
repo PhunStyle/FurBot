@@ -143,8 +143,8 @@ function animals(client, evt, suffix, lang) {
   if (cmd === 'dog') return dog(client, evt, suffix);
   if (cmd === 'pug') return pug(client, evt, suffix);
   if (cmd === 'snake') return snake(client, evt, suffix);
-  // if (cmd === 'fox') return snake(client, evt, suffix);
-  // if (cmd === 'bun') return snake(client, evt, suffix);
+  if (cmd === 'fox') return snake(client, evt, suffix);
+  if (cmd === 'bun') return snake(client, evt, suffix);
   return helpText(client, evt, 'animals', lang);
 }
 
@@ -164,12 +164,12 @@ export default {
   snek: snake,
   sneks: snake,
   '\ud83d\udc0d': snake,
-  // fox,
-  // '\ud83e\udd8a': fox,
-  // bun,
-  // bunny: bun,
-  // rabbit: bun,
-  // '\ud83d\udc30': bun
+  fox,
+  '\ud83e\udd8a': fox,
+  bun,
+  bunny: bun,
+  rabbit: bun,
+  '\ud83d\udc30': bun
 };
 
 export const help = {
@@ -180,9 +180,9 @@ export const help = {
       {name: 'cat'},
       {name: 'dog'},
       {name: 'pug'},
-      {name: 'snake'}
-      // {name: 'fox'},
-      // {name: 'bun'}
+      {name: 'snake'},
+      {name: 'fox'},
+      {name: 'bun'}
     ]
   }
 };

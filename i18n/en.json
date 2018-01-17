@@ -16,6 +16,7 @@
   "blacklist_del": "Deletes the **entire blacklist** from this channel",
   "blacklist_get": "Get the current blacklist for this channel",
   "blacklist_set": "Set a blacklist for this channel. This will overwrite your old blacklist",
+  "blacklist_strict": "Change whether to **SHOW** or **REMOVE** blacklisted results (Default is SHOW)",
   "blacklist_usage": "Use the command like this: `f.blacklist set blood, gore` | It is important to use commas (,) to separate tags.",
   "blacklist_usage_add": "Use the command like this: `f.blacklist add blood, gore` | It is important to use commas (,) to separate tags.",
   "cat": "Posts pictures of adorable cats",

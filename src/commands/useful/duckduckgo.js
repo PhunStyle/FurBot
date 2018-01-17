@@ -19,7 +19,7 @@ function ddg(client, evt, suffix, lang) {
       no_redirect: '1',
       no_html: '1',
       skip_disambig: '0',
-      t: 'Gravebot-Discord'
+      t: 'FurBot-Discord'
     }
   };
 
