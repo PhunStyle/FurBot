@@ -67,20 +67,20 @@ export function setUserLang(user_id, lang) {
     });
 }
 
-export function setNSFWChannel(channel_id, value) {
-  return client.hsetAsync(`channel_${channel_id}`, 'nsfw', value)
+export function setBlackListRemove(channel_id, value) {
+  return client.hsetAsync(`channel_${channel_id}`, 'blacklist_strict', value)
     .timeout(2000)
     .catch(err => {
-      sentry(err, 'setNSFWChannel');
+      sentry(err, 'setBlackListHide');
     });
 }
 
-export function getNSFWChannel(channel_id) {
-  return client.hgetAsync(`channel_${channel_id}`, 'nsfw')
+export function getBlackListRemove(channel_id) {
+  return client.hgetAsync(`channel_${channel_id}`, 'blacklist_strict')
     .then(value => value || 'false')
     .timeout(2000)
     .catch(err => {
-      sentry(err, 'getNSFWChannel');
+      sentry(err, 'getBlackListHide');
       return 'false';
     });
 }
