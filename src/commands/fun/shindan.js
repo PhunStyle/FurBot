@@ -2,6 +2,7 @@ import shin from 'shindan';
 
 
 function shindan(client, evt, suffix) {
+
   if (!suffix) {
     let embed = {
       color: 3329023,
@@ -39,8 +40,12 @@ function shindan(client, evt, suffix) {
     return evt.message.channel.sendMessage('', false, embed);
   }
 
-  let authorName = evt.message.member.name;
+  let authorName = evt.message.author.username;
   let shindanID;
+
+  if (!evt.message.channel.isPrivate) {
+    authorName = evt.message.member.name;
+  }
 
   switch (suffix) {
     case 'cute':
