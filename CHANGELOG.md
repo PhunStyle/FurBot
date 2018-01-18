@@ -1,3 +1,12 @@
+<a name="4.3.1" />
+
+# 4.3.1 (January 19th, 2018)
+
+### Bug Fixes
+- [FIX] `shindan` command. Didn't work in Direct Messages, now it does. [Thanks Surge / Just Apple]
+- [FIX] Added the latest champions to `lol` command. [Thanks Atoc_Faerwald]
+
+
 <a name="4.3.0" />
 
 # 4.3.0 (January 18th, 2018)
@@ -13,7 +22,6 @@ This will toggle blacklist strictness in a channel. If it's on, results that mat
 ### Bug Fixes
 - [FIX] `crypto` command, it didn't have 24H Volume in USD yet.
 - [FIX] Some code consistency issues in the last few code additions have been addressed.
-
 
 
 <a name="4.2.4" />
