@@ -22,7 +22,7 @@ function search(client, evt, suffix, lang) {
       return `http://www.youtube.com/watch?v=${id_obj.videoId}`;
     })
     .catch(err => {
-      let embed = { color: 16763981, description: `\u26A0  Something went wrong: \`${err.errors[0].reason}\`` };
+      let embed = { color: 15747399, description: `<:redTick:405749796603822080> Something went wrong: \`${err.errors[0].reason}\`` };
       evt.message.channel.sendMessage('', false, embed);
     });
 }

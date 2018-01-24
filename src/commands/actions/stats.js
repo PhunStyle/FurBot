@@ -11,7 +11,7 @@ function userStatistics(client, evt, suffix) {
 
   getUserAction(userToCheck.id)
   .then(results => {
-    if (!results) return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  No data found for this user :( - Go give them a hug!`}));
+    if (!results) return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0 No data found for this user :( - Go give them a hug!`}));
     let embed = {
       color: 16737843,
       author: {

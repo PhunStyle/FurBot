@@ -60,7 +60,8 @@ function callCmd(cmd, name, client, evt, suffix) {
   const start_time = new Date().getTime();
   getMessageTTL(user_id).then(exists => {
     // If a user is trying to spam messages above the set TTL time, then skip.
-    if (exists) return;
+    let embed = { color: 15747399, description: `<:redTick:405749796603822080> You must wait \`${nconf.get('MESSAGE_TTL')}\` seconds between commands!` };
+    if (exists) return evt.message.channel.sendMessage('', false, embed);
     setMessageTTL(user_id);
 
     return getUserLang(user_id).then(lang => {
@@ -80,7 +81,8 @@ function callCmd(cmd, name, client, evt, suffix) {
         })
         .catch(err => {
           sentry(err, name);
-          evt.message.channel.sendMessage(`Error: ${err.message}`);
+          let embed = { color: 15747399, description: `<:redTick:405749796603822080> ${err.message}` };
+          evt.message.channel.sendMessage('', false, embed);
         });
       }
     });

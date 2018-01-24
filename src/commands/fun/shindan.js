@@ -85,7 +85,7 @@ function shindan(client, evt, suffix) {
     evt.message.channel.sendMessage('', false, embed);
   })
   .catch(err => {
-    let embed = { color: 16763981, description: `\u26A0  Something went wrong: ${err}` };
+    let embed = { color: 15747399, description: `<:redTick:405749796603822080> Something went wrong: ${err}` };
     evt.message.channel.sendMessage('', false, embed);
   });
 }

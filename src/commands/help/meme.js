@@ -1,9 +1,9 @@
 export default {
-  all: `Meme names for the **\`!meme\`** command
-**\`!memelist 1\`**
-**\`!memelist 2\`**
-**\`!memelist 3\`**
-**\`!memelist full\`**`,
+  all: `Meme names for the **\`f.meme\`** command
+**\`f.memelist 1\`**
+**\`f.memelist 2\`**
+**\`f.memelist 3\`**
+**\`f.memelist full\`**`,
   list1: `**\`aliens\`** - Ancient Aliens :alien:
 **\`allthese\`** - Look at all these
 **\`allthings\`** - All the things

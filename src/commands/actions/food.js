@@ -4,7 +4,7 @@ import { setUserAction } from '../../redis';
 
 
 function feed(client, evt) {
-  if (evt.message.channel.isPrivate) return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139  Use this command in a server!`});
+  if (evt.message.channel.isPrivate) return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139 Use this command in a server!`});
 
   let receiverArray = [];
 
