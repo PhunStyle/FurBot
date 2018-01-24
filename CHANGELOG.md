@@ -1,3 +1,23 @@
+<a name="4.3.2" />
+
+# 4.3.2 (January 24th, 2018)
+
+### Features
+- FurBot will now show a message if you use a command but aren't yet off cooldown.
+
+### Bug Fixes
+- [FIX] `crypto` command now has an error message if it can't find results for your given crypto coin.
+- [FIX] `poll` now shows up in the help command list and also returns an error if you use it improperly.
+- [FIX] `memelist` showing the old ! command operator.
+
+### Technical Notes
+- Changed up some error and success messages. The bot now uses 4 different levels of presenting errors.
+  * Success (GREEN) will be for successful responses such as setting a blacklist, pruning messages or kicking members.
+  * Information (BLUE) will be for informative messages such as "You have to use this in a server!".
+  * Warning (YELLOW) will be for warning you that no results were found or you typed something wrong.
+  * Error (RED) will be for when there's an actual error in the code, the command or the website it's searching on.
+
+
 <a name="4.3.1" />
 
 # 4.3.1 (January 19th, 2018)

@@ -105,7 +105,7 @@ function tags(client, evt, suffix) {
               if (removeValue === 'true') {
                 blacklistHits++;
                 if (blacklistHits > 0 && currentPosition === count) {
-                  return evt.message.channel.sendMessage('', false, {color: 7844437, description: `\u2705  Skipped \`${blacklistHits}\` blacklisted results.`})
+                  return evt.message.channel.sendMessage('', false, {color: 4437377, description: `<:greenTick:405749911037018125> Skipped \`${blacklistHits}\` blacklisted results.`})
                   .then(message => { setTimeout(() => { message.delete(); }, 5000); });
                 }
                 return;

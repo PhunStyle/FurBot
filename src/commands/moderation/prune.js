@@ -26,7 +26,7 @@ function prune(client, evt, suffix, lang) {
 
   client.Messages.deleteMessages(messageIdArray, evt.message.channel.id);
 
-  let embed = { color: 7844437, description: '\u2705  Deleted!' };
+  let embed = { color: 4437377, description: '<:greenTick:405749911037018125> Deleted!' };
   return evt.message.channel.sendMessage('', false, embed)
   .then(message => { setTimeout(() => { message.delete(); }, 10000); });
 }

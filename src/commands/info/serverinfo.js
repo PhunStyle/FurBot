@@ -5,7 +5,7 @@ import { toTitleCase } from '../../helpers';
 
 
 function serverinfo(client, evt, suffix) {
-  if (evt.message.channel.isPrivate) return Promise.resolve('\u2139  |  Use this command in a server!');
+  if (evt.message.channel.isPrivate) return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139  Use this command in a server!`}));
   if (!suffix) {
     let embed = {
       color: 3901635,

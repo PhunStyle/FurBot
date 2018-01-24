@@ -85,15 +85,15 @@ function crypto(client, evt, suffix) {
       coinMarketCap = foundName[0].market_cap_usd;
       coinSupply = foundName[0].available_supply;
       coinChange1h = `**Hour:** ${coinUp} ${foundName[0].percent_change_1h}%`;
-      if (foundName[0].percent_change_1h.startsWith('-')) {
+      if (foundName[0].percent_change_1h && foundName[0].percent_change_1h.startsWith('-')) {
         coinChange1h = `**Hour:** ${coinDown} ${foundName[0].percent_change_1h}%`;
       }
       coinChange24h = `**Day:** ${coinUp} ${foundName[0].percent_change_24h}%`;
-      if (foundName[0].percent_change_24h.startsWith('-')) {
+      if (foundName[0].percent_change_24h && foundName[0].percent_change_24h.startsWith('-')) {
         coinChange24h = `**Day:** ${coinDown} ${foundName[0].percent_change_24h}%`;
       }
       coinChange7d = `**Week:** ${coinUp} ${foundName[0].percent_change_7d}%`;
-      if (foundName[0].percent_change_7d.startsWith('-')) {
+      if (foundName[0].percent_change_7d && foundName[0].percent_change_7d.startsWith('-')) {
         coinChange7d = `**Week:** ${coinDown} ${foundName[0].percent_change_7d}%`;
       }
       coinImage = `${coinImageBaseUrl}${foundName[0].id}.png`;
@@ -111,19 +111,22 @@ function crypto(client, evt, suffix) {
       coinMarketCap = foundSymbol[0].market_cap_usd;
       coinSupply = foundSymbol[0].available_supply;
       coinChange1h = `**Hour:** ${coinUp} ${foundSymbol[0].percent_change_1h}%`;
-      if (foundSymbol[0].percent_change_1h.startsWith('-')) {
+      if (foundSymbol[0].percent_change_1h && foundSymbol[0].percent_change_1h.startsWith('-')) {
         coinChange1h = `**Hour:** ${coinDown} ${foundSymbol[0].percent_change_1h}%`;
       }
       coinChange24h = `**Day:** ${coinUp} ${foundSymbol[0].percent_change_24h}%`;
-      if (foundSymbol[0].percent_change_24h.startsWith('-')) {
+      if (foundSymbol[0].percent_change_24h && foundSymbol[0].percent_change_24h.startsWith('-')) {
         coinChange24h = `**Day:** ${coinDown} ${foundSymbol[0].percent_change_24h}%`;
       }
       coinChange7d = `**Week:** ${coinUp} ${foundSymbol[0].percent_change_7d}%`;
-      if (foundSymbol[0].percent_change_7d.startsWith('-')) {
+      if (foundSymbol[0].percent_change_7d && foundSymbol[0].percent_change_7d.startsWith('-')) {
         coinChange7d = `**Week:** ${coinDown} ${foundSymbol[0].percent_change_7d}%`;
       }
       coinImage = `${coinImageBaseUrl}${foundSymbol[0].id}.png`;
       presentData();
+    }
+    if (foundName.length === 0 && foundSymbol.length === 0) {
+      presentError();
     }
   }
 
@@ -148,6 +151,11 @@ function crypto(client, evt, suffix) {
       ],
       thumbnail: { url: coinImage }
     };
+    return evt.message.channel.sendMessage('', false, embed);
+  }
+
+  function presentError() {
+    let embed = { color: 16763981, description: `\u26A0  Did not find any data about that coin` };
     return evt.message.channel.sendMessage('', false, embed);
   }
 }

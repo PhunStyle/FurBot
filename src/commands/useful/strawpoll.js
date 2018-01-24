@@ -8,7 +8,7 @@ import T from '../../translate';
 const request = Promise.promisify(_request);
 
 function makePoll(client, evt, suffix) {
-  if (!suffix) return evt.message.channel.sendMessage(`${T('strawpoll_usage')}`);
+  if (!suffix) return evt.message.channel.sendMessage(`${T('poll_usage')}`);
   suffix = suffix.split(' | ');
   let question = suffix.shift().toString();
   // console.log(question);
@@ -34,7 +34,7 @@ function makePoll(client, evt, suffix) {
   .then(R.prop('body'))
   .then(res => {
     if (!res.id) {
-      let embed = { color: 16763981, description: `\u26A0  Something went wrong: ${res.errorMessage}` };
+      let embed = { color: 15747399, description: `<:redTick:405749796603822080> Something went wrong: ${res.errorMessage}` };
       return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
     }
     let embed = {

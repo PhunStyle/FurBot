@@ -1,5 +1,5 @@
 function nickname(client, evt, suffix) {
-  if (evt.message.channel.isPrivate) return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139  Use this command in a server!`});
+  if (evt.message.channel.isPrivate) return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139 Use this command in a server!`});
 
   let self = false;
   let newNick;
@@ -30,13 +30,13 @@ function nickname(client, evt, suffix) {
     }
     let user = evt.message.author.memberOf(evt.message.guild);
     user.setNickname(newNick).then(() => {
-      let embed = { color: 7844437, description: `\u2705  Set a new nickname for ${user.username}#${user.discriminator}!` };
+      let embed = { color: 4437377, description: `<:greenTick:405749911037018125> Set a new nickname for ${user.username}#${user.discriminator}!` };
       return evt.message.channel.sendMessage('', false, embed)
       .then(message => { setTimeout(() => { message.delete(); }, 10000); });
     })
     .catch(err => {
       let error = JSON.parse(err.response.error.text);
-      let embed = { color: 16763981, description: `\u26A0  Something went wrong: ${error.message}` };
+      let embed = { color: 15747399, description: `<:redTick:405749796603822080> Something went wrong: ${error.message}` };
       return evt.message.channel.sendMessage('', false, embed);
     });
   }
@@ -50,13 +50,13 @@ function nickname(client, evt, suffix) {
     let user = evt.message.mentions[0].memberOf(evt.message.guild);
 
     user.setNickname(newNick).then(() => {
-      let embed = { color: 7844437, description: `\u2705  Set a new nickname for ${user.username}#${user.discriminator}!` };
+      let embed = { color: 4437377, description: `<:greenTick:405749911037018125> Set a new nickname for ${user.username}#${user.discriminator}!` };
       return evt.message.channel.sendMessage('', false, embed)
       .then(message => { setTimeout(() => { message.delete(); }, 10000); });
     })
     .catch(err => {
       let error = JSON.parse(err.response.error.text);
-      let embed = { color: 16763981, description: `\u26A0  Something went wrong: ${error.message}` };
+      let embed = { color: 15747399, description: `<:redTick:405749796603822080> Something went wrong: ${error.message}` };
       return evt.message.channel.sendMessage('', false, embed);
     });
   }
