@@ -1,3 +1,15 @@
+<a name="4.3.3" />
+
+# 4.3.3 (March 9th, 2018)
+
+### Features
+- [NEW] `wolf` animal command. Thanks to @Flare#0001!
+
+### Bug Fixes
+- [FIX] `poll` command now working properly. Thanks for reporting that Xavienth#0536!
+- [FIX] The error message to wait between commands now removes itself after a while.
+
+
 <a name="4.3.2" />
 
 # 4.3.2 (January 24th, 2018)
