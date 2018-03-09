@@ -16,7 +16,7 @@ function makePoll(client, evt, suffix) {
   // console.log(polloptions);
 
   const options = {
-    url: 'http://www.strawpoll.me/api/v2/polls',
+    url: 'https://www.strawpoll.me/api/v2/polls',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

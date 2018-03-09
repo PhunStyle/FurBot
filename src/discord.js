@@ -61,7 +61,8 @@ function callCmd(cmd, name, client, evt, suffix) {
   getMessageTTL(user_id).then(exists => {
     // If a user is trying to spam messages above the set TTL time, then skip.
     let embed = { color: 15747399, description: `<:redTick:405749796603822080> You must wait \`${nconf.get('MESSAGE_TTL')}\` seconds between commands!` };
-    if (exists) return evt.message.channel.sendMessage('', false, embed);
+    if (exists) return evt.message.channel.sendMessage('', false, embed)
+    .then(message => { setTimeout(() => { message.delete(); }, 5000); });
     setMessageTTL(user_id);
 
     return getUserLang(user_id).then(lang => {
