@@ -31,6 +31,10 @@ function findOne(haystack, arr) {
   return arr.some(v => haystack.includes(v));
 }
 
+function getOne(haystack, arr) {
+  return arr.find(v => haystack.includes(v));
+}
+
 function tags(client, evt, suffix) {
   return getBlackListRemove(evt.message.channel_id).then(removeValue => {
     let channelTest = evt.message.channel.nsfw;
@@ -111,7 +115,8 @@ function tags(client, evt, suffix) {
                 return;
               }
               fileurl = null;
-              imageDescription = `**BLACKLISTED RESULT** | **Link:** [Click Here](http://furry.booru.org/index.php?page=post&s=view&id=${id})`;
+              let blacklistMatch = getOne(blacklist, tags);
+              imageDescription = `**BLACKLISTED RESULT** - Link Contains: ${blacklistMatch} | **Link:** [Click Here](http://furry.booru.org/index.php?page=post&s=view&id=${id})`;
             }
           }
 
