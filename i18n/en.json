@@ -4,6 +4,7 @@
   "accepted_languages": "Accepted languages are",
   "advice": "Get some helpful life advice",
   "animals": "Get various animal pictures",
+  "animals_axolotl": "Posts pictures of adorable axolotls",
   "animals_cat": "Posts pictures of adorable cats",
   "animals_dog": "Posts pictures of adorable dogs",
   "animals_header_text": "Responds with a picture.\nYou can specify a number of pictures by writing `bomb` `number` after a command. (e.g. `f.cat bomb 2`)",

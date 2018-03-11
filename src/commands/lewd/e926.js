@@ -110,7 +110,7 @@ function tags(client, evt, suffix) {
               }
               file = null;
               let blacklistMatch = getOne(blacklist, tags);
-              imageDescription = `**BLACKLISTED RESULT** - Link Contains: ${blacklistMatch} | **Link:** [Click Here](https://e926.net/post/show/${id})`;
+              imageDescription = `**BLACKLISTED** - Matched: \`${blacklistMatch}\` | **Link:** [Click Here](https://e926.net/post/show/${id})`;
             }
           }
 

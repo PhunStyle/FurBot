@@ -1,3 +1,14 @@
+<a name="4.3.4" />
+
+# 4.3.4 (March 11th, 2018)
+
+### Features
+- [NEW] `axlotl` animal command. Thanks to `Kuroha` and `Adrienne`!!
+
+### Bug Fixes
+- [FIX] If you have blacklist strictness off and you find an e6 image with a matched tag, it will now tell you what tag it matched first. Thanks `SockHungryClutz`!
+
+
 <a name="4.3.3" />
 
 # 4.3.3 (March 9th, 2018)

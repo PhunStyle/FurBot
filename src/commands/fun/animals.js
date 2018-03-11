@@ -7,6 +7,28 @@ import pug_urls from '../../static/pugs.json';
 const request = Promise.promisify(require('request'));
 
 
+function axolotl(client, evt, suffix) {
+  let count = 1;
+  if (suffix && suffix.split(' ')[0] === 'bomb') {
+    count = Number(suffix.split(' ')[1]) || 5;
+    if (count > 15) count = 15;
+    if (count < 0) count = 5;
+  }
+
+  const options = {
+    url: 'http://fur.im/axo/',
+    json: true
+  };
+
+  return Promise.resolve(R.repeat('axolotl', count))
+    .map(() => {
+      return request(options)
+        .then(R.path(['body', 'file']))
+        .then(encodeURI);
+    })
+    .then(R.join('\n'));
+}
+
 function bun(client, evt, suffix) {
   let count = 1;
   if (suffix && suffix.split(' ')[0] === 'bomb') {
@@ -163,6 +185,7 @@ function animals(client, evt, suffix, lang) {
   split_suffix.shift();
   suffix = split_suffix.join(' ');
 
+  if (cmd === 'axolotl') return axolotl(client, evt, suffix);
   if (cmd === 'bun') return bun(client, evt, suffix);
   if (cmd === 'cat') return cat(client, evt, suffix);
   if (cmd === 'dog') return dog(client, evt, suffix);
@@ -176,6 +199,9 @@ function animals(client, evt, suffix, lang) {
 export default {
   animal: animals,
   animals,
+  axolotl,
+  axlotl: axolotl,
+  axo: axolotl,
   bun,
   bunny: bun,
   rabbit: bun,
@@ -204,6 +230,7 @@ export const help = {
     prefix: false,
     header_text: 'animals_header_text',
     subcommands: [
+      {name: 'axolotl'},
       {name: 'bun'},
       {name: 'cat'},
       {name: 'dog'},

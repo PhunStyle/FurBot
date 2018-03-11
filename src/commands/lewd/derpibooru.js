@@ -127,7 +127,7 @@ function tags(client, evt, suffix) {
               }
               fileurl = null;
               let blacklistMatch = getOne(blacklist, tags);
-              imageDescription = `**BLACKLISTED RESULT** - Link Contains: ${blacklistMatch} | **Link:** [Click Here](https://derpibooru.org/${id})`;
+              imageDescription = `**BLACKLISTED** - Matched: \`${blacklistMatch}\` | **Link:** [Click Here](https://derpibooru.org/${id})`;
             }
           }
 
