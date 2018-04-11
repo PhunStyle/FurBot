@@ -32,7 +32,7 @@ function botinfo(client, evt, suffix, lang, json) {
           description: 'Hey there! These are my stats, to see all of my commands use `f.help`',
           fields: [
             { name: '\uD83D\uDD75\uD83C\uDFFC Owner:',
-              value: 'Phun#5241',
+              value: 'Phun#0001',
               inline: true },
             { name: '\uD83E\uDD16 Version:',
               value: `FurBot ${bot_version}`,
@@ -102,7 +102,7 @@ function botinfo(client, evt, suffix, lang, json) {
     description: 'Hey there! These are my stats, to see all of my commands use `!help`',
     fields: [
       { name: '\uD83D\uDD75\uD83C\uDFFC Owner:',
-        value: 'Phun#5241',
+        value: 'Phun#0001',
         inline: true },
       { name: '\uD83E\uDD16 Version:',
         value: `FurBot ${bot_version}`,

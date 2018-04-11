@@ -6,12 +6,14 @@ import { setUserAction } from '../../redis';
 function kiss(client, evt) {
   if (evt.message.channel.isPrivate) return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139 Use this command in a server!`});
 
+  let authorName = evt.message.member.name;
+  if (authorName === '@everyone' || authorName === '@here') authorName = 'Real Funny Person';
   let receiverArray = [];
 
   if (evt.message.mentions.length !== 0) {
     evt.message.mentions.map(user => {
       let guildUser = user.memberOf(evt.message.guild);
-      if (user !== evt.message.author && !user.bot) receiverArray.push(guildUser.name);
+      if (user !== evt.message.author && !user.bot && guildUser.name !== '@everyone' && guildUser.name !== '@here') receiverArray.push(guildUser.name);
     });
 
     if (receiverArray.length !== 0) {
@@ -50,10 +52,10 @@ function kiss(client, evt) {
         }
       });
 
-      return Promise.resolve(evt.message.member.name + ` ${kisses[rand]}`);
+      return Promise.resolve(authorName + ` ${kisses[rand]}`);
     }
   }
-  return Promise.resolve(evt.message.member.name + ` walks up to a mirror and kisses themselves! How odd..`);
+  return Promise.resolve(authorName + ` walks up to a mirror and kisses themselves! How odd..`);
 }
 
 export default {

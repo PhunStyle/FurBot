@@ -5,10 +5,10 @@ import Hearthstone from 'hearthstone-mashape';
 import T from '../../../translate';
 
 
-const HS = Hearthstone(nconf.get('MASHAPE_KEY'));
-
-
 function cardSearch(client, evt, suffix, lang) {
+  if (!nconf.get('MASHAPE_KEY')) return Promise.resolve(T('mashape_setup', lang));
+  const HS = Hearthstone(nconf.get('MASHAPE_KEY'));
+
   if (!suffix) return Promise.resolve(T('hearthstone_usage', lang));
 
   let card = suffix;

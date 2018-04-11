@@ -104,6 +104,7 @@
   "lol_specify_position": "You didn't specifiy a position.",
   "lol_status": "Get the LoL Game and Client server status for all regions",
   "lol_unknown_position": "I don't understand position",
+  "mashape_setup": "Please setup Mashape in config.js to use the **`f.hearthstone`** command.",
   "meme": "Creates a meme with the given meme name and text",
   "meme_setup": "Please setup Imgflip in config.js to use the **`f.meme`** command.",
   "meme_usage": "Usage: **`f.meme`** `meme name` `\"top text\"` `\"bottom text\"`\nWrite **`f.memelist`** for a list of meme names.",

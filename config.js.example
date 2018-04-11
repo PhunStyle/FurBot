@@ -10,7 +10,7 @@ module.exports = {
   // https://discordapp.com/developers/applications/me
   CLIENT_ID: '',
 
-  // *Required* Owner ID. Can be found by enablind developer mode in discord
+  // *Required* Owner ID. Can be found by enabling developer mode in discord
   // Right clicking your profile and selecting 'Copy ID'.
   OWNER_ID: '',
 

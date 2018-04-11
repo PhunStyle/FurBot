@@ -1,3 +1,22 @@
+<a name="4.3.5" />
+
+# 4.3.5 (April 11th, 2018)
+
+### Features
+- [NEW] `bun` command. Posts really cute bunnies! YAY BUNNIES.
+- [NEW] `feed` option `feed yum @User` - This will only select the delicious foods.
+- [CHANGE] the cooldown timer is down from 8 seconds to 5 seconds.
+
+### Bug Fixes
+- [FIX] Correct my user in the `info` command.
+- [FIX] `party` no longer crashes your phone. Hopefully.
+- [FIX] You can no longer use the action commands to mention everyone when you set your nickname to `@everyone` or `@here`.
+
+
+### Technical Notes
+- Moved location of MASHAPE_KEY inside the function so it no longer requires it on runtime.
+
+
 <a name="4.3.4" />
 
 # 4.3.4 (March 11th, 2018)
