@@ -60,7 +60,7 @@ function cat(client, evt, suffix) {
   }
 
   const options = {
-    url: 'http://random.cat/meow.php',
+    url: 'http://aws.random.cat/meow',
     json: true
   };
 

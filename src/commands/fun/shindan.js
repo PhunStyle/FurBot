@@ -2,7 +2,6 @@ import shin from 'shindan';
 
 
 function shindan(client, evt, suffix) {
-
   if (!suffix) {
     let embed = {
       color: 3329023,

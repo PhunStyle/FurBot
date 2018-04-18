@@ -6,34 +6,35 @@ import { setUserAction } from '../../redis';
 function slap(client, evt) {
   if (evt.message.channel.isPrivate) return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139 Use this command in a server!`});
 
-  let authorName = evt.message.member.name;
-  if (authorName === '@everyone' || authorName === '@here') authorName = 'Real Funny Person';
+  var chars = { '*': '\\*', _: '\\_', '~': '\\~' };
+  let authorName = evt.message.author.username.replace(/[*_~]/g, m => chars[m]);
+
   let receiverArray = [];
 
   if (evt.message.mentions.length !== 0) {
     evt.message.mentions.map(user => {
-      let guildUser = user.memberOf(evt.message.guild);
-      if (user !== evt.message.author && !user.bot && guildUser.name !== '@everyone' && guildUser.name !== '@here') receiverArray.push(guildUser.name);
+      let receiverName = user.username.replace(/[*_~]/g, m => chars[m]);
+      if (user !== evt.message.author && !user.bot) receiverArray.push(`**${receiverName}**`);
     });
 
     if (receiverArray.length !== 0) {
       let receivers = receiverArray.join(' and ');
 
       const slaps = [
-        `slaps ${receivers}! :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
-        `smacked ${receivers}! :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
-        `just slapped ${receivers}! :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
-        `walks up to ${receivers} and slaps them in the face :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
-        `bitch slaps ${receivers}! :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
-        `smacks ${receivers} hard, ouch! :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
-        `beats some sense into ${receivers} :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
-        `sends out slaps to ${receivers} :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
-        `slaps ${receivers} hard, leaving a red mark! :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
-        `slappity slap slap slaps ${receivers} :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
-        `gives ${receivers} a real good slappin'! :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
-        `whacks ${receivers} real good! :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
-        `do the slappy to ${receivers} :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`,
-        `SLAP FIGHT! ${receivers}, get ready to get SLAPPED! :dizzy_face:\uD83D\uDC4B\uD83C\uDFFC`
+        `slaps ${receivers}! \ud83d\ude35\ud83d\udc4a`,
+        `smacked ${receivers}! \ud83d\ude35\ud83d\udc4a`,
+        `just slapped ${receivers}! \ud83d\ude35\ud83d\udc4a`,
+        `walks up to ${receivers} and slaps them in the face \ud83d\ude35\ud83d\udc4a`,
+        `bitch slaps ${receivers}! \ud83d\ude35\ud83d\udc4a`,
+        `smacks ${receivers} hard, ouch! \ud83d\ude35\ud83d\udc4a`,
+        `beats some sense into ${receivers} \ud83d\ude35\ud83d\udc4a`,
+        `sends out slaps to ${receivers} \ud83d\ude35\ud83d\udc4a`,
+        `slaps ${receivers} hard, leaving a red mark! \ud83d\ude35\ud83d\udc4a`,
+        `slappity slap slap slaps ${receivers} \ud83d\ude35\ud83d\udc4a`,
+        `gives ${receivers} a real good slappin'! \ud83d\ude35\ud83d\udc4a`,
+        `whacks ${receivers} real good! \ud83d\ude35\ud83d\udc4a`,
+        `do the slappy to ${receivers} \ud83d\ude35\ud83d\udc4a`,
+        `starts a SLAP FIGHT! ${receivers}, get ready to get SLAPPED! \ud83d\ude35\ud83d\udc4a`
       ];
 
       const rand = Math.floor(Math.random() * slaps.length);
@@ -44,10 +45,10 @@ function slap(client, evt) {
         }
       });
 
-      return Promise.resolve(authorName + ` ${slaps[rand]}`);
+      return Promise.resolve(`**${authorName}** ${slaps[rand]}`);
     }
   }
-  return Promise.resolve(authorName + ` slaps themselves..?`);
+  return Promise.resolve(`**${authorName}** slaps themselves..?`);
 }
 
 export default {

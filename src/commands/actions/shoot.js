@@ -6,14 +6,15 @@ import { setUserAction } from '../../redis';
 function shoot(client, evt) {
   if (evt.message.channel.isPrivate) return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139 Use this command in a server!`});
 
-  let authorName = evt.message.member.name;
-  if (authorName === '@everyone' || authorName === '@here') authorName = 'Real Funny Person';
+  var chars = { '*': '\\*', _: '\\_', '~': '\\~' };
+  let authorName = evt.message.author.username.replace(/[*_~]/g, m => chars[m]);
+
   let receiverArray = [];
 
   if (evt.message.mentions.length !== 0) {
     evt.message.mentions.map(user => {
-      let guildUser = user.memberOf(evt.message.guild);
-      if (user !== evt.message.author && !user.bot && guildUser.name !== '@everyone' && guildUser.name !== '@here') receiverArray.push(guildUser.name);
+      let receiverName = user.username.replace(/[*_~]/g, m => chars[m]);
+      if (user !== evt.message.author && !user.bot) receiverArray.push(`**${receiverName}**`);
     });
 
     if (receiverArray.length !== 0) {
@@ -40,7 +41,7 @@ function shoot(client, evt) {
         `shot ${receivers} with their sniper from a bedroom window :gun:`,
         `hey ${receivers}.. it's high noon :gun:`,
         `just shot ${receivers} in the chest with their pistol :gun:`,
-        `just shot ${receivers} THROUGH THE HEART AND YOU'RE TO BLAME. DARLIN' YOU GIVE LOOOOVE A BAD NAME! :gun:\nhttps://www.youtube.com/watch?v=KrZHPOeOxQQ`
+        `just shot ${receivers} THROUGH THE HEART AND YOU'RE TO BLAME. DARLIN' YOU GIVE LOOOOVE A BAD NAME! :gun:`
       ];
 
       const rand = Math.floor(Math.random() * shoots.length);
@@ -51,10 +52,10 @@ function shoot(client, evt) {
         }
       });
 
-      return Promise.resolve(authorName + ` ${shoots[rand]}`);
+      return Promise.resolve(`**${authorName}** ${shoots[rand]}`);
     }
   }
-  return evt.message.channel.sendMessage(`${evt.message.member.name} shoots themselves! :dizzy_face::gun: R.I.P. Press [F] to pay respects.`)
+  return evt.message.channel.sendMessage(`**${authorName}** shoots themselves! :dizzy_face::gun: R.I.P. Press [F] to pay respects.`)
   .then(message => { message.addReaction('\ud83c\uddeb'); });
 }
 

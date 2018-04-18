@@ -1,3 +1,22 @@
+<a name="4.3.6" />
+
+# 4.3.6 (April 18th, 2018)
+
+### Features
+- [NEW] `lick` action command. Who knew yall wanted to lick eachother so badly, jeez.
+- [NEW] `spank` action command. Ouch!
+- [NEW] `bite` action command. For those bitey and/or nibbley occassions.
+
+### Bug Fixes
+- [FIX] `cat` command is now working again.
+- [FIX] The action commands now use your username, bolden your name and no longer allow you to @everyone or @here. AGAIN.
+- [FIX] Some code inconsistencies made the linter jump up.
+
+
+### Technical Notes
+- Removed some files that were no longer needed (`chat` and `appearin`)
+
+
 <a name="4.3.5" />
 
 # 4.3.5 (April 11th, 2018)

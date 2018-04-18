@@ -33,7 +33,8 @@ function userStatistics(client, evt, suffix) {
           inline: false },
         { name: 'Actions Received:',
           value: `\uD83E\uDD17 Hugs: ${results.actions_hugs || 0} - \uD83D\uDE19 Kisses: ${results.actions_kisses || 0} - \uD83D\uDC49 Boops: ${results.actions_boops || 0}
-\uD83D\uDD2B Shots: ${results.actions_shots || 0} - \uD83D\uDE35 Slaps: ${results.actions_slaps || 0} - \uD83D\uDD90 Pets: ${results.actions_pets || 0}`,
+\uD83D\uDD2B Shots: ${results.actions_shots || 0} - \ud83d\udc4a Slaps: ${results.actions_slaps || 0} - \uD83D\uDD90 Pets: ${results.actions_pets || 0}
+\ud83d\ude1d Licks: ${results.actions_licks || 0} - <:bite:436215483230846976> Bites: ${results.actions_bites || 0} - \ud83d\udc4b Spanks: ${results.actions_spanks || 0}`,
           inline: false }
       ]
     };
