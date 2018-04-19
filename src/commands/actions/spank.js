@@ -29,7 +29,7 @@ function spank(client, evt) {
         `turns around and spanks ${receivers}! \ud83d\udc4b\ud83c\udf51`,
         `gives ${receivers} a firm spanking! \ud83d\udc4b\ud83c\udf51`,
         `gives ${receivers} a hard spanking! \ud83d\udc4b\ud83c\udf51`,
-        `seems to think you've been bad, ${receivers}, so he walks up to you and spanks you! \ud83d\udc4b\ud83c\udf51`,
+        `seems to think you've been bad, ${receivers}, so they walk up to you and spank you! \ud83d\udc4b\ud83c\udf51`,
         `spanks ${receivers} several times! \ud83d\udc4b\ud83c\udf51`,
         `spanks ${receivers} until red marks appear! \ud83d\udc4b\ud83c\udf51`
       ];
