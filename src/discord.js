@@ -97,13 +97,14 @@ function onMessage(evt) {
   if (!evt.message) return;
   if (client.User.id === evt.message.author.id) return;
   if (evt.message.author.bot) return;
+  let userPerms = client.User.permissionsFor(evt.message.channel);
+  if (!client.User.can(userPerms.Text.SEND_MESSAGES, evt.message.channel)) return;
 
   // Checks for PREFIX
   if (evt.message.content.toLowerCase().startsWith(bot_prefix)) {
     const command = evt.message.content.toLowerCase().split(' ')[0].substring(bot_prefix.length);
     const suffix = evt.message.content.substring(command.length + bot_prefix.length + 1);
     const cmd = commands[command];
-
 
     if (cmd) callCmd(cmd, command, client, evt, suffix);
     return;
