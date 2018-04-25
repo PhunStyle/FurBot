@@ -5,7 +5,9 @@
 ### Bug Fixes
 - [FIX] `spank` command. Had one line in it that was not gender neutral.
 - [FIX] The new action commands now show up in `help actions`.
-- [FIX]
+- [FIX] `feed` command now includes the optional `yum` parameter in the help text.
+- [FIX] Bot will no longer attempt to run commands in channels it has no Send Message permissions in.
+- [FIX] The actions command now use your SERVER NICKNAME instead of your USERNAME.
 
 
 <a name="4.3.6" />
