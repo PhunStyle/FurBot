@@ -98,12 +98,6 @@ function onMessage(evt) {
   if (client.User.id === evt.message.author.id) return;
   if (evt.message.author.bot) return;
 
-  // Checks for SEND permissions
-  if (!evt.message.channel.isPrivate && client.User.permissionsFor(evt.message.channel).Text.SEND_MESSAGES !== false) {
-    console.log('NO PERMISSIONS');
-    return
-  }
-
   // Checks for PREFIX
   if (evt.message.content.toLowerCase().startsWith(bot_prefix)) {
     const command = evt.message.content.toLowerCase().split(' ')[0].substring(bot_prefix.length);
