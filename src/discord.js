@@ -97,8 +97,12 @@ function onMessage(evt) {
   if (!evt.message) return;
   if (client.User.id === evt.message.author.id) return;
   if (evt.message.author.bot) return;
-  let userPerms = client.User.permissionsFor(evt.message.channel);
-  if (!client.User.can(userPerms.Text.SEND_MESSAGES, evt.message.channel)) return;
+
+  // Checks for SEND permissions
+  if (!evt.message.channel.isPrivate) {
+    let userPerms = client.User.permissionsFor(evt.message.channel);
+    if (!client.User.can(userPerms.Text.SEND_MESSAGES, evt.message.channel)) return;
+  }
 
   // Checks for PREFIX
   if (evt.message.content.toLowerCase().startsWith(bot_prefix)) {
