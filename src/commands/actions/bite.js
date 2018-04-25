@@ -1,19 +1,19 @@
 import Promise from 'bluebird';
 
 import { setUserAction } from '../../redis';
+import { cleanName } from '../../helpers';
 
 
 function bite(client, evt) {
   if (evt.message.channel.isPrivate) return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139 Use this command in a server!`});
 
-  var chars = { '*': '\\*', _: '\\_', '~': '\\~' };
-  let authorName = evt.message.author.username.replace(/[*_~]/g, m => chars[m]);
+  let authorName = cleanName(evt.message.member.name);
 
   let receiverArray = [];
 
   if (evt.message.mentions.length !== 0) {
     evt.message.mentions.map(user => {
-      let receiverName = user.username.replace(/[*_~]/g, m => chars[m]);
+      let receiverName = cleanName(user.memberOf(evt.message.guild).name);
       if (user !== evt.message.author && !user.bot) receiverArray.push(`**${receiverName}**`);
     });
 

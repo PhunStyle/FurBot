@@ -18,6 +18,11 @@ export function secondDec(n) {
   return Math.round(n * 100) / 100;
 }
 
+export function cleanName(string) {
+  var chars = { '*': '\\*', _: '\\_', '~': '\\~', '@': '@\u200b' };
+  return string.replace(/[*_~@]/g, m => chars[m]);
+}
+
 // return an array of objects according to key, value, or key and value matching
 export function getObjects(obj, key, val) {
   var objects = [];
