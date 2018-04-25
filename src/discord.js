@@ -99,7 +99,7 @@ function onMessage(evt) {
   if (evt.message.author.bot) return;
 
   // Checks for SEND permissions
-  if (!evt.message.channel.isPrivate && client.User.permissionsFor(evt.message.channel).Text.SEND_MESSAGES === false) {
+  if (!evt.message.channel.isPrivate && client.User.permissionsFor(evt.message.channel).Text.SEND_MESSAGES !== false) {
     console.log('NO PERMISSIONS');
     return
   }
