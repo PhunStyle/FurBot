@@ -12,7 +12,7 @@ import stylus from 'stylus';
 import logger from './logger';
 
 let argv = require('minimist')(process.argv.slice(2));
-
+if (!argv.express) argv.express = 5000;
 
 // Marko template renders
 const marko = R.fromPairs(R.map(file_path => {

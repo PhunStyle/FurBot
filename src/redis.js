@@ -128,7 +128,10 @@ export function delBlackListChannel(channel_id) {
 }
 
 export function getMessageTTL(user_id) {
-  return client.getAsync(`ttl_${user_id}`)
+  return client.multi()
+    .get(`ttl_${user_id}`)
+    .ttl(`ttl_${user_id}`)
+    .execAsync()
     .timeout(2000)
     .catch(err => {
       sentry(err, 'getMessageTTL');
@@ -136,11 +139,11 @@ export function getMessageTTL(user_id) {
     });
 }
 
-export function setMessageTTL(user_id) {
+export function setMessageTTL(user_id, time) {
   const key = `ttl_${user_id}`;
   return client.multi()
     .set(key, 1)
-    .expire(key, nconf.get('MESSAGE_TTL') || 1)
+    .expire(key, time)
     .execAsync()
     .timeout(2000)
     .catch(err => {

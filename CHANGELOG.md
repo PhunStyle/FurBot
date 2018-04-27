@@ -1,3 +1,14 @@
+<a name="4.4.0" />
+
+# 4.4.0 (April 27th, 2018)
+
+### Features
+- [NEW] `magik` command. Produces some.. beautiful images. **Has a 30s cooldown**
+
+### Bug Fixes
+- [FIX] Express/PhantomJS not running on default port when no argument was passed to the startup script.
+
+
 <a name="4.3.7" />
 
 # 4.3.7 (April 25th, 2018)

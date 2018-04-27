@@ -26,6 +26,7 @@
     "forever": "^0.15.3",
     "gizoogle": "^0.0.6",
     "glob": "^6.0.3",
+    "gm": "^1.23.1",
     "google-translate-api": "^2.3.0",
     "hearthstone-mashape": "0.0.6",
     "hex2dec": "^1.0.1",

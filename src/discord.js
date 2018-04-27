@@ -60,10 +60,13 @@ function callCmd(cmd, name, client, evt, suffix) {
   const start_time = new Date().getTime();
   getMessageTTL(user_id).then(exists => {
     // If a user is trying to spam messages above the set TTL time, then skip.
-    let embed = { color: 15747399, description: `<:redTick:405749796603822080> You must wait \`${nconf.get('MESSAGE_TTL')}\` seconds between commands!` };
-    if (exists) return evt.message.channel.sendMessage('', false, embed)
+    let embed = { color: 15747399, description: `<:redTick:405749796603822080> You must wait \`${exists[1]}\` seconds before using a command again!` };
+    if (exists[1] > 0) return evt.message.channel.sendMessage('', false, embed)
     .then(message => { setTimeout(() => { message.delete(); }, 5000); });
-    setMessageTTL(user_id);
+
+    let time = nconf.get('MESSAGE_TTL');
+    if (cmd.name === 'magik') time = 30;
+    setMessageTTL(user_id, time);
 
     return getUserLang(user_id).then(lang => {
       const cmd_return = cmd(client, evt, suffix, lang);
