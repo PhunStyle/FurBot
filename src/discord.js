@@ -65,7 +65,7 @@ function callCmd(cmd, name, client, evt, suffix) {
     .then(message => { setTimeout(() => { message.delete(); }, 5000); });
 
     let time = nconf.get('MESSAGE_TTL');
-    if (cmd.name === 'magik') time = 30;
+    if (cmd.name === 'pride') time = 60;
     setMessageTTL(user_id, time);
 
     return getUserLang(user_id).then(lang => {

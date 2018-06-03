@@ -1,9 +1,9 @@
-<a name="4.4.0" />
+<a name="4.3.8" />
 
-# 4.4.0 (April 27th, 2018)
+# 4.3.8 (June 3rd, 2018)
 
 ### Features
-- [NEW] `magik` command. Produces some.. beautiful images. **Has a 30s cooldown**
+- [NEW] `pride` command to transform your avatar into a proud one!!  **Has a 60s cooldown**
 
 ### Bug Fixes
 - [FIX] Express/PhantomJS not running on default port when no argument was passed to the startup script.
