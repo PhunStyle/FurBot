@@ -9,7 +9,7 @@ import logger from './logger';
 import sentry from './sentry';
 
 let argv = require('minimist')(process.argv.slice(2));
-
+if (!argv.express) argv.express = 5000;
 
 // Initialize PhantomJS
 let horseman;
