@@ -132,6 +132,8 @@
   "poll_usage": "Usage: **`f.poll`** `title/question | option 1, option 2, option 3, etc`",
   "popkey_setup": "Please setup Popkey in config.js to use the **`f.popkey`** command.",
   "popkey_usage": "Usage: **`f.popkey`** `gif tags`",
+  "pride": "Turn your boring avatar into a pride one. Show your colors!",
+  "pride_usage": "Usage: `f.pride flagname` | Available flagnames are:\n\n`ace`, `bisexual`, `genderfluid`, `lesbian`, `nonbinary`, `pansexual`, `rainbow`, `transgender`\n\nHappy pride month!",
   "prune": "Prune the given amount of messages. If no number is written, prunes 50",
   "pug": "Posts pictures of adorable pugs",
   "quote": "Responds with a quote, if no number is written, a random one",

@@ -1,3 +1,14 @@
+<a name="4.3.8" />
+
+# 4.3.8 (June 3rd, 2018)
+
+### Features
+- [NEW] `pride` command to transform your avatar into a proud one!!  **Has a 60s cooldown**
+
+### Bug Fixes
+- [FIX] Express/PhantomJS not running on default port when no argument was passed to the startup script.
+
+
 <a name="4.3.7" />
 
 # 4.3.7 (April 25th, 2018)
