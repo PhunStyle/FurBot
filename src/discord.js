@@ -177,8 +177,13 @@ function connect() {
 
 function forceSetGame() {
   logger.info('Setting Game');
-  client.User.setGame(`${bot_prefix}help | ${bot_prefix}info`);
+  client.User.setGame(`${bot_prefix}pride`);
 }
+
+// function forceSetGame() {
+//   logger.info('Setting Game');
+//   client.User.setGame(`${bot_prefix}help | ${bot_prefix}info`);
+// }
 
 function forceFetchUsers() {
   logger.info('Force fetching users');
