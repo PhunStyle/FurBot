@@ -6,13 +6,22 @@ var gm = require('gm').subClass({imageMagick: true});
 
 
 function pride(client, evt, suffix, lang) {
-  let flagArray = ['ace', 'bisexual', 'genderfluid', 'lesbian', 'nonbinary', 'pansexual', 'rainbow', 'transgender'];
-  let validSuffix = (flagArray.indexOf(suffix) > -1);
+  let flagSuffix = suffix.split(' ')[0];
+  let flagArray = ['ace', 'bisexual', 'genderfluid', 'genderqueer', 'lesbian', 'nonbinary', 'pansexual', 'rainbow', 'transgender'];
+  let validSuffix = (flagArray.indexOf(flagSuffix) > -1);
+  let doBorder = suffix.includes('border');
+  let doRotate = suffix.includes('rotate');
+
   if (!suffix || !validSuffix) {
     return Promise.resolve(`${T('pride_usage', lang)}`);
   }
 
   let imageLink = evt.message.author.getAvatarURL({format: 'png', size: 512, preferAnimated: false});
+
+  let prideFlag = flagSuffix;
+
+  if (doRotate) prideFlag += '_rotated';
+  if (doBorder) prideFlag += '_border';
 
   // if (evt.message.attachments.length) {
   //   if (evt.message.attachments[0].url) {
@@ -21,7 +30,7 @@ function pride(client, evt, suffix, lang) {
   // }
 
   let fileDir = path.join(__dirname, '../../images/');
-  let gayput = fileDir + 'pride_' + suffix + '.png';
+  let gayput = fileDir + '/flags/pride_' + prideFlag + '.png';
   let output = fileDir + '/tmp/pride-' + evt.message.author.id + '.png';
 
   return new Promise((resolve, reject) => {
