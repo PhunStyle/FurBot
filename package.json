@@ -1,9 +1,10 @@
 {
   "name": "furbot",
-  "version": "4.3.8",
+  "version": "4.3.9",
   "description": "A furry bot for Discord",
   "main": "index.js",
   "dependencies": {
+    "accounting-js": "^1.1.1",
     "babel-cli": "^6.5.0",
     "babel-core": "^6.5.0",
     "babel-polyfill": "^6.23.0",

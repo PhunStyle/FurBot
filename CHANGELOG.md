@@ -1,3 +1,15 @@
+<a name="4.3.9" />
+
+# 4.3.9 (June 3rd, 2018)
+
+### Features
+- [NEW] When you invite FurBot to your server for the first time, you get a little welcome message explaining all the features and how to get help.
+- [NEW] `magik` command to basically turn your avatar into a garbled mess but hey whatever you want you weirdo, here it is, woo!!
+
+### Bug Fixes
+- [FIX] `crypto` `crp` command updated to the new CoinMarketCap API v2.
+
+
 <a name="4.3.8" />
 
 # 4.3.8 (June 3rd, 2018)
