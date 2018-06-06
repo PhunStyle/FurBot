@@ -14,13 +14,15 @@ import { startPortalTimeouts, startPortalIntervals } from './portals';
 import {
   getMessageTTL,
   setMessageTTL,
+  getOwnerSentWelcomeMessage,
+  setOwnerSentWelcomeMessage,
   getUserLang,
   subscriber,
   publisher,
   ee
 } from './redis';
 
-// import { guild_blacklist } from './static';
+import { guild_blacklist } from './static';
 
 // Init
 let client;
@@ -29,6 +31,7 @@ let argv = require('minimist')(process.argv.slice(2));
 
 const bot_prefix = nconf.get('PREFIX');
 
+console.log(nconf.get('MESSAGE_TTL'))
 
 function callCmd(cmd, name, client, evt, suffix) {
   logger.cmd(name, evt, suffix);
@@ -65,7 +68,7 @@ function callCmd(cmd, name, client, evt, suffix) {
     .then(message => { setTimeout(() => { message.delete(); }, 5000); });
 
     let time = nconf.get('MESSAGE_TTL');
-    if (cmd.name === 'pride') time = 60;
+    if (cmd.name === 'pride' || cmd.name === 'magik') time = 30;
     setMessageTTL(user_id, time);
 
     return getUserLang(user_id).then(lang => {
@@ -148,23 +151,23 @@ function onGuildDown(evt) {
   logger.warn('The following guild has gone UNAVAILABLE: ' + evt.guildId);
 }
 
-// function onGuild(evt) {
-//   if (!evt.guild.becameAvailable) {
-//     let blacklistCheck = guild_blacklist.includes(evt.guild.id);
-//     if (blacklistCheck) {
-//       logger.warn('Leaving Blacklisted Guild');
-//       evt.guild.generalChannel.sendMessage(':warning: This guild has been blacklisted! Leaving...');
-//       return Promise.resolve(evt.guild.leave());
-//     }
-//     let guildChannels = evt.guild.textChannels;
-//     for (let i = 0; i < guildChannels.length; i++) {
-//       let userPerms = client.User.permissionsFor(guildChannels[i]);
-//       if (client.User.can(userPerms.Text.SEND_MESSAGES, guildChannels[i])) {
-//         return Promise.resolve(guildChannels[i].sendMessage(`Hey there, I\'m **FurBot**. Nice to meet you! :purple_heart:\n\nI\'m a multi-functional bot with many different features and i'm constantly getting updated.\nTo get started, use \`${bot_prefix}help\` for a complete list of my commands.\n\n:small_blue_diamond: Try out \`${bot_prefix}weather Amsterdam\` to see the weather!\n:small_orange_diamond: Use \`${bot_prefix}8ball Will i get lucky?\` to let me predict the outcome!\n:small_blue_diamond: Or use \`${bot_prefix}e9 Pikachu\` to see a Safe-For-Work picture of Pikachu!\n\n**If you have tips, ideas, feedback or need help, join the FurBot Server: https://discord.gg/H7W49Ps **`));
-//       }
-//     }
-//   }
-// }
+function onGuild(evt) {
+  if (!evt.guild.becameAvailable) {
+    let blacklistCheck = guild_blacklist.includes(evt.guild.id);
+    if (blacklistCheck) {
+      logger.warn('Leaving Blacklisted Guild');
+      evt.guild.generalChannel.sendMessage(':warning: This guild has been blacklisted! Leaving...');
+      return Promise.resolve(evt.guild.leave());
+    }
+    let guildOwner = evt.guild.owner;
+    getOwnerSentWelcomeMessage(guildOwner.id)
+    .then(results => {
+      if (results === 'true') return;
+      guildOwner.openDM().then(dm => dm.sendMessage(`Hey there, I\'m **FurBot**. Nice to meet you! :purple_heart:\n\nI\'m a multi-functional bot with many different features and i'm constantly getting updated.\nTo get started, use \`${bot_prefix}help\` for a complete list of my commands.\n\n:small_blue_diamond: Try out \`${bot_prefix}weather Amsterdam\` to see the weather!\n:small_orange_diamond: Use \`${bot_prefix}8ball Will i get lucky?\` to let me predict the outcome!\n:small_blue_diamond: Or use \`${bot_prefix}e9 Pikachu\` to see a Safe-For-Work picture of Pikachu!\n\n**If you have tips, ideas, feedback or need help, join the FurBot Server: https://discord.gg/H7W49Ps **`))
+      setOwnerSentWelcomeMessage(guildOwner.id);
+    })
+  }
+}
 
 function connect() {
   if (!nconf.get('TOKEN') || !nconf.get('CLIENT_ID')) {
@@ -239,7 +242,7 @@ export function start() {
       client.Dispatcher.on('MESSAGE_CREATE', onMessage);
       client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
       client.Dispatcher.on('GUILD_UNAVAILABLE', onGuildDown);
-      // client.Dispatcher.on('GUILD_CREATE', onGuild);
+      client.Dispatcher.on('GUILD_CREATE', onGuild);
 
       if (argv.shardmode && !isNaN(argv.shardid) && !isNaN(argv.shardcount)) {
         subscriber.subscribe('active_shard');

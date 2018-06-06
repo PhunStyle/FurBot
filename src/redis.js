@@ -103,6 +103,23 @@ export function getBlackListChannel(channel_id) {
     });
 }
 
+export function setOwnerSentWelcomeMessage(user_id) {
+  return client.hsetAsync(`user_${user_id}`, 'welcome', 'true')
+    .timeout(2000)
+    .catch(err => {
+      sentry(err, 'setOwnerSentWelcomeMessage');
+    });
+}
+
+export function getOwnerSentWelcomeMessage(user_id) {
+  return client.hgetAsync(`user_${user_id}`, 'welcome')
+    .timeout(2000)
+    .catch(err => {
+      sentry(err, 'getOwnerSentWelcomeMessage');
+      return;
+    });
+}
+
 export function setUserAction(user_id, action) {
   return client.hincrbyAsync(`user_${user_id}`, action, 1)
     .timeout(2000)
