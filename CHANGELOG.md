@@ -1,3 +1,19 @@
+<a name="4.4.0" />
+
+# 4.4.0 (June 6th, 2018)
+
+### Features
+- [NEW] `magik` now works on image attachments, but even better - you can now KEEP using it and it will use the previous image. Hooray!
+- [NEW] `blur` command to blur your images. Also works with avatar / attachment or previously outputted image.
+- [NEW] `emojilist` command. Lists all the emojis currently added to the server.
+- [FIX] `prune` command. It already existed but it's rewritten and now properly removes messages, even if you recently pruned some.
+
+### Bug Fixes
+- [FIX] All image commands now have a 40 second cooldown, sorry but my servers are dying.
+- [FIX] `pride` command no longer memes at straight people. Sorry you felt attacked (lol).
+- [ADD] Added some more responses to the `decide` command for a little more variation.
+
+
 <a name="4.3.9" />
 
 # 4.3.9 (June 6th, 2018)

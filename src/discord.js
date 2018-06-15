@@ -31,8 +31,6 @@ let argv = require('minimist')(process.argv.slice(2));
 
 const bot_prefix = nconf.get('PREFIX');
 
-console.log(nconf.get('MESSAGE_TTL'))
-
 function callCmd(cmd, name, client, evt, suffix) {
   logger.cmd(name, evt, suffix);
   datadog(`cmd.${name}`, 1);
@@ -68,7 +66,7 @@ function callCmd(cmd, name, client, evt, suffix) {
     .then(message => { setTimeout(() => { message.delete(); }, 5000); });
 
     let time = nconf.get('MESSAGE_TTL');
-    if (cmd.name === 'pride' || cmd.name === 'magik') time = 30;
+    if (cmd.name === 'pride' || cmd.name === 'magik') time = 40;
     setMessageTTL(user_id, time);
 
     return getUserLang(user_id).then(lang => {

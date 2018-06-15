@@ -7,9 +7,8 @@ var gm = require('gm').subClass({imageMagick: true});
 
 function pride(client, evt, suffix, lang) {
   let flagSuffix = suffix.split(' ')[0];
-  let flagArray = ['ace', 'bisexual', 'genderfluid', 'genderqueer', 'lesbian', 'nonbinary', 'pansexual', 'rainbow', 'straight', 'transgender'];
+  let flagArray = ['ace', 'bisexual', 'genderfluid', 'genderqueer', 'lesbian', 'nonbinary', 'pansexual', 'rainbow', 'transgender'];
   let validSuffix = (flagArray.indexOf(flagSuffix) > -1);
-  let doStraight = suffix.includes('straight');
   let doBorder = suffix.includes('border');
   let doRotate = suffix.includes('rotate');
   let doOverlay = suffix.includes('overlay');
@@ -31,7 +30,7 @@ function pride(client, evt, suffix, lang) {
   let gayput = fileDir + '/flags/pride_' + prideFlag + '.png';
   let output = fileDir + '/tmp/pride-' + evt.message.author.id + '.png';
 
-  if (!doOverlay && !doBackground && !doStraight) {
+  if (!doOverlay && !doBackground) {
     return new Promise((resolve, reject) => {
       gm(request(imageLink))
       .resize('236', '236')
@@ -55,7 +54,7 @@ function pride(client, evt, suffix, lang) {
     });
   }
 
-  if (doOverlay || doStraight) {
+  if (doOverlay) {
     return new Promise((resolve, reject) => {
       gm(request(imageLink))
       .resize('256', '256')
