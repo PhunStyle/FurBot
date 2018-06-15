@@ -32,9 +32,9 @@ function userStatistics(client, evt, suffix) {
           value: `\uD83D\uDC1B Bugs: ${results.actions_foods_bug || 0} - \uD83D\uDC1E Beetles: ${results.actions_foods_beetle || 0} - \uD83D\uDD77 Spiders: ${results.actions_foods_spider || 0}`,
           inline: false },
         { name: 'Actions Received:',
-          value: `\uD83E\uDD17 Hugs: ${results.actions_hugs || 0} - \uD83D\uDE19 Kisses: ${results.actions_kisses || 0} - \uD83D\uDC49 Boops: ${results.actions_boops || 0}
-\uD83D\uDD2B Shots: ${results.actions_shots || 0} - \ud83d\udc4a Slaps: ${results.actions_slaps || 0} - \uD83D\uDD90 Pets: ${results.actions_pets || 0}
-\ud83d\ude1d Licks: ${results.actions_licks || 0} - <:bite:436215483230846976> Bites: ${results.actions_bites || 0} - \ud83d\udc4b Spanks: ${results.actions_spanks || 0}`,
+          value: `<:hug:457179730333007874> Hugs: ${results.actions_hugs || 0} - <:kiss:457179730349654018> Kisses: ${results.actions_kisses || 0} - <:boop:457182422962929676> Boops: ${results.actions_boops || 0}
+<:shoot:457179730525945856> Shots: ${results.actions_shots || 0} - <:dizzy:457184074336043028> Slaps: ${results.actions_slaps || 0} - <:pet:457178504442806292> Pets: ${results.actions_pets || 0}
+<:lick:457179730626478080> Licks: ${results.actions_licks || 0} - <:bite:436215483230846976> Bites: ${results.actions_bites || 0} - \ud83d\udc4b Spanks: ${results.actions_spanks || 0}`,
           inline: false }
       ]
     };

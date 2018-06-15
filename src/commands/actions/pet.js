@@ -21,22 +21,22 @@ function pet(client, evt) {
       let receivers = receiverArray.join(' and ');
 
       const pets = [
-        `inches closer to ${receivers} and pets them! \uD83D\uDD90`,
-        `softly pets ${receivers}! \uD83D\uDD90 ***petpet!***`,
-        `gives soft pets to ${receivers} \uD83D\uDD90`,
-        `randomly pets ${receivers}! Woah! \uD83D\uDD90`,
-        `reaches out to ${receivers} and gives them a quick few pets \uD83D\uDD90`,
-        `petpets ${receivers}, who's a good *<pronoun>*? You are, yes you are! \uD83D\uDD90`,
-        `pets ${receivers}! \uD83D\uDD90`,
-        `gently applies some pets to ${receivers}'s heads, soft! \uD83D\uDD90'`,
-        `gently pets ${receivers}~ \uD83D\uDD90`,
-        `walks up to ${receivers} and pets them! \uD83D\uDD90`,
-        `softly pets ${receivers}'s chest(s). Fluffy and warm! \uD83D\uDD90`,
-        `decides to pet ${receivers}! \uD83D\uDD90`,
-        `gives a couple of quick pets to ${receivers}! \uD83D\uDD90`,
-        `slides over to ${receivers} and pets them~ \uD83D\uDD90`,
-        `rolls over to ${receivers} and gives them some pets and attention \uD83D\uDD90`,
-        `gives ${receivers} some caressing pets! \uD83D\uDD90`
+        `inches closer to ${receivers} and pets them! <:pet:457178504442806292>`,
+        `softly pets ${receivers}! <:pet:457178504442806292> ***petpet!***`,
+        `gives soft pets to ${receivers} <:pet:457178504442806292>`,
+        `randomly pets ${receivers}! Woah! <:pet:457178504442806292>`,
+        `reaches out to ${receivers} and gives them a quick few pets <:pet:457178504442806292>`,
+        `petpets ${receivers}, who's a good *<pronoun>*? You are, yes you are! <:pet:457178504442806292>`,
+        `pets ${receivers}! <:pet:457178504442806292>`,
+        `gently applies some pets to ${receivers}'s heads, soft! <:pet:457178504442806292>'`,
+        `gently pets ${receivers}~ <:pet:457178504442806292>`,
+        `walks up to ${receivers} and pets them! <:pet:457178504442806292>`,
+        `softly pets ${receivers}'s chest(s). Fluffy and warm! <:pet:457178504442806292>`,
+        `decides to pet ${receivers}! <:pet:457178504442806292>`,
+        `gives a couple of quick pets to ${receivers}! <:pet:457178504442806292>`,
+        `slides over to ${receivers} and pets them~ <:pet:457178504442806292>`,
+        `rolls over to ${receivers} and gives them some pets and attention <:pet:457178504442806292>`,
+        `gives ${receivers} some caressing pets! <:pet:457178504442806292>`
       ];
 
       const rand = Math.floor(Math.random() * pets.length);

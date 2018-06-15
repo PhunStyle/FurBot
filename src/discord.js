@@ -31,8 +31,6 @@ let argv = require('minimist')(process.argv.slice(2));
 
 const bot_prefix = nconf.get('PREFIX');
 
-console.log(nconf.get('MESSAGE_TTL'))
-
 function callCmd(cmd, name, client, evt, suffix) {
   logger.cmd(name, evt, suffix);
   datadog(`cmd.${name}`, 1);
@@ -68,7 +66,9 @@ function callCmd(cmd, name, client, evt, suffix) {
     .then(message => { setTimeout(() => { message.delete(); }, 5000); });
 
     let time = nconf.get('MESSAGE_TTL');
-    if (cmd.name === 'pride' || cmd.name === 'magik') time = 30;
+    let highCDList = ['blur', 'charcoal', 'flip', 'flop', 'greyscale', 'invert', 'magik', 'oilpaint', 'pixelate', 'pride', 'rotate'];
+    let hasHighCD = (highCDList.indexOf(cmd.name) > -1);
+    if (hasHighCD) time = 30;
     setMessageTTL(user_id, time);
 
     return getUserLang(user_id).then(lang => {
@@ -163,9 +163,9 @@ function onGuild(evt) {
     getOwnerSentWelcomeMessage(guildOwner.id)
     .then(results => {
       if (results === 'true') return;
-      guildOwner.openDM().then(dm => dm.sendMessage(`Hey there, I\'m **FurBot**. Nice to meet you! :purple_heart:\n\nI\'m a multi-functional bot with many different features and i'm constantly getting updated.\nTo get started, use \`${bot_prefix}help\` for a complete list of my commands.\n\n:small_blue_diamond: Try out \`${bot_prefix}weather Amsterdam\` to see the weather!\n:small_orange_diamond: Use \`${bot_prefix}8ball Will i get lucky?\` to let me predict the outcome!\n:small_blue_diamond: Or use \`${bot_prefix}e9 Pikachu\` to see a Safe-For-Work picture of Pikachu!\n\n**If you have tips, ideas, feedback or need help, join the FurBot Server: https://discord.gg/H7W49Ps **`))
+      guildOwner.openDM().then(dm => dm.sendMessage(`Hey there, I\'m **FurBot**. Nice to meet you! :purple_heart:\n\nI\'m a multi-functional bot with many different features and i'm constantly getting updated.\nTo get started, use \`${bot_prefix}help\` for a complete list of my commands.\n\n:small_blue_diamond: Try out \`${bot_prefix}weather Amsterdam\` to see the weather!\n:small_orange_diamond: Use \`${bot_prefix}8ball Will i get lucky?\` to let me predict the outcome!\n:small_blue_diamond: Or use \`${bot_prefix}e9 Pikachu\` to see a Safe-For-Work picture of Pikachu!\n\n**If you have tips, ideas, feedback or need help, join the FurBot Server: https://discord.gg/H7W49Ps **`));
       setOwnerSentWelcomeMessage(guildOwner.id);
-    })
+    });
   }
 }
 

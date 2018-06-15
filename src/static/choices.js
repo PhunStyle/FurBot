@@ -10,5 +10,12 @@ export default [
   'You\'re better off with',
   'You should go with',
   'Your answer is',
-  'Most definitely'
+  'Most definitely',
+  'You should go for',
+  'My best advice would be',
+  'In my opinion, choose',
+  'No doubt it\'s',
+  'Without a doubt',
+  'Definitely go for',
+  'For sure'
 ];

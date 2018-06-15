@@ -22,19 +22,19 @@ function lick(client, evt) {
 
       const licks = [
         `gets up close to ${receivers} and licks them! \ud83d\udc45`,
-        `softly licks ${receivers}! \ud83d\ude1d`,
+        `softly licks ${receivers}! <:lick:457179730626478080>`,
         `licks ${receivers}! \ud83d\udc45`,
-        `sticks out their tongue and licks ${receivers}! \ud83d\ude1d`,
+        `sticks out their tongue and licks ${receivers}! <:lick:457179730626478080>`,
         `slowly licks ${receivers}! \ud83d\udc45`,
-        `licklicklicks ${receivers}! \ud83d\ude1d`,
+        `licklicklicks ${receivers}! <:lick:457179730626478080>`,
         `puts their tongue on ${receivers} and gives them some licks! \ud83d\udc45`,
-        `applies their tongue to ${receivers}! \ud83d\ude1d`,
+        `applies their tongue to ${receivers}! <:lick:457179730626478080>`,
         `gives a lick to ${receivers}! \ud83d\udc45`,
-        `licks ${receivers}'s cheek! \ud83d\ude1d`,
+        `licks ${receivers}'s cheek! <:lick:457179730626478080>`,
         `licks ${receivers}'s nose! \ud83d\udc45`,
-        `gives ${receivers} some soft licks! \ud83d\ude1d`,
-        `slurp-licks ${receivers} \ud83d\ude1d`,
-        `applies wet sloppy licks to ${receivers}.. ew, you're all wet! \ud83d\ude1d`
+        `gives ${receivers} some soft licks! <:lick:457179730626478080>`,
+        `slurp-licks ${receivers} <:lick:457179730626478080>`,
+        `applies wet sloppy licks to ${receivers}.. ew, you're all wet! <:lick:457179730626478080>`
       ];
 
       const rand = Math.floor(Math.random() * licks.length);

@@ -9,26 +9,25 @@ function prune(client, evt, suffix, lang) {
     return evt.message.channel.sendMessage('', false, embed);
   }
 
-  let messageArray = client.Messages.forChannel(evt.message.channel.id);
-  messageArray.reverse();
+  let channel = evt.message.channel;
+  channel.fetchMessages().then(() => {
+    let messageArray = client.Messages.forChannel(evt.message.channel).filter(msg => !msg.deleted).reverse();
 
-  let cleanArray = messageArray.filter(msg => { return msg.deleted === false; });
+    if (!suffix || isNaN(suffix)) suffix = 10;
+    let pruneLength = parseInt(suffix, 10);
 
-  if (!suffix) suffix = 50;
-  if (suffix >= cleanArray.length) suffix = cleanArray.length;
-  let maxLength = parseInt(suffix, 10);
-  let messageIdArray = [];
+    if (pruneLength > 100) pruneLength = 100;
+    if (pruneLength <= 0) pruneLength = 10;
+    if (pruneLength >= messageArray.length) pruneLength = messageArray.length;
 
-  let i;
-  for (i = maxLength - 1; i >= 0; i--) {
-    messageIdArray.push(cleanArray[i].id);
-  }
+    let pruneArray = messageArray.slice(0, pruneLength);
 
-  client.Messages.deleteMessages(messageIdArray, evt.message.channel.id);
+    client.Messages.deleteMessages(pruneArray);
 
-  let embed = { color: 4437377, description: '<:greenTick:405749911037018125> Deleted!' };
-  return evt.message.channel.sendMessage('', false, embed)
-  .then(message => { setTimeout(() => { message.delete(); }, 10000); });
+    let embed = { color: 4437377, description: '<:greenTick:405749911037018125> Deleted!' };
+    return evt.message.channel.sendMessage('', false, embed)
+    .then(message => { setTimeout(() => { message.delete(); }, 5000); });
+  });
 }
 
 export default {
