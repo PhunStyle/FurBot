@@ -1,16 +1,26 @@
 <a name="4.4.0" />
 
-# 4.4.0 (June 6th, 2018)
+# 4.4.0 (June 15th, 2018)
 
 ### Features
 - [NEW] `magik` now works on image attachments, but even better - you can now KEEP using it and it will use the previous image. Hooray!
-- [NEW] `blur` command to blur your images. Also works with avatar / attachment or previously outputted image.
+- [INFO] All the new image commands work with your avatar, an attachment or your previous outputted image if you used any of the commands before.
+- [INFO] The priority is as follows: Attachment > Previous Image > Avatar. All of these commands have a 30 second cooldown.
+- [NEW] `blur` command to blur your images.
+- [NEW] `charcoal` command to apply a charcoal effect to your images.
+- [NEW] `flip` command to flip your images vertically.
+- [NEW] `flop` command to flip your images horizontally.
+- [NEW] `greyscale` command to make your images grey.
+- [NEW] `invert` command to invert (negative) your images.
+- [NEW] `oilpaint` command to oil paint-ify your images.
+- [NEW] `pixelate` command to pixel-ify your images.
+- [NEW] `rotate` command to rotate your images x degrees.
 - [NEW] `emojilist` command. Lists all the emojis currently added to the server.
 - [FIX] `prune` command. It already existed but it's rewritten and now properly removes messages, even if you recently pruned some.
 
 ### Bug Fixes
-- [FIX] All image commands now have a 40 second cooldown, sorry but my servers are dying.
-- [FIX] `pride` command no longer memes at straight people. Sorry you felt attacked (lol).
+- [FIX] All image commands now have a 30 second cooldown, sorry but my servers are dying. Pls patreon me.
+- [FIX] `pride` command no longer memes at straight people.
 - [ADD] Added some more responses to the `decide` command for a little more variation.
 
 

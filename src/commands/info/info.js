@@ -29,7 +29,7 @@ function botinfo(client, evt, suffix, lang, json) {
             name: `FurBot Info`,
             icon_url: 'https://cdn.discordapp.com/avatars/174186616422662144/e6b8c266186a60f6b947d1635c09459e.jpg' // eslint-disable-line camelcase
           },
-          description: 'Hey there! These are my stats, to see all of my commands use `f.help`',
+          description: `Hey there! These are my stats, to see all of my commands use \`${nconf.get('PREFIX')}help\``,
           fields: [
             { name: '\uD83D\uDD75\uD83C\uDFFC Owner:',
               value: 'Phun#0001',
@@ -99,7 +99,7 @@ function botinfo(client, evt, suffix, lang, json) {
       name: `FurBot Info`,
       icon_url: 'https://cdn.discordapp.com/avatars/174186616422662144/e6b8c266186a60f6b947d1635c09459e.jpg' // eslint-disable-line camelcase
     },
-    description: 'Hey there! These are my stats, to see all of my commands use `!help`',
+    description: `Hey there! These are my stats, to see all of my commands use \`${nconf.get('PREFIX')}help\``,
     fields: [
       { name: '\uD83D\uDD75\uD83C\uDFFC Owner:',
         value: 'Phun#0001',

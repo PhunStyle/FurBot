@@ -3,7 +3,7 @@ import request from 'request';
 var gm = require('gm').subClass({imageMagick: true});
 
 
-function blur(client, evt, suffix) {
+function charcoal(client, evt, suffix) {
   let channel = evt.message.channel;
   let imageLink = evt.message.author.getAvatarURL({format: 'png', size: 512, preferAnimated: false});
 
@@ -27,18 +27,17 @@ function blur(client, evt, suffix) {
     imageLink = finalArray[0].attachments[0].url;
   }
 
-  if (!suffix || isNaN(suffix)) suffix = 2;
+  if (!suffix || isNaN(suffix)) suffix = 1;
   let commandIntensity = parseInt(suffix, 10);
   if (commandIntensity > 10) commandIntensity = 10;
-  if (commandIntensity <= 0) commandIntensity = 2;
+  if (commandIntensity <= 0) commandIntensity = 1;
 
   evt.message.channel.sendMessage('<a:loadingCircle:456089197057671198> Processing Image...')
   .then(message => { setTimeout(() => { message.delete(); }, 5000); });
 
   return new Promise((resolve, reject) => {
     gm(request(imageLink))
-    .out('-resize', '800x800>')
-    .blur(10, commandIntensity)
+    .out('-charcoal', commandIntensity)
     .toBuffer('PNG', (err, buffer) => {
       if (err) return console.log(err);
       resolve(buffer);
@@ -47,9 +46,9 @@ function blur(client, evt, suffix) {
 }
 
 export default {
-  blur
+  charcoal
 };
 
 export const help = {
-  blur: { parameters: 'intensity' }
+  charcoal: { parameters: 'intensity' }
 };

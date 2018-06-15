@@ -39,7 +39,7 @@ function pride(client, evt, suffix, lang) {
         if (err) return console.log(err);
         gm(236, 236, 'none')
         .fill(output)
-        .drawCircle((236/2)-1, (236/2)-1, (236/2)-1, 0)
+        .drawCircle((236 / 2) - 1, (236 / 2) - 1, (236 / 2) - 1, 0)
         .write(output, (err, finalbuf) => {
           if (err) return console.log(err);
           gm(gayput)
@@ -48,8 +48,8 @@ function pride(client, evt, suffix, lang) {
           .toBuffer('PNG', (err, realbuf) => {
             if (err) return console.log(err);
             resolve(realbuf);
-          })
-        })
+          });
+        });
       });
     });
   }
@@ -63,7 +63,7 @@ function pride(client, evt, suffix, lang) {
         if (err) return console.log(err);
         gm(256, 256, 'none')
         .fill(output)
-        .drawCircle((256/2), (256/2)-1, (256/2), 0)
+        .drawCircle((256 / 2), (256 / 2) - 1, (256 / 2), 0)
         .write(output, (err, finalbuf) => {
           if (err) return console.log(err);
           gm(output)
@@ -71,8 +71,8 @@ function pride(client, evt, suffix, lang) {
           .toBuffer('PNG', (err, realbuf) => {
             if (err) return console.log(err);
             resolve(realbuf);
-          })
-        })
+          });
+        });
       });
     });
   }
@@ -86,7 +86,7 @@ function pride(client, evt, suffix, lang) {
         if (err) return console.log(err);
         gm(256, 256, 'none')
         .fill(output)
-        .drawCircle((256/2), (256/2)-1, (256/2), 0)
+        .drawCircle((256 / 2), (256 / 2) - 1, (256 / 2), 0)
         .write(output, (err, finalbuf) => {
           if (err) return console.log(err);
           gm(gayput)
@@ -94,8 +94,8 @@ function pride(client, evt, suffix, lang) {
           .toBuffer('PNG', (err, realbuf) => {
             if (err) return console.log(err);
             resolve(realbuf);
-          })
-        })
+          });
+        });
       });
     });
   }

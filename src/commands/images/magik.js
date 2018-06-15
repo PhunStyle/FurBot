@@ -1,7 +1,5 @@
 import Promise from 'bluebird';
 import request from 'request';
-import path from 'path';
-import T from '../../translate';
 var gm = require('gm').subClass({imageMagick: true});
 
 // liblqr-1-0-dev | libglib2.0 | magick from source | libpng-dev | libjpeg-dev | libopenjp2-7-dev
@@ -23,9 +21,9 @@ function magik(client, evt, suffix) {
     if ((msg.attachments.length) && (msg.author.id === client.User.id)) {
       finalArray.push(msg);
     }
-  })
+  });
 
-  if (finalArray.length) {
+  if (finalArray.length && !evt.message.attachments.length) {
     imageLink = finalArray[0].attachments[0].url;
   }
 

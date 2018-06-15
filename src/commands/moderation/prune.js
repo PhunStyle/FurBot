@@ -10,7 +10,7 @@ function prune(client, evt, suffix, lang) {
   }
 
   let channel = evt.message.channel;
-  let messageObject = channel.fetchMessages().then(() => {
+  channel.fetchMessages().then(() => {
     let messageArray = client.Messages.forChannel(evt.message.channel).filter(msg => !msg.deleted).reverse();
 
     if (!suffix || isNaN(suffix)) suffix = 10;

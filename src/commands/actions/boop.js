@@ -21,19 +21,19 @@ function boop(client, evt) {
       let receivers = receiverArray.join(' and ');
 
       const boops = [
-        `jumps on ${receivers} and boops them! \uD83D\uDC49 **boop!**`,
-        `walks up to ${receivers} and boops them! \uD83D\uDC49 **boop!**`,
-        `boops ${receivers}! \uD83D\uDC49 **boop!**`,
-        `gives ${receivers} a quick boop~ \uD83D\uDC49 **boop!**`,
-        `sneakily boops ${receivers} \uD83D\uDC49 **boop!**`,
-        `runs around ${receivers} and boops them multiple times! \uD83D\uDC49 **boop!**`,
-        `walks up behind ${receivers}, taps them on the back and the moment they turn around-- \uD83D\uDC49 **boop!**`,
-        `quickly boops ${receivers} on the nose \uD83D\uDC49 **boop!**`,
-        `gives ${receivers} a noseboop! \uD83D\uDC49 **boop!**`,
-        `boops ${receivers} \uD83D\uDC49 **boop!**`,
-        `teasingly boops ${receivers} on the nose \uD83D\uDC49 **boop!**`,
-        `smiles and boops ${receivers}! \uD83D\uDC49 **boop!**`,
-        `softly boops ${receivers} \uD83D\uDC49 **boop!**`
+        `jumps on ${receivers} and boops them! <:boop:457182422962929676> **boop!**`,
+        `walks up to ${receivers} and boops them! <:boop:457182422962929676> **boop!**`,
+        `boops ${receivers}! <:boop:457182422962929676> **boop!**`,
+        `gives ${receivers} a quick boop~ <:boop:457182422962929676> **boop!**`,
+        `sneakily boops ${receivers} <:boop:457182422962929676> **boop!**`,
+        `runs around ${receivers} and boops them multiple times! <:boop:457182422962929676> **boop!**`,
+        `walks up behind ${receivers}, taps them on the back and the moment they turn around-- <:boop:457182422962929676> **boop!**`,
+        `quickly boops ${receivers} on the nose <:boop:457182422962929676> **boop!**`,
+        `gives ${receivers} a noseboop! <:boop:457182422962929676> **boop!**`,
+        `boops ${receivers} <:boop:457182422962929676> **boop!**`,
+        `teasingly boops ${receivers} on the nose <:boop:457182422962929676> **boop!**`,
+        `smiles and boops ${receivers}! <:boop:457182422962929676> **boop!**`,
+        `softly boops ${receivers} <:boop:457182422962929676> **boop!**`
       ];
 
       const rand = Math.floor(Math.random() * boops.length);

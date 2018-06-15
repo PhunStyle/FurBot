@@ -80,11 +80,7 @@ export function subCommands(client, evt, method, lang) {
 // E.g. !help useful
 function helpCategory(client, evt, category, lang = 'en') {
   let methods;
-  // if (category === 'all') {
-  //   methods = R.flatten(R.values(categories)).sort();
-  // } else {
-    methods = categories[category].sort();
-  // }
+  methods = categories[category].sort();
 
   const text = R.map(name => {
     const translation = T(name, lang);
@@ -101,13 +97,7 @@ function helpCategory(client, evt, category, lang = 'en') {
     return text;
   }, methods);
 
-  // if (category === 'all') {
-  //   R.forEach(commands_text => {
-  //     return client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(R.join('\n', R.reject(R.isNil, commands_text))));
-  //   }, R.splitEvery(10)(text));
-  // } else {
-    return Promise.resolve(R.join('\n', R.reject(R.isNil, text)));
-  // }
+  return Promise.resolve(R.join('\n', R.reject(R.isNil, text)));
 }
 
 function help(client, evt, suffix, lang) {

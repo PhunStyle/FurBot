@@ -1,8 +1,6 @@
 import Promise from 'bluebird';
-import nconf from 'nconf';
-import R from 'ramda';
-import { toTitleCase } from '../../helpers';
-
+import randomColor from 'randomcolor';
+import converter from 'hex2dec';
 
 function emojilist(client, evt, suffix) {
   if (evt.message.channel.isPrivate) return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139  Use this command in a server!`}));
@@ -11,22 +9,21 @@ function emojilist(client, evt, suffix) {
     let emojiArray = [];
     emoji.map(list => {
       emojiArray.push('<:' + list.name + ':' + list.id + '>');
-    })
+    });
     let emojiOutput = emojiArray.join(' ');
-
+    let hexCode = randomColor();
+    let cleanHex = hexCode.replace('#', '0x');
+    let embedColor = converter.hexToDec(cleanHex);
     let embed = {
-      color: 3901635,
+      color: embedColor,
       author: {
-        name: `${evt.message.guild.name}'s Emojis`,
+        name: `${evt.message.guild.name}'s Emojis`
       },
-      description: emojiOutput,
+      description: emojiOutput
     };
 
     return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
-  })
-
-
-
+  });
 }
 
 export default {

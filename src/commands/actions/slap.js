@@ -21,20 +21,20 @@ function slap(client, evt) {
       let receivers = receiverArray.join(' and ');
 
       const slaps = [
-        `slaps ${receivers}! \ud83d\ude35\ud83d\udc4a`,
-        `smacked ${receivers}! \ud83d\ude35\ud83d\udc4a`,
-        `just slapped ${receivers}! \ud83d\ude35\ud83d\udc4a`,
-        `walks up to ${receivers} and slaps them in the face \ud83d\ude35\ud83d\udc4a`,
-        `bitch slaps ${receivers}! \ud83d\ude35\ud83d\udc4a`,
-        `smacks ${receivers} hard, ouch! \ud83d\ude35\ud83d\udc4a`,
-        `beats some sense into ${receivers} \ud83d\ude35\ud83d\udc4a`,
-        `sends out slaps to ${receivers} \ud83d\ude35\ud83d\udc4a`,
-        `slaps ${receivers} hard, leaving a red mark! \ud83d\ude35\ud83d\udc4a`,
-        `slappity slap slap slaps ${receivers} \ud83d\ude35\ud83d\udc4a`,
-        `gives ${receivers} a real good slappin'! \ud83d\ude35\ud83d\udc4a`,
-        `whacks ${receivers} real good! \ud83d\ude35\ud83d\udc4a`,
-        `do the slappy to ${receivers} \ud83d\ude35\ud83d\udc4a`,
-        `starts a SLAP FIGHT! ${receivers}, get ready to get SLAPPED! \ud83d\ude35\ud83d\udc4a`
+        `slaps ${receivers}! <:slap:457184074247700490><:dizzy:457184074336043028>`,
+        `smacked ${receivers}! <:slap:457184074247700490><:dizzy:457184074336043028>`,
+        `just slapped ${receivers}! <:slap:457184074247700490><:dizzy:457184074336043028>`,
+        `walks up to ${receivers} and slaps them in the face <:slap:457184074247700490><:dizzy:457184074336043028>`,
+        `bitch slaps ${receivers}! <:slap:457184074247700490><:dizzy:457184074336043028>`,
+        `smacks ${receivers} hard, ouch! <:slap:457184074247700490><:dizzy:457184074336043028>`,
+        `beats some sense into ${receivers} <:slap:457184074247700490><:dizzy:457184074336043028>`,
+        `sends out slaps to ${receivers} <:slap:457184074247700490><:dizzy:457184074336043028>`,
+        `slaps ${receivers} hard, leaving a red mark! <:slap:457184074247700490><:dizzy:457184074336043028>`,
+        `slappity slap slap slaps ${receivers} <:slap:457184074247700490><:dizzy:457184074336043028>`,
+        `gives ${receivers} a real good slappin'! <:slap:457184074247700490><:dizzy:457184074336043028>`,
+        `whacks ${receivers} real good! <:slap:457184074247700490><:dizzy:457184074336043028>`,
+        `do the slappy to ${receivers} <:slap:457184074247700490><:dizzy:457184074336043028>`,
+        `starts a SLAP FIGHT! ${receivers}, get ready to get SLAPPED! <:slap:457184074247700490><:dizzy:457184074336043028>`
       ];
 
       const rand = Math.floor(Math.random() * slaps.length);
