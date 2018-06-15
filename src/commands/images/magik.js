@@ -14,7 +14,7 @@ function magik(client, evt, suffix) {
   }
 
   let messageArray = channel.messages.filter(msg => !msg.deleted).reverse();
-  let slicedArray = messageArray.slice(0, 10);
+  let slicedArray = messageArray.slice(0, 5);
   let finalArray = [];
 
   slicedArray.map(msg => {
@@ -23,7 +23,7 @@ function magik(client, evt, suffix) {
     }
   });
 
-  if (finalArray.length && !evt.message.attachments.length) {
+  if (finalArray.length && (evt.message.attachments.length === 0)) {
     imageLink = finalArray[0].attachments[0].url;
   }
 
