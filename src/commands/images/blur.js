@@ -14,7 +14,7 @@ function blur(client, evt, suffix) {
   }
 
   let messageArray = channel.messages.filter(msg => !msg.deleted).reverse();
-  let slicedArray = messageArray.slice(0, 10);
+  let slicedArray = messageArray.slice(0, 5);
   let finalArray = [];
 
   slicedArray.map(msg => {
