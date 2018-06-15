@@ -23,7 +23,7 @@ function rotate(client, evt, suffix) {
     }
   });
 
-  if (finalArray.length && !evt.message.attachments.length) {
+  if (finalArray.length && (evt.message.attachments.length === 0)) {
     imageLink = finalArray[0].attachments[0].url;
   }
 
