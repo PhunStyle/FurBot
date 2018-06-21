@@ -1,3 +1,18 @@
+<a name="4.4.1" />
+
+# 4.4.1 (June 21st, 2018)
+
+### Features
+- [CHANGE] All image commands now work slightly differently and don't use the previous image by default.
+- [NEW] Added help text to `help images` to better clarify these changes.
+- [NEW] You can now use URLs as an image source as well.
+- [NEW] `chat` command, now you can talk to FurBot.
+- [NEW] `say` command, this will make FurBot just repeat what you said.
+
+### Bug Fixes
+- [FIX] Stepped on a spider today. Sorry :(
+
+
 <a name="4.4.0" />
 
 # 4.4.0 (June 15th, 2018)

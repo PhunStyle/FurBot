@@ -81,6 +81,11 @@ export function subCommands(client, evt, method, lang) {
 function helpCategory(client, evt, category, lang = 'en') {
   let methods;
   methods = categories[category].sort();
+  let assistText = '';
+
+  if (category === 'images') {
+    assistText = T('assist_images', lang);
+  }
 
   const text = R.map(name => {
     const translation = T(name, lang);
@@ -97,7 +102,7 @@ function helpCategory(client, evt, category, lang = 'en') {
     return text;
   }, methods);
 
-  return Promise.resolve(R.join('\n', R.reject(R.isNil, text)));
+  return Promise.resolve(assistText + R.join('\n', R.reject(R.isNil, text)));
 }
 
 function help(client, evt, suffix, lang) {

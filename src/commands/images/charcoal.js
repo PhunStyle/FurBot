@@ -1,45 +1,31 @@
 import Promise from 'bluebird';
 import request from 'request';
+
+import { getImageLink } from '../../helpers';
 var gm = require('gm').subClass({imageMagick: true});
 
 
 function charcoal(client, evt, suffix) {
-  let channel = evt.message.channel;
-  let imageLink = evt.message.author.getAvatarURL({format: 'png', size: 512, preferAnimated: false});
+  let data = getImageLink(client, evt, suffix);
 
-  if (evt.message.attachments.length) {
-    if (evt.message.attachments[0].url) {
-      imageLink = evt.message.attachments[0].url;
-    }
-  }
+  let intensity = parseInt(data[0], 10);
+  if (intensity > 10) intensity = 10;
+  if (intensity <= 0) intensity = 1;
 
-  let messageArray = channel.messages.filter(msg => !msg.deleted).reverse();
-  let slicedArray = messageArray.slice(0, 5);
-  let finalArray = [];
+  let image = data[1];
 
-  slicedArray.map(msg => {
-    if ((msg.attachments.length) && (msg.author.id === client.User.id)) {
-      finalArray.push(msg);
-    }
-  });
-
-  if (finalArray.length && (evt.message.attachments.length === 0)) {
-    imageLink = finalArray[0].attachments[0].url;
-  }
-
-  if (!suffix || isNaN(suffix)) suffix = 1;
-  let commandIntensity = parseInt(suffix, 10);
-  if (commandIntensity > 10) commandIntensity = 10;
-  if (commandIntensity <= 0) commandIntensity = 1;
+  let embed = { color: 15747399, description: `<:redTick:405749796603822080> Something went wrong. Make sure you use the command correctly!` };
 
   evt.message.channel.sendMessage('<a:loadingCircle:456089197057671198> Processing Image...')
   .then(message => { setTimeout(() => { message.delete(); }, 5000); });
 
   return new Promise((resolve, reject) => {
-    gm(request(imageLink))
-    .out('-channel', 'RGB', '-charcoal', commandIntensity)
+    gm(request(image, function (error, response, body) {
+      if (error) { return evt.message.channel.sendMessage('', false, embed); }
+    }))
+    .out('-channel', 'RGB', '-charcoal', intensity)
     .toBuffer('PNG', (err, buffer) => {
-      if (err) return console.log(err);
+      if (err) { return evt.message.channel.sendMessage('', false, embed); }
       resolve(buffer);
     });
   });
