@@ -71,3 +71,70 @@ export function getKeys(obj, val) {
   }
   return objects;
 }
+
+export function getImageLink(client, evt, suffix) {
+  let channel = evt.message.channel;
+  let suffixSplit = [];
+  if (suffix) suffixSplit = suffix.split(' ');
+  let intensity;
+  let imageLink;
+  let doPrevious = false;
+
+  if (suffixSplit[0] === 'previous' || suffixSplit[1] === 'previous') doPrevious = true;
+
+  if (suffixSplit.length === 2 && !doPrevious) {
+    if (isNaN(suffixSplit[0])) suffixSplit[0] = 1;
+    imageLink = suffixSplit[1];
+  }
+
+  if (doPrevious) {
+    let messageArray = channel.messages.filter(msg => !msg.deleted).reverse();
+    let slicedArray = messageArray.slice(0, 5);
+    let finalArray = [];
+
+    slicedArray.map(msg => {
+      if ((msg.attachments.length) && (msg.author.id === client.User.id)) {
+        finalArray.push(msg);
+      }
+    });
+
+    if (finalArray.length && (evt.message.attachments.length === 0)) {
+      if (isNaN(suffixSplit[0])) {
+        suffixSplit[0] = 1;
+        suffixSplit[1] = finalArray[0].attachments[0].url;
+      } else {
+        suffixSplit[1] = finalArray[0].attachments[0].url;
+      }
+      imageLink = suffixSplit[1];
+    }
+  }
+
+  if (suffixSplit.length === 1 && evt.message.attachments.length === 0 && !doPrevious) {
+    console.log(evt.message);
+    if (isNaN(suffixSplit[0])) {
+      suffixSplit[1] = suffixSplit[0];
+      suffixSplit[0] = 1;
+    } else {
+      suffixSplit[1] = evt.message.author.getAvatarURL({format: 'png', size: 512, preferAnimated: false});
+    }
+    imageLink = suffixSplit[1];
+  }
+
+  if (suffixSplit.length < 2 && evt.message.attachments.length && !doPrevious) {
+    if (evt.message.attachments[0].url) {
+      if (isNaN(suffixSplit[0])) {
+        suffixSplit[0] = 1;
+      }
+      suffixSplit[1] = evt.message.attachments[0].url;
+      imageLink = suffixSplit[1];
+    }
+  }
+
+  if (suffixSplit.length === 0 && evt.message.attachments.length === 0 && !doPrevious) {
+    suffixSplit[0] = 1;
+    suffixSplit[1] = evt.message.author.getAvatarURL({format: 'png', size: 512, preferAnimated: false});
+    imageLink = suffixSplit[1];
+  }
+
+  return suffixSplit;
+}
