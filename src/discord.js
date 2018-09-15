@@ -240,9 +240,9 @@ export function start() {
       }
 
       client.Dispatcher.on('MESSAGE_CREATE', onMessage);
-      client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
-      client.Dispatcher.on('GUILD_UNAVAILABLE', onGuildDown);
-      client.Dispatcher.on('GUILD_CREATE', onGuild);
+      //client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
+      //client.Dispatcher.on('GUILD_UNAVAILABLE', onGuildDown);
+      //client.Dispatcher.on('GUILD_CREATE', onGuild);
 
       if (argv.shardmode && !isNaN(argv.shardid) && !isNaN(argv.shardcount)) {
         subscriber.subscribe('active_shard');
