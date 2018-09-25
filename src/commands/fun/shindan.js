@@ -31,8 +31,26 @@ function shindan(client, evt, suffix) {
         { name: 'furrylevel',
           value: 'How furry are you?',
           inline: true },
-        { name: 'animedeath',
-          value: 'Whats your anime death?',
+        { name: 'lore',
+          value: 'Whats your town legend?',
+          inline: true },
+        { name: 'appeared',
+          value: 'You appeared, what do?',
+          inline: true },
+        { name: 'bottomortop',
+          value: 'Are you a top or bottom?',
+          inline: true },
+        { name: 'romance',
+          value: 'What are your romance stats?',
+          inline: true },
+        { name: 'pure',
+          value: 'How pure are you?',
+          inline: true },
+        { name: 'oc',
+          value: 'Generates you a new oc!',
+          inline: true },
+        { name: 'sins',
+          value: 'Deadly sins percentage',
           inline: true }
       ]
     };
@@ -71,8 +89,26 @@ function shindan(client, evt, suffix) {
     case 'furrylevel':
       shindanID = 618526;
       break;
-    case 'animedeath':
-      shindanID = 429954;
+    case 'lore':
+      shindanID = 773265;
+      break;
+    case 'appeared':
+      shindanID = 583485;
+      break;
+    case 'bottomortop':
+      shindanID = 791876;
+      break;
+    case 'romance':
+      shindanID = 669687;
+      break;
+    case 'pure':
+      shindanID = 539508;
+      break;
+    case 'oc':
+      shindanID = 547942;
+      break;
+    case 'sins':
+      shindanID = 505181;
       break;
     default:
       shindanID = 587327;

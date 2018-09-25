@@ -37,6 +37,9 @@ function avatar(client, evt, suffix) {
           },
           image: { url: user.getAvatarURL({format: 'png', size: 2048, preferAnimated: true}) }
         };
+        if (user.id === client.User.id) {
+          embed.description = `This avatar is from art by RUdragon, which you can check [here](http://www.furaffinity.net/view/17090466/)`;
+        }
         return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
       });
   }

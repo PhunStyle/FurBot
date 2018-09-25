@@ -34,6 +34,9 @@ function feed(client, evt, suffix) {
         `shares some \uD83C\uDF5F with ${receivers}`,
         `hands ${receivers} some real good \uD83C\uDF2E !`,
         `prepares some tasty \uD83C\uDF63 for ${receivers}!`,
+        `feeds ${receivers} some \uD83C\uDF47 like they're royalty!`,
+        `has prepared some nice cold \uD83C\uDF68 for ${receivers}!`,
+        `stuffs a yummy \uD83C\uDF69 in the mouth(s) of ${receivers}!`,
         `cooks some fine \uD83C\uDF5C for ${receivers}!`,
         `cooks up some \uD83C\uDF72 for ${receivers}!`,
         `has prepared some \uD83C\uDF5D for ${receivers}!`,
@@ -44,88 +47,20 @@ function feed(client, evt, suffix) {
         `stuffs a gross, big, crawly \uD83D\uDD77 in the mouth(s) of ${receivers}. Yum!`
       ];
 
-      if (suffix && suffix.split(' ')[0] === 'yum') foods.splice(18, 3);
+      if (suffix && suffix.split(' ')[0] === 'yum') foods.splice(21, 3);
 
       const rand = Math.floor(Math.random() * foods.length);
 
-      let action;
-
-      switch (rand) {
-        case 0:
-          action = 'actions_foods_apple';
-          break;
-        case 1:
-          action = 'actions_foods_pear';
-          break;
-        case 2:
-          action = 'actions_foods_tangerine';
-          break;
-        case 3:
-          action = 'actions_foods_banana';
-          break;
-        case 4:
-          action = 'actions_foods_watermelon';
-          break;
-        case 5:
-          action = 'actions_foods_strawberry';
-          break;
-        case 6:
-          action = 'actions_foods_peach';
-          break;
-        case 7:
-          action = 'actions_foods_cherry';
-          break;
-        case 8:
-          action = 'actions_foods_pineapple';
-          break;
-        case 9:
-          action = 'actions_foods_hamburger';
-          break;
-        case 10:
-          action = 'actions_foods_fries';
-          break;
-        case 11:
-          action = 'actions_foods_taco';
-          break;
-        case 12:
-          action = 'actions_foods_sushi';
-          break;
-        case 13:
-          action = 'actions_foods_ramen';
-          break;
-        case 14:
-          action = 'actions_foods_stew';
-          break;
-        case 15:
-          action = 'actions_foods_spaghetti';
-          break;
-        case 16:
-          action = 'actions_foods_curry';
-          break;
-        case 17:
-          action = 'actions_foods_pizza';
-          break;
-        case 18:
-          action = 'actions_foods_bug';
-          break;
-        case 19:
-          action = 'actions_foods_beetle';
-          break;
-        case 20:
-          action = 'actions_foods_spider';
-          break;
-      }
-
       evt.message.mentions.map(user => {
         if (user !== evt.message.author) {
-          return setUserAction(user.id, action);
+          return setUserAction(user.id, 'actions_foods');
         }
       });
 
       return Promise.resolve(`**${authorName}** ${foods[rand]}`);
     }
   }
-  return Promise.resolve(`**${authorName}** eats all the food themselves! How greedy! :angry:`);
+  return Promise.resolve(`**${authorName}** eats all the food themselves... How greedy!! :angry:`);
 }
 
 export default {

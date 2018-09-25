@@ -41,7 +41,10 @@ function hug(client, evt) {
         `wraps ${receivers} in hundreds of layers of blankets and hugs them <:hug:457179730333007874>`,
         `places ${receivers} in front of a warm campfire and hugs them <:hug:457179730333007874>`,
         `huddles together with ${receivers} <:hug:457179730333007874>`,
-        `FREE HUGS FOR ${receivers}!! <:hug:457179730333007874>`
+        `yells: FREE HUGS FOR ${receivers}!! <:hug:457179730333007874>`,
+        `yells: Attention ${receivers}! You are about to get hugged!`,
+        `gives ${receivers} a long, warm hug! Super cozy!`,
+        `shares a nice comforting hug with ${receivers}!`
       ];
 
       const rand = Math.floor(Math.random() * hugs.length);

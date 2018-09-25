@@ -31,7 +31,12 @@ function spank(client, evt) {
         `gives ${receivers} a hard spanking! \ud83d\udc4b\ud83c\udf51`,
         `seems to think you've been bad, ${receivers}, so they walk up to you and spank you! \ud83d\udc4b\ud83c\udf51`,
         `spanks ${receivers} several times! \ud83d\udc4b\ud83c\udf51`,
-        `spanks ${receivers} until red marks appear! \ud83d\udc4b\ud83c\udf51`
+        `spanks ${receivers} until red marks appear! \ud83d\udc4b\ud83c\udf51`,
+        `leans over towards ${receivers} and spanks their butt hard! \ud83d\udc4b\ud83c\udf51`,
+        `walks up to ${receivers} and gives them a firm spanking! \ud83d\udc4b\ud83c\udf51`,
+        `bends ${receivers} over their knees and gives them a hard spanking! \ud83d\udc4b\ud83c\udf51`,
+        `raises their arm and spanks ${receivers} gently -- no wait i meant hard! \ud83d\udc4b\ud83c\udf51`,
+        `gives ${receivers} a smol butt-bap.. that was a warning! \ud83d\udc4b\ud83c\udf51`
       ];
 
       const rand = Math.floor(Math.random() * spanks.length);
