@@ -37,7 +37,13 @@ function bite(client, evt) {
         `chases after ${receivers} and bites them! <:bite:436215483230846976>`,
         `pokes ${receivers} and does a soft nibble <:bite:436215483230846976>`,
         `opens wide and chomps ${receivers}.. chomp chomp.. <:bite:436215483230846976>`,
-        `surprises ${receivers} with some surprise nibbles! <:bite:436215483230846976>`
+        `surprises ${receivers} with some surprise nibbles! <:bite:436215483230846976>`,
+        `monches and cronches ${receivers}.. i swear this is not vore!`,
+        `gives ${receivers} a firm neck-bite! <:bite:436215483230846976>`,
+        `monches on the ears of ${receivers} softly! <:bite:436215483230846976>`,
+        `bites ${receivers} multiple times! <:bite:436215483230846976>`,
+        `can't resist to bite ${receivers}! <:bite:436215483230846976>`,
+        `bites into their yummy target(s): ${receivers}  <:bite:436215483230846976>`
       ];
 
       const rand = Math.floor(Math.random() * bites.length);

@@ -33,7 +33,10 @@ function boop(client, evt) {
         `boops ${receivers} <:boop:457182422962929676> **boop!**`,
         `teasingly boops ${receivers} on the nose <:boop:457182422962929676> **boop!**`,
         `smiles and boops ${receivers}! <:boop:457182422962929676> **boop!**`,
-        `softly boops ${receivers} <:boop:457182422962929676> **boop!**`
+        `softly boops ${receivers} <:boop:457182422962929676> **boop!**`,
+        `leans over towards ${receivers} and gives them a couple of boops! <:boop:457182422962929676> **boop!**`,
+        `deployed their booping device to boop ${receivers} multiple times! <:boop:457182422962929676> **boop!**`,
+        `softly boops ${receivers} on the cheek! <:boop:457182422962929676> **boop!**`
       ];
 
       const rand = Math.floor(Math.random() * boops.length);

@@ -20,7 +20,7 @@ function blur(client, evt, suffix) {
   .then(message => { setTimeout(() => { message.delete(); }, 5000); });
 
   return new Promise((resolve, reject) => {
-    gm(request(image, function (error, response, body) {
+    gm(request(image, function(error, response, body) {
       if (error) { return evt.message.channel.sendMessage('', false, embed); }
     }))
     .out('-resize', '800x800>')

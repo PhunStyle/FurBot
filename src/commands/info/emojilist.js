@@ -8,7 +8,9 @@ function emojilist(client, evt, suffix) {
   guild.fetchEmoji().then(emoji => {
     let emojiArray = [];
     emoji.map(list => {
-      emojiArray.push('<:' + list.name + ':' + list.id + '>');
+      let format = '<:';
+      if (list.animated) { format = '<a:'; }
+      emojiArray.push(format + list.name + ':' + list.id + '>');
     });
     let emojiOutput = emojiArray.join(' ');
     let hexCode = randomColor();

@@ -14,8 +14,6 @@ import { startPortalTimeouts, startPortalIntervals } from './portals';
 import {
   getMessageTTL,
   setMessageTTL,
-  getOwnerSentWelcomeMessage,
-  setOwnerSentWelcomeMessage,
   getUserLang,
   subscriber,
   publisher,
@@ -147,10 +145,6 @@ function onMessage(evt) {
   }
 }
 
-function onGuildDown(evt) {
-  logger.warn('The following guild has gone UNAVAILABLE: ' + evt.guildId);
-}
-
 function onGuild(evt) {
   if (!evt.guild.becameAvailable) {
     let blacklistCheck = guild_blacklist.includes(evt.guild.id);
@@ -159,13 +153,6 @@ function onGuild(evt) {
       evt.guild.generalChannel.sendMessage(':warning: This guild has been blacklisted! Leaving...');
       return Promise.resolve(evt.guild.leave());
     }
-    let guildOwner = evt.guild.owner;
-    getOwnerSentWelcomeMessage(guildOwner.id)
-    .then(results => {
-      if (results === 'true') return;
-      guildOwner.openDM().then(dm => dm.sendMessage(`Hey there, I\'m **FurBot**. Nice to meet you! :purple_heart:\n\nI\'m a multi-functional bot with many different features and i'm constantly getting updated.\nTo get started, use \`${bot_prefix}help\` for a complete list of my commands.\n\n:small_blue_diamond: Try out \`${bot_prefix}weather Amsterdam\` to see the weather!\n:small_orange_diamond: Use \`${bot_prefix}8ball Will i get lucky?\` to let me predict the outcome!\n:small_blue_diamond: Or use \`${bot_prefix}e9 Pikachu\` to see a Safe-For-Work picture of Pikachu!\n\n**If you have tips, ideas, feedback or need help, join the FurBot Server: https://discord.gg/H7W49Ps **`));
-      setOwnerSentWelcomeMessage(guildOwner.id);
-    });
   }
 }
 
@@ -180,13 +167,8 @@ function connect() {
 
 function forceSetGame() {
   logger.info('Setting Game');
-  client.User.setGame(`${bot_prefix}pride`);
+  client.User.setGame(`${bot_prefix}help | ${bot_prefix}info`);
 }
-
-// function forceSetGame() {
-//   logger.info('Setting Game');
-//   client.User.setGame(`${bot_prefix}help | ${bot_prefix}info`);
-// }
 
 function forceFetchUsers() {
   logger.info('Force fetching users');
@@ -240,9 +222,7 @@ export function start() {
       }
 
       client.Dispatcher.on('MESSAGE_CREATE', onMessage);
-      //client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
-      //client.Dispatcher.on('GUILD_UNAVAILABLE', onGuildDown);
-      //client.Dispatcher.on('GUILD_CREATE', onGuild);
+      client.Dispatcher.on('GUILD_CREATE', onGuild);
 
       if (argv.shardmode && !isNaN(argv.shardid) && !isNaN(argv.shardcount)) {
         subscriber.subscribe('active_shard');

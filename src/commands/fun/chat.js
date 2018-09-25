@@ -16,7 +16,7 @@ function chat(client, evt, suffix, lang) {
     headers: {
       'Content-Type': 'application/json'
     },
-    json: true,
+    json: true
   };
 
   return evt.message.channel.sendMessage('<a:typingAnim:459327516012969994>')

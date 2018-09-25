@@ -1,3 +1,23 @@
+<a name="4.4.2" />
+
+# 4.4.2 (September 25th, 2018)
+
+### Features
+- [CHANGE] FurBot commands will no longer work on message updates/edits.
+- [CHANGE] FurBot no longer sends a welcome message to the guild owner. Apparently this was creating a lot of false reports.
+
+- [NEW] `nuzzle` command if you wanna.. you know.. stick your nose in things.
+- [NEW] `poke` command, for poking the shit out of your friends! Or foes!
+- [CHANGE] some action commands received additional text lines. If you have more ideas for some feel free to submit them via `f.feedback`!
+- [CHANGE] `actions` command is now `actioninfo` and the output is a little shorter now. Shows all the actions you've received!
+
+- [NEW] added some more `shindan` options to the command. You can now check your lore, your relationship status and more!
+
+### Bug Fixes
+- [FIX] The `emojilist` command is working properly now.
+
+
+
 <a name="4.4.1" />
 
 # 4.4.1 (June 21st, 2018)
