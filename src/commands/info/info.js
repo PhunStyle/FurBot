@@ -12,6 +12,7 @@ function botinfo(client, evt, suffix, lang, json) {
   const server_count = {guilds: client.Guilds.length, channels: client.Channels.length, users: client.Users.length};
   const client_id = nconf.get('CLIENT_ID');
   const bot_version = package_file.version;
+  const bot_avatar = client.User.avatar;
 
   if (argv.shardmode && !isNaN(argv.shardid) && !isNaN(argv.shardcount) && !json) {
     return getShardsCmdResults('servers')
@@ -27,7 +28,7 @@ function botinfo(client, evt, suffix, lang, json) {
           color: 2455143,
           author: {
             name: `FurBot Info`,
-            icon_url: 'https://cdn.discordapp.com/avatars/174186616422662144/e6b8c266186a60f6b947d1635c09459e.jpg' // eslint-disable-line camelcase
+            icon_url: bot_avatar // eslint-disable-line camelcase
           },
           description: `Hey there! These are my stats, to see all of my commands use \`${nconf.get('PREFIX')}help\``,
           fields: [
