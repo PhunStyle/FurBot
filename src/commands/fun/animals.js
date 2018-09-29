@@ -29,6 +29,32 @@ function axolotl(client, evt, suffix) {
     .then(R.join('\n'));
 }
 
+function birb(client, evt, suffix) {
+  let count = 1;
+  if (suffix && suffix.split(' ')[0] === 'bomb') {
+    count = Number(suffix.split(' ')[1]) || 5;
+    if (count > 15) count = 15;
+    if (count < 0) count = 5;
+  }
+
+  const options = {
+    url: 'https://random.birb.pw/tweet/',
+    json: true
+  };
+
+  return Promise.resolve(R.repeat('dog', count))
+    .map(() => {
+      return request(options)
+        .then(req => {
+          let result = 'https://random.birb.pw/img/';
+          result += req.body;
+          return result;
+        })
+        .then(encodeURI);
+    })
+    .then(R.join('\n'));
+}
+
 function bun(client, evt, suffix) {
   let count = 1;
   if (suffix && suffix.split(' ')[0] === 'bomb') {
@@ -186,6 +212,7 @@ function animals(client, evt, suffix, lang) {
   suffix = split_suffix.join(' ');
 
   if (cmd === 'axolotl') return axolotl(client, evt, suffix);
+  if (cmd === 'birb') return bird(client, evt, suffix);
   if (cmd === 'bun') return bun(client, evt, suffix);
   if (cmd === 'cat') return cat(client, evt, suffix);
   if (cmd === 'dog') return dog(client, evt, suffix);
@@ -202,6 +229,9 @@ export default {
   axolotl,
   axlotl: axolotl,
   axo: axolotl,
+  birb,
+  bird: birb,
+  chirpyboi: birb,
   bun,
   bunny: bun,
   rabbit: bun,

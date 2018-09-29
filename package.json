@@ -1,6 +1,6 @@
 {
   "name": "furbot",
-  "version": "4.4.2",
+  "version": "4.4.3",
   "description": "A furry bot for Discord",
   "main": "index.js",
   "dependencies": {
@@ -58,6 +58,7 @@
     "url-unshort": "^4.0.0",
     "wikijs": "^3.0.5",
     "wolfram-alpha": "^0.6.0",
+    "xml2json-light": "^1.0.6",
     "youtube-node": "^1.3.0"
   },
   "devDependencies": {

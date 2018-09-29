@@ -34,9 +34,11 @@ function userStatistics(client, evt, suffix) {
 }
 
 export default {
-  actioninfo: userStatistics
+  actioninfo: userStatistics,
+  actionstats: userStatistics,
+  actinf: userStatistics
 };
 
 export const help = {
-  actions: { parameters: '@User' }
+  actioninfo: { parameters: '@User' }
 };

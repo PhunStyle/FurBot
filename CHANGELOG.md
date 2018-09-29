@@ -1,3 +1,16 @@
+<a name="4.4.3" />
+
+# 4.4.3 (September 29th, 2018)
+
+### Features
+- [NEW] `birb` command for posting feathery friendbs.
+
+### Bug Fixes
+- [FIX] Help documentation for `actioninfo` was not updated, but is now.
+- [FIX] Help documentation for `nuzzle` and `poke` was not present so didn't even show on help command, but is now.
+- [FIX] `info` command now uses bot avatar instead of static URL.
+
+
 <a name="4.4.2" />
 
 # 4.4.2 (September 25th, 2018)
