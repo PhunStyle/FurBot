@@ -224,6 +224,8 @@
   "bite": "Give user(s) a little monch",
   "lick": "Give user(s) a licking, mlem!",
   "spank": "Give user(s) a spanking. They probably deserve it.",
+  "nuzzle": "Give user(s) a nuzzle!",
+  "poke": "Give user(s) a poke, maybe with a stick!",
   "actioninfo": "Check statistics on how many actions you have received",
   "ban": "Ban a member from your server",
   "kick": "Kick a member from your server",
