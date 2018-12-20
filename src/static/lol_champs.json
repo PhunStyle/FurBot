@@ -281,6 +281,12 @@
     "nid": "jinx",
     "image": "jinx.png"
   },
+  "kaisa": {
+    "id": "145",
+    "name": "Kai'Sa",
+    "nid": "kaisa",
+    "image": "kaisa.png"
+  },
   "kalista": {
     "id": "429",
     "name": "Kalista",
@@ -475,7 +481,7 @@
   },
   "nunu": {
     "id": "20",
-    "name": "Nunu",
+    "name": "Nunu & Willump",
     "nid": "nunu",
     "image": "nunu.png"
   },
@@ -508,6 +514,12 @@
     "name": "Poppy",
     "nid": "poppy",
     "image": "poppy.png"
+  },
+  "pyke": {
+    "id": "555",
+    "name": "Pyke",
+    "nid": "pyke",
+    "image": "pyke.png"
   },
   "quinn": {
     "id": "133",

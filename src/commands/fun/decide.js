@@ -29,7 +29,5 @@ export default {
 };
 
 export const help = {
-  decide: {
-    parameters: ['something', 'or', 'something']
-  }
+  decide: { parameters: ['something', 'or', 'something'] }
 };

@@ -1,6 +1,6 @@
 {
   "name": "furbot",
-  "version": "4.4.3",
+  "version": "4.4.4",
   "description": "A furry bot for Discord",
   "main": "index.js",
   "dependencies": {
@@ -38,6 +38,7 @@
     "minimist": "^1.2.0",
     "moment": "^2.13.0",
     "moment-timezone": "^0.5.13",
+    "morjs": "^1.1.0",
     "nconf": "^0.8.4",
     "nib": "^1.1.0",
     "node-geocoder": "^3.16.0",
@@ -47,6 +48,7 @@
     "promise-queue": "^2.2.3",
     "ramda": "^0.23.0",
     "random-org": "^0.1.5",
+    "random-word": "^2.0.0",
     "randomcolor": "^0.5.3",
     "raven": "^0.10.0",
     "redis": "^2.7.1",
@@ -104,6 +106,7 @@
     "test": "npm run lint && npm run mocha",
     "test-coverage": "npm run lint && TEST=true babel-node node_modules/.bin/babel-istanbul cover --root ./src --include-all-sources true node_modules/.bin/_mocha -- ./tests/index.js",
     "translate": "babel-node ./scripts/translations/translate.js",
+    "update-champs": "babel-node ./scripts/leagueoflegends/champ.js && babel-node ./scripts/leagueoflegends/items.js",
     "transifex:review": "babel-node ./scripts/translations/transifex-review.js",
     "transifex:upload": "npm run transifex:review && npm run lint-json && babel-node ./scripts/translations/transifex-upload.js"
   },

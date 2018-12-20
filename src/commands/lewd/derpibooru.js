@@ -95,7 +95,9 @@ function tags(client, evt, suffix) {
           });
         })
         .then(body => {
-          if (!body || typeof body === 'undefined' || body.search.length === 0) return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
+          if (!body || typeof body.search[0] === 'undefined' || typeof body === 'undefined' || body.search.length === 0) {
+             return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
+          }
           // Do some math
           let randomid = Math.floor(Math.random() * body.search.length);
           currentPosition++;
