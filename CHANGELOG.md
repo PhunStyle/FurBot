@@ -1,3 +1,21 @@
+<a name="4.4.4" />
+
+# 4.4.4 (December 20th, 2018)
+
+### Features
+- [NEW] `bark` action command to bark at everyone.
+- [NEW] `meow` action command to meow at everyone.
+- [NEW] `morse` command, allows you to change text to morse code and morse code to text.
+- [NEW] `dadjoke` command, for AMAZING dad jokes.
+- [NEW] `word` command. Yeah. Cool.
+- [NEW] `xmastree` and `newyear` commands which are just simple emoji arts.
+
+### Bug Fixes
+- [FIX] `emojilist` works properly even when all emoji slots are full.
+- [FIX] `danbooru` works properly again, apparently their API changed.
+- [FIX] `say` command no longer allows you to use `@everyone` or `@here`. Should've been fixed way sooner!
+
+
 <a name="4.4.3" />
 
 # 4.4.3 (September 29th, 2018)

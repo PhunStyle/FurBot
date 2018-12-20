@@ -24,7 +24,7 @@ function chat(client, evt, suffix, lang) {
     request(options)
     .then(R.prop('body'))
     .then(res => {
-      botResponse = res.botsay.replace('Program-O', 'FurBot').replace('</br>', '').replace('Program O', 'FurBot');
+      botResponse = res.botsay.replace('Program-O', 'FurBot').replace('</br>', '').replace('Program O', 'FurBot').replace('<br/>', '');
       client.Messages.editMessage(botResponse, m.id, evt.message.channel.id);
     });
   });

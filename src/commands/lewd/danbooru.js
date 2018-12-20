@@ -68,9 +68,9 @@ function tags(client, evt, suffix) {
       if (checkLength.length > 2) return Promise.resolve(`\u26A0  |  You can only search up to 2 tags`);
 
       const options = {
-        url: `http://danbooru.donmai.us/post/index.json?tags=${query}`,
+        url: `http://danbooru.donmai.us/posts.json?tags=${query}&random=true`,
         qs: {
-          limit: 200
+          limit: 20
         }
       };
 
@@ -80,7 +80,9 @@ function tags(client, evt, suffix) {
 
       return _makeRequest(options)
       .then(body => {
-        if (!body || typeof body === 'undefined' || body.length === 0) return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
+        if (!body || typeof body[0] === 'undefined' || typeof body === 'undefined' || body.length === 0) {
+           return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
+        }
         return Promise.resolve(R.repeat('tags', count))
         .map(() => {
           // Do some math
@@ -89,11 +91,9 @@ function tags(client, evt, suffix) {
           // Grab the data
           let id = body[randomid].id;
           let file = body[randomid].file_url;
-          let fileurl = `http://danbooru.donmai.us${file}`;
-          let height = body[randomid].height;
-          let width = body[randomid].width;
+          let fileurl = `${file}`;
           let score = body[randomid].score;
-          let imageDescription = `**Score:** ${score} | **Resolution: ** ${width} x ${height} | **Link:** [Click Here](http://danbooru.donmai.us/posts/${id})`;
+          let imageDescription = `**Score:** ${score} | **Link:** [Click Here](http://danbooru.donmai.us/posts/${id})`;
           if (file) {
             if (file.endsWith('webm') || file.endsWith('swf')) {
               imageDescription = `**Score:** ${score} | **Link:** [Click Here](http://danbooru.donmai.us/posts/${id})\n*This file (webm/swf) cannot be previewed or embedded.*`;

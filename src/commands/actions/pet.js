@@ -26,7 +26,7 @@ function pet(client, evt) {
         `gives soft pets to ${receivers} <:pet:457178504442806292>`,
         `randomly pets ${receivers}! Woah! <:pet:457178504442806292>`,
         `reaches out to ${receivers} and gives them a quick few pets <:pet:457178504442806292>`,
-        `petpets ${receivers}, who's a good *<pronoun>*? You are, yes you are! <:pet:457178504442806292>`,
+        `petpets ${receivers}, who's a good pet? You are, yes you are! <:pet:457178504442806292>`,
         `pets ${receivers}! <:pet:457178504442806292>`,
         `gently applies some pets to ${receivers}'s heads, soft! <:pet:457178504442806292>'`,
         `gently pets ${receivers}~ <:pet:457178504442806292>`,

@@ -27,6 +27,7 @@ build/Release
 node_modules
 
 # Removed config.json file
+config.hjson
 config.json
 config.js
 

@@ -1,5 +1,8 @@
+import { cleanName } from '../../helpers';
+
 function say(client, evt, suffix) {
   if (!suffix) return;
+  suffix = cleanName(suffix);
   return evt.message.channel.sendMessage(suffix);
 }
 

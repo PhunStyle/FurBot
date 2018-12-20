@@ -77,7 +77,9 @@ function tags(client, evt, suffix) {
 
       return _makeRequest(options)
       .then(body => {
-        if (!body || typeof body === 'undefined' || body.length === 0) return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
+        if (!body || typeof body[0] === 'undefined' || typeof body === 'undefined' || body.length === 0) {
+           return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
+        }
         return Promise.resolve(R.repeat('tags', count))
         .map(() => {
           // Do some math
