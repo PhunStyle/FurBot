@@ -12,7 +12,7 @@ function _makeRequest(options) {
   let default_options = {
     json: true,
     headers: {
-      'User-Agent': 'FurBot/1.0 (Phun @ e926)'
+      'User-Agent': 'PhunStyle/FurBot @ GitHub'
     }
   };
 
@@ -35,6 +35,10 @@ function getOne(haystack, arr) {
   return arr.find(v => haystack.includes(v));
 }
 
+function isNumeric(num){
+  return !isNaN(num);
+}
+
 function tags(client, evt, suffix) {
   return getBlackListRemove(evt.message.channel_id).then(removeValue => {
     return getBlackListChannel(evt.message.channel_id).then(value => {
@@ -47,9 +51,11 @@ function tags(client, evt, suffix) {
         }
       }
       let query;
-      let lastTag = Number.parseInt(array[array.length - 1], 10);
+      let lastTag = array[array.length - 1];
+      //console.log('lastTag: ' + lastTag);
+      //console.log('lastTag isNum: ' + isNumeric(lastTag));
       let count = 1;
-      if (suffix && Number.isInteger(lastTag)) {
+      if (suffix && isNumeric(lastTag)) {
         count = lastTag;
         if (count > 5) count = 5;
         if (count < 0) count = 1;
@@ -59,6 +65,8 @@ function tags(client, evt, suffix) {
       } else {
         query = suffix.toLowerCase().replace('tags ', '');
       }
+
+      //console.log('query: ' + query);
 
       if (query === '') return Promise.resolve(`\u26A0  |  No tags were supplied`);
       let checkLength = query.split(' ');
@@ -80,8 +88,31 @@ function tags(client, evt, suffix) {
         if (!body || typeof body[0] === 'undefined' || typeof body === 'undefined' || body.length === 0) {
            return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
         }
+        if (body) {
+          //console.log('Body Before BL: ' + body);
+          //console.log('BodyLength Before BL: ' + body.length);
+          let i;
+          // Apply blacklisting strictness
+          if (value && removeValue === 'true') {
+            for (i = body.length - 1; i >= 0; i--) {
+              let tags = body[i].tags.split(' ');
+              if (findOne(blacklist, tags)) {
+                  body.splice(i,1);
+              }
+            }
+            //console.log('Body After Custom BL: ' + body);
+            //console.log('BodyLength After Custom BL: ' + body.length);
+          }
+        }
+        if (count > body.length) {
+          count = body.length;
+        }
+        if (!body || typeof body[0] === 'undefined' || typeof body === 'undefined' || body.length === 0) {
+           return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
+        }
         return Promise.resolve(R.repeat('tags', count))
         .map(() => {
+          if (body.length === 0) return;
           // Do some math
           let randomid = Math.floor(Math.random() * body.length);
           currentPosition++;
@@ -91,10 +122,10 @@ function tags(client, evt, suffix) {
           let height = body[randomid].height;
           let width = body[randomid].width;
           let score = body[randomid].score;
-          let imageDescription = `**Score:** ${score} | **Resolution: ** ${width} x ${height} | **Link:** [Click Here](https://e926.net/post/show/${id})`;
+          let imageDescription = `**Score:** ${score} | **Resolution: ** ${width} x ${height} | [**Link**](https://e926.net/post/show/${id})`;
           if (file) {
             if (file.endsWith('webm') || file.endsWith('swf')) {
-              imageDescription = `**Score:** ${score} | **Link:** [Click Here](https://e926.net/post/show/${id})\n*This file (webm/swf) cannot be previewed or embedded.*`;
+              imageDescription = `**Score:** ${score} | [**Link**](https://e926.net/post/show/${id})\n*This file (webm/swf) cannot be previewed or embedded.*`;
             }
           }
 
@@ -102,17 +133,9 @@ function tags(client, evt, suffix) {
           if (value) {
             let tags = body[randomid].tags.split(' ');
             if (findOne(blacklist, tags)) {
-              if (removeValue === 'true') {
-                blacklistHits++;
-                if (blacklistHits > 0 && currentPosition === count) {
-                  return evt.message.channel.sendMessage('', false, {color: 4437377, description: `<:greenTick:405749911037018125> Skipped \`${blacklistHits}\` blacklisted results.`})
-                  .then(message => { setTimeout(() => { message.delete(); }, 5000); });
-                }
-                return;
-              }
               file = null;
               let blacklistMatch = getOne(blacklist, tags);
-              imageDescription = `**BLACKLISTED** - Matched: \`${blacklistMatch}\` | **Link:** [Click Here](https://e926.net/post/show/${id})`;
+              imageDescription = `**BLACKLISTED** - Matched: \`${blacklistMatch}\` | [**Link**](https://e621.net/post/show/${id})`;
             }
           }
 
@@ -125,8 +148,11 @@ function tags(client, evt, suffix) {
             url: 'https://e926.net/post/show/' + id,
             description: imageDescription,
             image: { url: file },
-            footer: { icon_url: 'http://i.imgur.com/RrHrSOi.png', text: 'e926' }
+            footer: { icon_url: 'http://i.imgur.com/RrHrSOi.png', text: 'e926 · ' + currentPosition + '/' + count }
           };
+
+          body.splice(randomid,1);
+
           return evt.message.channel.sendMessage('', false, embed);
         });
       });
@@ -137,7 +163,6 @@ function tags(client, evt, suffix) {
 export default {
   e9: (client, evt, suffix, lang) => {
     const command = suffix.toLowerCase().split(' ')[0];
-    // if (command === 'latest') return latest(client, evt, suffix);
     if (command === 'tags') return tags(client, evt, suffix);
     if (command !== 'tags' || command !== 'latest') return tags(client, evt, suffix);
   }

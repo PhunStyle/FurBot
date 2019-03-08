@@ -8,7 +8,7 @@ function _makeRequest(options) {
   let default_options = {
     headers: {
       'Content-Type': 'application/json',
-      'User-Agent': 'FurBot/1.0 (https://github.com/PhunStyle/FurBot)'
+      'User-Agent': 'PhunStyle/FurBot @ GitHub'
     },
     json: true
   };
