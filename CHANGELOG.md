@@ -1,6 +1,6 @@
 <a name="4.4.5" />
 
-# 4.4.5 (February 25th, 2019)
+# 4.4.5 (March 8th, 2019)
 
 ### Features
 - [NEW] `blacklist strict` will now remove blacklisted results completely and, if possible, add a non blacklisted result.
@@ -17,7 +17,7 @@ You do not need to add or remove them from your own blacklists, these are hardco
 - [FIX] The say command no longer removes markdown (you can't use @ still)
 
 ### Notes
-- [REMOVED] The christmas commands. It's february alright, get over it!
+- [REMOVED] The christmas commands. It's march alright, get over it!
 
 
 <a name="4.4.4" />
