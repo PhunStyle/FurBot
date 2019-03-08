@@ -23,6 +23,11 @@ export function cleanName(string) {
   return string.replace(/[*_~@]/g, m => chars[m]);
 }
 
+export function cleanSay(string) {
+  var chars = { '@': '@\u200b' };
+  return string.replace(/[@]/g, m => chars[m]);
+}
+
 // return an array of objects according to key, value, or key and value matching
 export function getObjects(obj, key, val) {
   var objects = [];

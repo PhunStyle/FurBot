@@ -17,36 +17,7 @@ export default {
   kappa: () => Promise.resolve({upload: path.join(__dirname, '../images/Kappa.png')}),
   kappahd: () => Promise.resolve({upload: path.join(__dirname, '../images/Kappahd.png')}),
   doot: () => Promise.resolve('https://i.imgur.com/ZX79Q4S.gif'),
-  party: () => Promise.resolve('. o ･ <a:blobparty9:403304364850020354><a:blobparty8:403304364950814722><a:blobparty7:403304365169049622><a:blobparty6:403304365139558401><a:blobparty5:403304365542211594><a:blobparty4:403304365802127360><a:blobparty3:403304365638811658><a:blobparty2:403304364984238093><a:blobparty1:403304365370114059> ･ o .'),
-  newyear: () => Promise.resolve(`⁣⁣◼️◼️◼️◼️◼️◼️◼️◼️
-◼️◼️◼️🌟◼️◼️◼️◼️
-◼️◼️🌟🌟🌟🌟◼️◼️
-◼️🌟💥💥🌟💥✨◼️
-◼️◼️🌟🌟💥🌟◼️◼️
-◼️◼️◼️⁣🌟🌟◼️◼️◼️
-◼️◼️◼️◼️◼️◼️◼️◼️
-HAPPY NEW YEAR!!
-◼️◼️◼️◼️◼️◼️◼️◼️
-🏫🏠🏡🏫🏩🏪🏡🏠
-    👫👬👫👭`),
-  xmastree: () => Promise.resolve(`
-    ✨。          🌟。    ❇
-   。             🎄         。。
-      ❇    🎄🎄。 。   ✨
- ❇        🎄🔴🎄   💫。
-      。 🎄🔴🎀🎄 。❇
-  。   🎄🎀🎄🔴🎄。。
-    ✨ 🎄🎄🎀🎄。
-。。🎄🎄🔴🎄🎄。 ❇
-    🎄🎄🎀🎄🔴🎄
- 🎄🔴🎄🎄🎀🎄🎄
-。 🎄🎀🎄🎄🔴🎄      ✨
-  🎄🎄🔴🎄🎄🎀🎄
-🎄🔴🎄🎀🔴🎄🎄🎄
-\u200b                📦📦📦
-\u200b            📦📦📦📦
-<:santacat:525293333958885376> **HAPPY HOLIDAYS** <:santacat:525293333958885376>`),
-
+  party: () => Promise.resolve('. o ･ <a:blobparty9:403304364850020354><a:blobparty8:403304364950814722><a:blobparty7:403304365169049622><a:blobparty6:403304365139558401><a:blobparty5:403304365542211594><a:blobparty4:403304365802127360><a:blobparty3:403304365638811658><a:blobparty2:403304364984238093><a:blobparty1:403304365370114059> ･ o .')
 };
 
 export const help = {
@@ -63,5 +34,6 @@ export const help = {
   jpeg: {category: 'other'},
   kappa: {category: 'other'},
   kappahd: {category: 'other'},
-  doot: {category: 'other'}
+  doot: {category: 'other'},
+  party: {category: 'other'}
 };
