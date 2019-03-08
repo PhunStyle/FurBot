@@ -52,8 +52,8 @@ function tags(client, evt, suffix) {
       }
       let query;
       let lastTag = array[array.length - 1];
-      console.log('lastTag: ' + lastTag);
-      console.log('lastTag isNum: ' + isNumeric(lastTag));
+      //console.log('lastTag: ' + lastTag);
+      //console.log('lastTag isNum: ' + isNumeric(lastTag));
       let count = 1;
       if (suffix && isNumeric(lastTag)) {
         count = lastTag;
@@ -66,7 +66,7 @@ function tags(client, evt, suffix) {
         query = suffix.toLowerCase().replace('tags ', '');
       }
 
-      console.log('query: ' + query);
+      //console.log('query: ' + query);
 
       if (query === '') return Promise.resolve(`\u26A0  |  No tags were supplied`);
       let checkLength = query.split(' ');
@@ -89,25 +89,26 @@ function tags(client, evt, suffix) {
            return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
         }
         if (body) {
-          console.log('body: ' + body);
-          console.log('bodylength: ' + body.length);
+          //console.log('Body Before BL: ' + body);
+          //console.log('BodyLength Before BL: ' + body.length);
           let i;
-          for (i = body.length - 1; i >= 0; i--) {
-            // Apply blacklisting
-            if (value) {
+          // Apply blacklisting strictness
+          if (value && removeValue === 'true') {
+            for (i = body.length - 1; i >= 0; i--) {
               let tags = body[i].tags.split(' ');
-              if (findOne(blacklist, tags) || body[i].tags.includes('cub') || body[i].tags.includes('shota') || body[i].tags.includes('loli')) {
-                if (removeValue === 'true') {
+              if (findOne(blacklist, tags)) {
                   body.splice(i,1);
-                }
               }
             }
+            //console.log('Body After Custom BL: ' + body);
+            //console.log('BodyLength After Custom BL: ' + body.length);
           }
         }
-        console.log('body2: ' + body);
-        console.log('bodylength2: ' + body.length);
         if (count > body.length) {
           count = body.length;
+        }
+        if (!body || typeof body[0] === 'undefined' || typeof body === 'undefined' || body.length === 0) {
+           return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
         }
         return Promise.resolve(R.repeat('tags', count))
         .map(() => {
@@ -147,13 +148,10 @@ function tags(client, evt, suffix) {
             url: 'https://e926.net/post/show/' + id,
             description: imageDescription,
             image: { url: file },
-            footer: { icon_url: 'http://i.imgur.com/RrHrSOi.png', text: 'e926' }
+            footer: { icon_url: 'http://i.imgur.com/RrHrSOi.png', text: 'e926 · ' + currentPosition + '/' + count }
           };
 
           body.splice(randomid,1);
-
-          console.log('body3: ' + body);
-          console.log('bodylength3: ' + body.length);
 
           return evt.message.channel.sendMessage('', false, embed);
         });

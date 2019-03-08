@@ -55,8 +55,8 @@ function tags(client, evt, suffix) {
       }
       let query;
       let lastTag = array[array.length - 1];
-      console.log('lastTag: ' + lastTag);
-      console.log('lastTag isNum: ' + isNumeric(lastTag));
+      //console.log('lastTag: ' + lastTag);
+      //console.log('lastTag isNum: ' + isNumeric(lastTag));
       let count = 1;
       if (suffix && isNumeric(lastTag)) {
         count = lastTag;
@@ -69,16 +69,16 @@ function tags(client, evt, suffix) {
         query = suffix.toLowerCase().replace('tags ', '');
       }
 
-      console.log('query: ' + query);
+      //console.log('query: ' + query);
 
       if (query === '') return Promise.resolve(`\u26A0  |  No tags were supplied`);
       let checkLength = query.split(' ');
       if (checkLength.length > 5) return Promise.resolve(`\u26A0  |  You can only search up to 5 tags`);
-      console.log('checkLength: ' + checkLength);
+      //console.log('checkLength: ' + checkLength);
       const options = {
         url: `https://e621.net/post/index.json?tags=${query} order:random`,
         qs: {
-          limit: 20
+          limit: 200
         }
       };
 
@@ -92,25 +92,33 @@ function tags(client, evt, suffix) {
            return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
         }
         if (body) {
-          console.log('body: ' + body);
-          console.log('bodylength: ' + body.length);
+          //console.log('Body Before BL: ' + body);
+          //console.log('BodyLength Before BL: ' + body.length);
           let i;
           for (i = body.length - 1; i >= 0; i--) {
-            // Apply blacklisting
-            if (value) {
-              let tags = body[i].tags.split(' ');
-              if (findOne(blacklist, tags) || body[i].tags.includes('cub') || body[i].tags.includes('shota') || body[i].tags.includes('loli')) {
-                if (removeValue === 'true') {
-                  body.splice(i,1);
-                }
-              }
+            if (body[i].tags.includes('cub') || body[i].tags.includes('shota') || body[i].tags.includes('loli') || body[i].tags.includes('young')) {
+                body.splice(i,1);
             }
           }
+          //console.log('Body After Default BL: ' + body);
+          //console.log('BodyLength After Default BL: ' + body.length);
+          // Apply blacklisting strictness
+          if (value && removeValue === 'true') {
+            for (i = body.length - 1; i >= 0; i--) {
+              let tags = body[i].tags.split(' ');
+              if (findOne(blacklist, tags)) {
+                  body.splice(i,1);
+              }
+            }
+            //console.log('Body After Custom BL: ' + body);
+            //console.log('BodyLength After Custom BL: ' + body.length);
+          }
         }
-        console.log('body2: ' + body);
-        console.log('bodylength2: ' + body.length);
         if (count > body.length) {
           count = body.length;
+        }
+        if (!body || typeof body[0] === 'undefined' || typeof body === 'undefined' || body.length === 0) {
+           return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
         }
         return Promise.resolve(R.repeat('tags', count))
         .map(() => {
@@ -120,8 +128,8 @@ function tags(client, evt, suffix) {
           currentPosition++;
           // Grab the data
           let id = body[randomid].id;
-          //let file = body[randomid].file_url;
-          let file = null;
+          let file = body[randomid].file_url;
+          //let file = null;
           let height = body[randomid].height;
           let width = body[randomid].width;
           let score = body[randomid].score;
@@ -151,13 +159,10 @@ function tags(client, evt, suffix) {
             url: 'https://e621.net/post/show/' + id,
             description: imageDescription,
             image: { url: file },
-            footer: { icon_url: 'http://i.imgur.com/RrHrSOi.png', text: 'e621' }
+            footer: { icon_url: 'http://i.imgur.com/RrHrSOi.png', text: 'e621 · ' + currentPosition + '/' + count }
           };
 
           body.splice(randomid,1);
-
-          console.log('body3: ' + body);
-          console.log('bodylength3: ' + body.length);
 
           return evt.message.channel.sendMessage('', false, embed);
         });
