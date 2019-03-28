@@ -7,7 +7,7 @@ function word(client, evt) {
   let regionalArray = [];
 
   dissect.map(character => {
-    let regionalCharacter = ':regional_indicator_' + character + ':';
+    let regionalCharacter = ':regional_indicator_' + character + ':\u200b';
     regionalArray.push(regionalCharacter);
   })
 

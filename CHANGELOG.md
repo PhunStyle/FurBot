@@ -1,3 +1,21 @@
+<a name="4.4.6" />
+
+# 4.4.6 (March 28th, 2019)
+
+### Features
+- [NEW] You can now change FurBot's prefix with the `prefix` command, only users with
+`MANAGE SERVER` permissions can use this command. You can only have a single or double
+character prefix. Only certain characters are allowed.
+
+### Bug Fixes
+- [FIX] Searching for example `cubone` on the lewd commands no longer triggers the blacklist.
+- [FIX] You can now use `previous`, image links and attachments on the `pride` image command.
+- [FIX] The `word` command now doesn't turn multiple regional_indicator emoji into a Flag.
+
+### Notes
+- [NEW] FurBot now scrolls through several Playing statuses displaying some random texts or commands.
+
+
 <a name="4.4.5" />
 
 # 4.4.5 (March 8th, 2019)

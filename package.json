@@ -1,6 +1,6 @@
 {
   "name": "furbot",
-  "version": "4.4.5",
+  "version": "4.4.6",
   "description": "A furry bot for Discord",
   "main": "index.js",
   "dependencies": {
@@ -10,7 +10,7 @@
     "babel-polyfill": "^6.23.0",
     "babel-preset-es2015-node4": "^2.0.2",
     "babel-preset-stage-1": "^6.3.13",
-    "bluebird": "^3.1.1",
+    "bluebird": "^3.5.3",
     "body-parser": "^1.14.2",
     "bunyan": "^1.8.1",
     "chalk": "^1.1.3",
@@ -93,6 +93,7 @@
     "dev": "NODE_ENV=development DEBUG=express:*,horseman nodemon -i **/*.marko.js -e js,marko ./index.js",
     "dev-nodebug": "NODE_ENV=development nodemon -i **/*.marko.js -e js,marko ./index.js",
     "dev-sharding": "babel-node ./scripts/sharding/dev.js",
+    "mvdb": "babel-node ./scripts/sharding/mvdb.js",
     "docker": "npm run test && docker build --rm -t gravebot/gravebot:latest . && docker push gravebot/gravebot:latest",
     "forever": "forever --minUptime 5000 index.js",
     "image": "docker build --rm -t gravebot/gravebot:latest .",

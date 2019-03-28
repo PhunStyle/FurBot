@@ -2,10 +2,14 @@ import Promise from 'bluebird';
 import request from 'request';
 import path from 'path';
 import T from '../../translate';
+
+import { getImageLink } from '../../helpers';
 var gm = require('gm').subClass({imageMagick: true});
 
 
 function pride(client, evt, suffix, lang) {
+  let data = getImageLink(client, evt, suffix, true);
+
   let flagSuffix = suffix.split(' ')[0];
   let flagArray = ['ace', 'bisexual', 'genderfluid', 'genderqueer', 'lesbian', 'nonbinary', 'pansexual', 'rainbow', 'transgender'];
   let validSuffix = (flagArray.indexOf(flagSuffix) > -1);
@@ -18,7 +22,9 @@ function pride(client, evt, suffix, lang) {
     return Promise.resolve(`${T('pride_usage', lang)}`);
   }
 
-  let imageLink = evt.message.author.getAvatarURL({format: 'png', size: 512, preferAnimated: false});
+  let image = data[1];
+
+  //let imageLink = evt.message.author.getAvatarURL({format: 'png', size: 512, preferAnimated: false});
 
   let prideFlag = flagSuffix;
 
@@ -32,7 +38,7 @@ function pride(client, evt, suffix, lang) {
 
   if (!doOverlay && !doBackground) {
     return new Promise((resolve, reject) => {
-      gm(request(imageLink))
+      gm(request(image))
       .resize('236', '236')
       // .crop(236, 236, 0, 0)
       .write(output, (err, buf) => {
@@ -68,7 +74,7 @@ function pride(client, evt, suffix, lang) {
 
   if (doOverlay) {
     return new Promise((resolve, reject) => {
-      gm(request(imageLink))
+      gm(request(image))
       .resize('256', '256')
       // .crop(236, 236, 0, 0)
       .write(output, (err, buf) => {
@@ -103,7 +109,7 @@ function pride(client, evt, suffix, lang) {
 
   if (doBackground) {
     return new Promise((resolve, reject) => {
-      gm(request(imageLink))
+      gm(request(image))
       .resize('256', '256')
       // .crop(236, 236, 0, 0)
       .write(output, (err, buf) => {
