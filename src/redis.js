@@ -120,7 +120,7 @@ export function delBlackListChannel(channel_id) {
 
 export function getGuildPrefix(guild_id) {
   return guildClient.hgetAsync(`guild_${guild_id}`, 'prefix')
-    .then(prefix => prefix || 'f.')
+    .then(prefix => prefix || nconf.get('PREFIX'))
     .timeout(2000)
     .catch(err => {
       sentry(err, 'getGuildPrefix');

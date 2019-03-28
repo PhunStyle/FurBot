@@ -102,6 +102,7 @@ function onMessage(evt) {
   if (!evt.message) return;
   if (client.User.id === evt.message.author.id) return;
   if (evt.message.author.bot) return;
+  if (!evt.message.author.id === nconf.get('OWNER_ID')) return;
 
   if (!evt.message.channel.isPrivate) {
     getGuildPrefix(evt.message.guild.id).then(guildPrefix => {
@@ -189,12 +190,11 @@ function forceSetGame() {
       '@FurBot help',
       '@FurBot info',
       '@FurBot version',
-      'with beans',
+      'with Beans',
       'with Esix',
-      'with Node.JS',
-      'with furries',
-      'with tails',
-      'with paws'
+      'with Furries',
+      'with Tails',
+      'with Paws'
     ];
     let randomGame = Math.floor(Math.random() * gameArray.length);
     client.User.setGame(gameArray[randomGame]);
