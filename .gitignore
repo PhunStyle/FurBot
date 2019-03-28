@@ -51,3 +51,6 @@ rethinkdb_data
 # Do not upload PM2 Config
 sharding.json
 sharding_test.json
+
+# Do not upload this script
+scripts/sharding/mvdb.js
