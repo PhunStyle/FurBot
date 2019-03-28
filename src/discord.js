@@ -107,7 +107,7 @@ function onMessage(evt) {
   if (!evt.message.channel.isPrivate) {
     getGuildPrefix(evt.message.guild.id).then(guildPrefix => {
       // Checks for PREFIX
-      if (evt.message.content.toLowerCase().startsWith(guildPrefix)) {
+      if (evt.message.content.startsWith(guildPrefix)) {
         const command = evt.message.content.toLowerCase().split(' ')[0].substring(guildPrefix.length);
         const suffix = evt.message.content.substring(command.length + guildPrefix.length + 1);
         const cmd = commands[command];
@@ -198,7 +198,7 @@ function forceSetGame() {
     ];
     let randomGame = Math.floor(Math.random() * gameArray.length);
     client.User.setGame(gameArray[randomGame]);
-  }, 60000)
+  }, 1200000)
 }
 
 
