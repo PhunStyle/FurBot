@@ -111,7 +111,8 @@ function tags(client, evt, suffix) {
             //console.log('BodyLength Before BL: ' + body.search.length);
             let i;
             for (i = body.search.length - 1; i >= 0; i--) {
-              if (body.search[i].tags.includes('cub') || body.search[i].tags.includes('shota') || body.search[i].tags.includes('loli') || body.search[i].tags.includes('foalcon')) {
+              let tagsArray = body.search[i].tags.split(' ');
+              if (tagsArray.includes('cub') || tagsArray.includes('shota') || tagsArray.includes('loli') || tagsArray.includes('foalcon')) {
                   body.search.splice(i,1);
               }
             }

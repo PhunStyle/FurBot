@@ -12,6 +12,7 @@ import { init as initPhantom } from './phantom';
 
 import { startPortalTimeouts, startPortalIntervals } from './portals';
 import {
+  getGuildPrefix,
   getMessageTTL,
   setMessageTTL,
   getUserLang,
@@ -102,14 +103,30 @@ function onMessage(evt) {
   if (client.User.id === evt.message.author.id) return;
   if (evt.message.author.bot) return;
 
-  // Checks for PREFIX
-  if (evt.message.content.toLowerCase().startsWith(bot_prefix)) {
-    const command = evt.message.content.toLowerCase().split(' ')[0].substring(bot_prefix.length);
-    const suffix = evt.message.content.substring(command.length + bot_prefix.length + 1);
-    const cmd = commands[command];
+  if (!evt.message.channel.isPrivate) {
+    getGuildPrefix(evt.message.guild.id).then(guildPrefix => {
+      // Checks for PREFIX
+      if (evt.message.content.toLowerCase().startsWith(guildPrefix)) {
+        const command = evt.message.content.toLowerCase().split(' ')[0].substring(guildPrefix.length);
+        const suffix = evt.message.content.substring(command.length + guildPrefix.length + 1);
+        const cmd = commands[command];
 
-    if (cmd) callCmd(cmd, command, client, evt, suffix);
-    return;
+        if (cmd) callCmd(cmd, command, client, evt, suffix);
+        return;
+      }
+    });
+  }
+
+  if (evt.message.channel.isPrivate) {
+    // Checks for PREFIX
+    if (evt.message.content.toLowerCase().startsWith(bot_prefix)) {
+      const command = evt.message.content.toLowerCase().split(' ')[0].substring(bot_prefix.length);
+      const suffix = evt.message.content.substring(command.length + bot_prefix.length + 1);
+      const cmd = commands[command];
+
+      if (cmd) callCmd(cmd, command, client, evt, suffix);
+      return;
+    }
   }
 
   // Checks if bot was mentioned
@@ -166,9 +183,24 @@ function connect() {
 }
 
 function forceSetGame() {
-  logger.info('Setting Game');
-  client.User.setGame(`${bot_prefix}help | ${bot_prefix}info`);
+  setInterval(() => {
+    logger.info('Changing Game');
+    let gameArray = [
+      '@FurBot help',
+      '@FurBot info',
+      '@FurBot version',
+      'with beans',
+      'with Esix',
+      'with Node.JS',
+      'with furries',
+      'with tails',
+      'with paws'
+    ];
+    let randomGame = Math.floor(Math.random() * gameArray.length);
+    client.User.setGame(gameArray[randomGame]);
+  }, 60000)
 }
+
 
 function forceFetchUsers() {
   logger.info('Force fetching users');

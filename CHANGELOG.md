@@ -1,3 +1,12 @@
+<a name="4.4.6" />
+
+# 4.4.6 (March 28th, 2019)
+
+### Bug Fixes
+- [FIX] Searching for example `cubone` on the lewd commands no longer triggers the blacklist.
+- [FIX] You can now use `previous`, image links and attachments on the `pride` image command.
+
+
 <a name="4.4.5" />
 
 # 4.4.5 (March 8th, 2019)

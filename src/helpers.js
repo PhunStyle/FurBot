@@ -77,7 +77,7 @@ export function getKeys(obj, val) {
   return objects;
 }
 
-export function getImageLink(client, evt, suffix) {
+export function getImageLink(client, evt, suffix, pride) {
   let channel = evt.message.channel;
   let suffixSplit = [];
   if (suffix) suffixSplit = suffix.split(' ');
@@ -85,11 +85,17 @@ export function getImageLink(client, evt, suffix) {
   let imageLink;
   let doPrevious = false;
 
-  if (suffixSplit[0] === 'previous' || suffixSplit[1] === 'previous') doPrevious = true;
+  if (suffixSplit.includes('previous')) doPrevious = true;
 
   if (suffixSplit.length === 2 && !doPrevious) {
     if (isNaN(suffixSplit[0])) suffixSplit[0] = 1;
     imageLink = suffixSplit[1];
+  }
+
+  if (pride) {
+    if (suffixSplit.length === 3 && !doPrevious) {
+      suffixSplit[1] = suffixSplit[2];
+    }
   }
 
   if (doPrevious) {
@@ -115,7 +121,6 @@ export function getImageLink(client, evt, suffix) {
   }
 
   if (suffixSplit.length === 1 && evt.message.attachments.length === 0 && !doPrevious) {
-    console.log(evt.message);
     if (isNaN(suffixSplit[0])) {
       suffixSplit[1] = suffixSplit[0];
       suffixSplit[0] = 1;
@@ -125,7 +130,7 @@ export function getImageLink(client, evt, suffix) {
     imageLink = suffixSplit[1];
   }
 
-  if (suffixSplit.length < 2 && evt.message.attachments.length && !doPrevious) {
+  if (suffixSplit.length < 3 && evt.message.attachments.length && !doPrevious) {
     if (evt.message.attachments[0].url) {
       if (isNaN(suffixSplit[0])) {
         suffixSplit[0] = 1;

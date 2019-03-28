@@ -13,8 +13,14 @@ Promise.promisifyAll(redis.Multi.prototype);
 
 const client_url = nconf.get('REDIS_URL') || nconf.get('REDISCLOUD_URL') || 'redis://127.0.0.1:6379';
 const client = redis.createClient({url: client_url});
-export default client;
 
+export const channelClient = client.duplicate();
+export const guildClient = client.duplicate();
+
+channelClient.selectAsync(1);
+guildClient.selectAsync(2);
+
+export default client;
 
 function createLoggers(redisClient, type) {
   redisClient.on('connect', () => logger.info(`Redis ${type} connected`));
@@ -25,7 +31,8 @@ function createLoggers(redisClient, type) {
 }
 
 createLoggers(client, 'default');
-
+createLoggers(guildClient, 'guild');
+createLoggers(channelClient, 'channel');
 
 export function createDuplicateClient(name) {
   const pubsubClient = client.duplicate();
@@ -41,7 +48,7 @@ subscriber.on('message', (channel, message) => ee.emit(channel, message));
 
 // Verifies all redis clients are connected then returns.
 export function waitForConnections() {
-  return Promise.map([client, publisher, subscriber], instance => {
+  return Promise.map([client, channelClient, guildClient, publisher, subscriber], instance => {
     if (instance.connected) return;
     return new Promise(resolve => instance.on('ready', resolve));
   });
@@ -68,7 +75,7 @@ export function setUserLang(user_id, lang) {
 }
 
 export function setBlackListRemove(channel_id, value) {
-  return client.hsetAsync(`channel_${channel_id}`, 'blacklist_strict', value)
+  return channelClient.hsetAsync(`channel_${channel_id}`, 'blacklist_strict', value)
     .timeout(2000)
     .catch(err => {
       sentry(err, 'setBlackListHide');
@@ -76,7 +83,7 @@ export function setBlackListRemove(channel_id, value) {
 }
 
 export function getBlackListRemove(channel_id) {
-  return client.hgetAsync(`channel_${channel_id}`, 'blacklist_strict')
+  return channelClient.hgetAsync(`channel_${channel_id}`, 'blacklist_strict')
     .then(value => value || 'false')
     .timeout(2000)
     .catch(err => {
@@ -86,7 +93,7 @@ export function getBlackListRemove(channel_id) {
 }
 
 export function setBlackListChannel(channel_id, blacklist) {
-  return client.hsetAsync(`channel_${channel_id}`, 'blacklist', blacklist)
+  return channelClient.hsetAsync(`channel_${channel_id}`, 'blacklist', blacklist)
     .timeout(2000)
     .catch(err => {
       sentry(err, 'setBlackListChannel');
@@ -94,12 +101,38 @@ export function setBlackListChannel(channel_id, blacklist) {
 }
 
 export function getBlackListChannel(channel_id) {
-  return client.hgetAsync(`channel_${channel_id}`, 'blacklist')
+  return channelClient.hgetAsync(`channel_${channel_id}`, 'blacklist')
     .then(blacklist => blacklist || null)
     .timeout(2000)
     .catch(err => {
       sentry(err, 'getBlackListChannel');
       return;
+    });
+}
+
+export function delBlackListChannel(channel_id) {
+  return channelClient.hdelAsync(`channel_${channel_id}`, 'blacklist')
+    .timeout(2000)
+    .catch(err => {
+      sentry(err, 'delBlackListChannel');
+    });
+}
+
+export function getGuildPrefix(guild_id) {
+  return guildClient.hgetAsync(`guild_${guild_id}`, 'prefix')
+    .then(prefix => prefix || 'f.')
+    .timeout(2000)
+    .catch(err => {
+      sentry(err, 'getGuildPrefix');
+      return;
+    });
+}
+
+export function setGuildPrefix(guild_id, prefix) {
+  return guildClient.hsetAsync(`guild_${guild_id}`, 'prefix', prefix)
+    .timeout(2000)
+    .catch(err => {
+      sentry(err, 'setGuildPrefix');
     });
 }
 
@@ -133,14 +166,6 @@ export function getUserAction(user_id) {
     .timeout(2000)
     .catch(err => {
       sentry(err, 'setUserAction');
-    });
-}
-
-export function delBlackListChannel(channel_id) {
-  return client.hdelAsync(`channel_${channel_id}`, 'blacklist')
-    .timeout(2000)
-    .catch(err => {
-      sentry(err, 'delBlackListChannel');
     });
 }
 
