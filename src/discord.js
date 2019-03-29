@@ -198,7 +198,7 @@ function forceSetGame() {
     ];
     let randomGame = Math.floor(Math.random() * gameArray.length);
     client.User.setGame(gameArray[randomGame]);
-  }, 1200000)
+  }, 120000)
 }
 
 
