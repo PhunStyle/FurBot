@@ -102,12 +102,12 @@ function onMessage(evt) {
   if (!evt.message) return;
   if (client.User.id === evt.message.author.id) return;
   if (evt.message.author.bot) return;
-  if (!evt.message.author.id === nconf.get('OWNER_ID')) return;
 
   if (!evt.message.channel.isPrivate) {
     getGuildPrefix(evt.message.guild.id).then(guildPrefix => {
+      guildPrefix = guildPrefix.toLowerCase();
       // Checks for PREFIX
-      if (evt.message.content.toLowerCase().startsWith(guildPrefix)) {
+      if (evt.message.content.startsWith(guildPrefix)) {
         const command = evt.message.content.toLowerCase().split(' ')[0].substring(guildPrefix.length);
         const suffix = evt.message.content.substring(command.length + guildPrefix.length + 1);
         const cmd = commands[command];
@@ -185,20 +185,19 @@ function connect() {
 
 function forceSetGame() {
   setInterval(() => {
-    logger.info('Changing Game');
     let gameArray = [
-      '@FurBot help',
-      '@FurBot info',
-      '@FurBot version',
-      'with Beans',
+      'f.help | f.info',
+      'f.changelog',
+      'f.actioninfo',
+      'f.pride',
+      'with pawbeans',
       'with Esix',
-      'with Furries',
-      'with Tails',
-      'with Paws'
+      'with furries',
+      'with tails'
     ];
     let randomGame = Math.floor(Math.random() * gameArray.length);
     client.User.setGame(gameArray[randomGame]);
-  }, 60000)
+  }, 120000)
 }
 
 
