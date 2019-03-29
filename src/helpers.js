@@ -98,6 +98,13 @@ export function getImageLink(client, evt, suffix, pride) {
     }
   }
 
+  if (pride) {
+    let hasLink = suffix.includes('http');
+    if (!hasLink) {
+      suffixSplit[1] = evt.message.author.getAvatarURL({format: 'png', size: 512, preferAnimated: false});
+    }
+  }
+
   if (doPrevious) {
     let messageArray = channel.messages.filter(msg => !msg.deleted).reverse();
     let slicedArray = messageArray.slice(0, 5);
