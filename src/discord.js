@@ -107,7 +107,7 @@ function onMessage(evt) {
     getGuildPrefix(evt.message.guild.id).then(guildPrefix => {
       guildPrefix = guildPrefix.toLowerCase();
       // Checks for PREFIX
-      if (evt.message.content.startsWith(guildPrefix)) {
+      if (evt.message.content.toLowerCase().startsWith(guildPrefix)) {
         const command = evt.message.content.toLowerCase().split(' ')[0].substring(guildPrefix.length);
         const suffix = evt.message.content.substring(command.length + guildPrefix.length + 1);
         const cmd = commands[command];
