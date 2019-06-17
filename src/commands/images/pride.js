@@ -21,11 +21,15 @@ function pride(client, evt, suffix, lang) {
 
   let flagArray = ['ace', 'bear', 'bisexual', 'genderfluid', 'genderqueer', 'lesbian', 'nonbinary', 'pansexual', 'rainbow', 'straight', 'straightally', 'transgender'];
   let validSuffix = (flagArray.indexOf(flagSuffix) > -1);
-  let doStraight = suffix.includes('straight');
+  let doStraight;
   let doBorder = suffix.includes('border');
   let doRotate = suffix.includes('rotate');
   let doOverlay = suffix.includes('overlay');
   let doBackground = suffix.includes('background');
+
+  if (flagSuffix === 'straight') {
+    doStraight = true;
+  }
 
   if (!suffix || !validSuffix) {
     return Promise.resolve(`${T('pride_usage', lang)}`);
