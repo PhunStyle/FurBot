@@ -11,8 +11,17 @@ function pride(client, evt, suffix, lang) {
   let data = getImageLink(client, evt, suffix, true);
 
   let flagSuffix = suffix.split(' ')[0];
-  let flagArray = ['ace', 'bisexual', 'genderfluid', 'genderqueer', 'lesbian', 'nonbinary', 'pansexual', 'rainbow', 'transgender'];
+
+  if (flagSuffix === 'gay') flagSuffix = 'rainbow';
+  if (flagSuffix === 'bi') flagSuffix = 'bisexual';
+  if (flagSuffix === 'pan') flagSuffix = 'pansexual';
+  if (flagSuffix === 'trans') flagSuffix = 'transgender';
+  if (flagSuffix === 'enby') flagSuffix = 'nonbinary';
+  if (flagSuffix === 'ally') flagSuffix = 'straightally';
+
+  let flagArray = ['ace', 'bear', 'bisexual', 'genderfluid', 'genderqueer', 'lesbian', 'nonbinary', 'pansexual', 'rainbow', 'straight', 'straightally', 'transgender'];
   let validSuffix = (flagArray.indexOf(flagSuffix) > -1);
+  let doStraight = suffix.includes('straight');
   let doBorder = suffix.includes('border');
   let doRotate = suffix.includes('rotate');
   let doOverlay = suffix.includes('overlay');
@@ -36,7 +45,7 @@ function pride(client, evt, suffix, lang) {
   let gayput = fileDir + '/flags/pride_' + prideFlag + '.png';
   let output = fileDir + '/tmp/pride-' + evt.message.author.id + '.png';
 
-  if (!doOverlay && !doBackground) {
+  if (!doOverlay && !doBackground && !doStraight) {
     return new Promise((resolve, reject) => {
       gm(request(image))
       .resize('236', '236')
@@ -72,7 +81,7 @@ function pride(client, evt, suffix, lang) {
     });
   }
 
-  if (doOverlay) {
+  if (doStraight || doOverlay) {
     return new Promise((resolve, reject) => {
       gm(request(image))
       .resize('256', '256')

@@ -1,3 +1,12 @@
+<a name="4.4.7" />
+
+# 4.4.7 (June 18th, 2019)
+
+### Pride Additions
+- [NEW] Added Straight Ally and Bear Flags, Updated Lesbian Flag.
+- [NEW] Added aliases to some flags: `enby`, `gay`, `trans`, `bi`, `ally` and `pan`.
+
+
 <a name="4.4.6" />
 
 # 4.4.6 (March 28th, 2019)
