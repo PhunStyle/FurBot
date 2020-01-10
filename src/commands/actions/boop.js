@@ -10,6 +10,7 @@ function boop(client, evt) {
   let authorName = cleanName(evt.message.member.name);
 
   let receiverArray = [];
+  let receivers = '';
 
   if (evt.message.mentions.length !== 0) {
     evt.message.mentions.map(user => {
@@ -18,7 +19,14 @@ function boop(client, evt) {
     });
 
     if (receiverArray.length !== 0) {
-      let receivers = receiverArray.join(' and ');
+
+      if (receiverArray.length <= 2) {
+        receivers = receiverArray.join(' and ');
+      }
+
+      if (receiverArray.length >= 3) {
+        receivers = receiverArray.slice(0, -1).join(', ') + ' and ' + receiverArray[receiverArray.length-1];
+      }
 
       const boops = [
         `jumps on ${receivers} and boops them! <:boop:457182422962929676> **boop!**`,

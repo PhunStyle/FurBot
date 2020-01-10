@@ -1,3 +1,11 @@
+<a name="4.4.8" />
+
+# 4.4.8 (January 10th, 2020)
+
+### Bug Fixes
+- [FIX] Action lists now use commas instead of the word 'and' over and over again.
+
+
 <a name="4.4.7" />
 
 # 4.4.7 (June 18th, 2019)
