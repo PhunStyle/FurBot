@@ -10,6 +10,7 @@ function slap(client, evt) {
   let authorName = cleanName(evt.message.member.name);
 
   let receiverArray = [];
+  let receivers = '';
 
   if (evt.message.mentions.length !== 0) {
     evt.message.mentions.map(user => {
@@ -18,7 +19,14 @@ function slap(client, evt) {
     });
 
     if (receiverArray.length !== 0) {
-      let receivers = receiverArray.join(' and ');
+
+      if (receiverArray.length <= 2) {
+        receivers = receiverArray.join(' and ');
+      }
+
+      if (receiverArray.length >= 3) {
+        receivers = receiverArray.slice(0, -1).join(', ') + ' and ' + receiverArray[receiverArray.length-1];
+      }
 
       const slaps = [
         `slaps ${receivers}! <:slap:457184074247700490><:dizzy:457184074336043028>`,
