@@ -21,85 +21,74 @@ function _verifyName(poke) {
   return poke_reg;
 }
 
-function findPoke(client, evt, suffix, lang) {
-  if (!suffix) return Promise.resolve(T('pokemon_usage', lang));
+async function findPoke(client, evt, suffix, lang) {
+  if (!suffix) return T('pokemon_usage', lang);
+  const poke_reg = _verifyName(suffix);
+  const poke_reg_species = poke_reg.includes('-') ? poke_reg.split('-')[0] : poke_reg;
 
-  let poke = suffix;
-  let poke_reg = _verifyName(poke);
-  let poke_reg_species = poke_reg;
-
-  if (poke_reg.includes('-')) {
-    poke_reg_species = poke_reg.split('-')[0];
+  const searchingMessage = await evt.message.channel.sendMessage(`\uD83D\uDD0D Searching for ${poke_reg}...`);
+  let pokemon;
+  let species;
+  try {
+    [pokemon, species] = await Promise.all(P.getPokemonByName(poke_reg), P.getPokemonSpeciesByName(poke_reg_species));
+  } catch (e) {
+    searchingMessage.delete();
+    const embed = { color: 16763981, description: `\u26A0  No results for: \`${suffix}\`` };
+    return evt.message.channel.sendMessage('', false, embed);
   }
+  searchingMessage.delete();
+  const typesArray = pokemon.types.map(types => types.type.name);
+  let flavorText = species.flavor_text_entries[1].flavor_text;
+  const embed = {
+    color: 13384507,
+    author: {
+      name: toTitleCase(pokemon.name),
+      icon_url: 'http://i.imgur.com/M96kSgo.png' // eslint-disable-line camelcase
+    },
+    url: 'http://bulbapedia.bulbagarden.net/wiki/' + pokemon.name, // The url for the title.
+    description: flavorText.replace(/\n|\r/g, ' '),
+    fields: [
+      { name: 'Pokedex ID:',
+        value: pokemon.id,
+        inline: true },
+      { name: 'Weight:',
+        value: `${pokemon.weight / 10} kg`,
+        inline: true },
+      { name: 'Height:',
+        value: `${pokemon.height / 10} m`,
+        inline: true },
+      { name: 'Color:',
+        value: toTitleCase(species.color.name),
+        inline: true },
+      { name: 'Shape:',
+        value: toTitleCase(species.shape.name),
+        inline: true },
+      { name: 'Type:',
+        value: `${toTitleCase(typesArray.join(' | '))}`,
+        inline: true },
+      { name: 'Speed:',
+        value: pokemon.stats[0].base_stat,
+        inline: true },
+      { name: 'SP-Defense:',
+        value: pokemon.stats[1].base_stat,
+        inline: true },
+      { name: 'SP-Attack:',
+        value: pokemon.stats[2].base_stat,
+        inline: true },
+      { name: 'Defense:',
+        value: pokemon.stats[3].base_stat,
+        inline: true },
+      { name: 'Attack:',
+        value: pokemon.stats[4].base_stat,
+        inline: true },
+      { name: 'Health:',
+        value: pokemon.stats[5].base_stat,
+        inline: true }
+    ],
+    image: { url: 'http://www.pokestadium.com/sprites/xy/' + pokemon.name + '.gif' }
+  };
 
-  var PokePromises = [P.getPokemonByName(poke_reg), P.getPokemonSpeciesByName(poke_reg_species)];
-  evt.message.channel.sendMessage(`\uD83D\uDD0D Searching for ${poke_reg}...`)
-  .then(message => {
-    setTimeout(function() {
-      message.delete();
-    }, 5000);
-    return Promise.all(PokePromises);
-  })
-  .then(function(data) {
-    let typesArray = [];
-    data[0].types.forEach(types => { typesArray.push(types.type.name); });
-    let flavorText = data[1].flavor_text_entries[1].flavor_text;
-    let embed = {
-      color: 13384507,
-      author: {
-        name: toTitleCase(data[0].name),
-        icon_url: 'http://i.imgur.com/M96kSgo.png' // eslint-disable-line camelcase
-      },
-      url: 'http://bulbapedia.bulbagarden.net/wiki/' + data[0].name, // The url for the title.
-      description: flavorText.replace(/\n|\r/g, ' '),
-      fields: [
-        { name: 'Pokedex ID:',
-          value: data[0].id,
-          inline: true },
-        { name: 'Weight:',
-          value: `${data[0].weight / 10} kg`,
-          inline: true },
-        { name: 'Height:',
-          value: `${data[0].height / 10} m`,
-          inline: true },
-        { name: 'Color:',
-          value: toTitleCase(data[1].color.name),
-          inline: true },
-        { name: 'Shape:',
-          value: toTitleCase(data[1].shape.name),
-          inline: true },
-        { name: 'Type:',
-          value: `${toTitleCase(typesArray.join(' | '))}`,
-          inline: true },
-        { name: 'Speed:',
-          value: data[0].stats[0].base_stat,
-          inline: true },
-        { name: 'SP-Defense:',
-          value: data[0].stats[1].base_stat,
-          inline: true },
-        { name: 'SP-Attack:',
-          value: data[0].stats[2].base_stat,
-          inline: true },
-        { name: 'Defense:',
-          value: data[0].stats[3].base_stat,
-          inline: true },
-        { name: 'Attack:',
-          value: data[0].stats[4].base_stat,
-          inline: true },
-        { name: 'Health:',
-          value: data[0].stats[5].base_stat,
-          inline: true }
-      ],
-      image: { url: 'http://www.pokestadium.com/sprites/xy/' + data[0].name + '.gif' }
-    };
-    return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
-  })
-  .catch(function(err) {
-    if (err) {
-      let embed = { color: 16763981, description: `\u26A0  No results for: \`${suffix}\`` };
-      return Promise.resolve(evt.message.channel.sendMessage('', false, embed));
-    }
-  });
+  return evt.message.channel.sendMessage('', false, embed);
 }
 
 export default {
