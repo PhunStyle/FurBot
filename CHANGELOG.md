@@ -1,3 +1,11 @@
+<a name="4.4.9" />
+
+# 4.4.9 (March 6th, 2020)
+
+### Bug Fixes
+- [FIX] Updated the e621/e926 api endpoints.
+
+
 <a name="4.4.8" />
 
 # 4.4.8 (January 10th, 2020)

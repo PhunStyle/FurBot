@@ -41,6 +41,9 @@ function isNumeric(num){
 
 function tags(client, evt, suffix) {
   return getBlackListRemove(evt.message.channel_id).then(removeValue => {
+    let channelTest = evt.message.channel.nsfw;
+    if (evt.message.channel.isPrivate) channelTest = true;
+    if (channelTest === false) return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  Please use this command in a NSFW-enabled channel.\nIf you are an Admin, edit the channel and enable NSFW.`}));
     return getBlackListChannel(evt.message.channel_id).then(value => {
       let array = suffix.split(' ');
       let blacklist;
@@ -70,12 +73,12 @@ function tags(client, evt, suffix) {
 
       if (query === '') return Promise.resolve(`\u26A0  |  No tags were supplied`);
       let checkLength = query.split(' ');
-      if (checkLength.length > 4) return Promise.resolve(`\u26A0  |  You can only search up to 4 tags`);
-      // Sadly e9 treats the safe for work tag as a tag which limits us to 4 tags.
+      if (checkLength.length > 5) return Promise.resolve(`\u26A0  |  You can only search up to 5 tags`);
+      //console.log('checkLength: ' + checkLength);
       const options = {
-        url: `https://e926.net/post/index.json?tags=${query} order:random`,
+        url: `https://e926.net/posts.json?tags=${query} order:random`,
         qs: {
-          limit: 100
+          limit: 200
         }
       };
 
@@ -84,14 +87,24 @@ function tags(client, evt, suffix) {
       let blacklistHits = 0;
 
       return _makeRequest(options)
-      .then(body => {
+      .then(rawBody => {
+        let body = rawBody.posts;
         if (!body || typeof body[0] === 'undefined' || typeof body === 'undefined' || body.length === 0) {
            return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
         }
+
         if (body) {
           //console.log('Body Before BL: ' + body);
           //console.log('BodyLength Before BL: ' + body.length);
           let i;
+          for (i = body.length - 1; i >= 0; i--) {
+            let tagsArray = body[i].tags.general.concat(body[i].tags.species, body[i].tags.character, body[i].tags.copyright, body[i].tags.artist, body[i].tags.invalid, body[i].tags.lore, body[i].tags.meta);
+            if (tagsArray.includes('cub') || tagsArray.includes('shota') || tagsArray.includes('loli') || tagsArray.includes('young')) {
+                body.splice(i,1);
+            }
+          }
+          //console.log('Body After Default BL: ' + body);
+          //console.log('BodyLength After Default BL: ' + body.length);
           // Apply blacklisting strictness
           if (value && removeValue === 'true') {
             for (i = body.length - 1; i >= 0; i--) {
@@ -118,11 +131,12 @@ function tags(client, evt, suffix) {
           currentPosition++;
           // Grab the data
           let id = body[randomid].id;
-          let file = body[randomid].file_url;
-          let height = body[randomid].height;
-          let width = body[randomid].width;
-          let score = body[randomid].score;
-          let imageDescription = `**Score:** ${score} | **Resolution: ** ${width} x ${height} | [**Link**](https://e926.net/post/show/${id})`;
+          let file = body[randomid].file.url;
+          //let file = null;
+          let height = body[randomid].file.height;
+          let width = body[randomid].file.width;
+          let score = body[randomid].score.total;
+          let imageDescription = `**Score:** ${score} | **Resolution: ** ${width} x ${height} | [**Link**](https://e926.net/posts/${id})`;
           if (file) {
             if (file.endsWith('webm') || file.endsWith('swf')) {
               imageDescription = `**Score:** ${score} | [**Link**](https://e926.net/post/show/${id})\n*This file (webm/swf) cannot be previewed or embedded.*`;
@@ -135,7 +149,7 @@ function tags(client, evt, suffix) {
             if (findOne(blacklist, tags)) {
               file = null;
               let blacklistMatch = getOne(blacklist, tags);
-              imageDescription = `**BLACKLISTED** - Matched: \`${blacklistMatch}\` | [**Link**](https://e621.net/post/show/${id})`;
+              imageDescription = `**BLACKLISTED** - Matched: \`${blacklistMatch}\` | [**Link**](https://e926.net/posts/${id})`;
             }
           }
 
@@ -145,7 +159,7 @@ function tags(client, evt, suffix) {
               name: query,
               icon_url: evt.message.author.avatarURL
             },
-            url: 'https://e926.net/post/show/' + id,
+            url: 'https://e926.net/posts/' + id,
             description: imageDescription,
             image: { url: file },
             footer: { icon_url: 'http://i.imgur.com/RrHrSOi.png', text: 'e926 · ' + currentPosition + '/' + count }
