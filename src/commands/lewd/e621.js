@@ -108,7 +108,7 @@ function tags(client, evt, suffix) {
           // Apply blacklisting strictness
           if (value && removeValue === 'true') {
             for (i = body.length - 1; i >= 0; i--) {
-              let tags = body[i].tags.split(' ');
+              let tags = body[i].tags.general.concat(body[i].tags.species, body[i].tags.character, body[i].tags.copyright, body[i].tags.artist, body[i].tags.invalid, body[i].tags.lore, body[i].tags.meta);
               if (findOne(blacklist, tags)) {
                   body.splice(i,1);
               }
@@ -145,7 +145,7 @@ function tags(client, evt, suffix) {
 
           // Apply blacklisting
           if (value) {
-            let tags = body[randomid].tags.split(' ');
+            let tags = body[randomid].tags.general.concat(body[randomid].tags.species, body[randomid].tags.character, body[randomid].tags.copyright, body[randomid].tags.artist, body[randomid].tags.invalid, body[randomid].tags.lore, body[randomid].tags.meta);
             if (findOne(blacklist, tags)) {
               file = null;
               let blacklistMatch = getOne(blacklist, tags);

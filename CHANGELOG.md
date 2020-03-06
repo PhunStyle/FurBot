@@ -1,3 +1,10 @@
+# 4.4.9b (March 6th, 2020)
+
+### Bug Fixes
+- [FIX] Updated the e621/e926 api endpoints.
+- [FIX] Updated the e926 command to filter out NSFW results and is once again able to be used in NON-NSFW channels.
+
+
 <a name="4.4.9" />
 
 # 4.4.9 (March 6th, 2020)

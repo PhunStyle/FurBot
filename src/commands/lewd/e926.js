@@ -41,9 +41,6 @@ function isNumeric(num){
 
 function tags(client, evt, suffix) {
   return getBlackListRemove(evt.message.channel_id).then(removeValue => {
-    let channelTest = evt.message.channel.nsfw;
-    if (evt.message.channel.isPrivate) channelTest = true;
-    if (channelTest === false) return Promise.resolve(evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  Please use this command in a NSFW-enabled channel.\nIf you are an Admin, edit the channel and enable NSFW.`}));
     return getBlackListChannel(evt.message.channel_id).then(value => {
       let array = suffix.split(' ');
       let blacklist;
@@ -73,12 +70,12 @@ function tags(client, evt, suffix) {
 
       if (query === '') return Promise.resolve(`\u26A0  |  No tags were supplied`);
       let checkLength = query.split(' ');
-      if (checkLength.length > 5) return Promise.resolve(`\u26A0  |  You can only search up to 5 tags`);
+      if (checkLength.length > 4) return Promise.resolve(`\u26A0  |  You can only search up to 4 tags`);
       //console.log('checkLength: ' + checkLength);
       const options = {
         url: `https://e926.net/posts.json?tags=${query} order:random`,
         qs: {
-          limit: 200
+          limit: 1
         }
       };
 
@@ -102,13 +99,16 @@ function tags(client, evt, suffix) {
             if (tagsArray.includes('cub') || tagsArray.includes('shota') || tagsArray.includes('loli') || tagsArray.includes('young')) {
                 body.splice(i,1);
             }
+            if (body[i].file.url = 'null') {
+                body.splice(i,1);
+            }
           }
           //console.log('Body After Default BL: ' + body);
           //console.log('BodyLength After Default BL: ' + body.length);
           // Apply blacklisting strictness
           if (value && removeValue === 'true') {
             for (i = body.length - 1; i >= 0; i--) {
-              let tags = body[i].tags.split(' ');
+              let tags = body[i].tags.general.concat(body[i].tags.species, body[i].tags.character, body[i].tags.copyright, body[i].tags.artist, body[i].tags.invalid, body[i].tags.lore, body[i].tags.meta);
               if (findOne(blacklist, tags)) {
                   body.splice(i,1);
               }
@@ -145,7 +145,7 @@ function tags(client, evt, suffix) {
 
           // Apply blacklisting
           if (value) {
-            let tags = body[randomid].tags.split(' ');
+            let tags = body[randomid].tags.general.concat(body[randomid].tags.species, body[randomid].tags.character, body[randomid].tags.copyright, body[randomid].tags.artist, body[randomid].tags.invalid, body[randomid].tags.lore, body[randomid].tags.meta);
             if (findOne(blacklist, tags)) {
               file = null;
               let blacklistMatch = getOne(blacklist, tags);
