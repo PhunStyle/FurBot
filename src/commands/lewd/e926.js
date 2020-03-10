@@ -99,7 +99,7 @@ function tags(client, evt, suffix) {
             if (tagsArray.includes('cub') || tagsArray.includes('shota') || tagsArray.includes('loli') || tagsArray.includes('young')) {
                 body.splice(i,1);
             }
-            if (body[i].file.url = 'null') {
+            if (body[i].file.url == null) {
                 body.splice(i,1);
             }
           }
