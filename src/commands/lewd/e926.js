@@ -75,7 +75,7 @@ function tags(client, evt, suffix) {
       const options = {
         url: `https://e926.net/posts.json?tags=${query} order:random`,
         qs: {
-          limit: 1
+          limit: 125
         }
       };
 
