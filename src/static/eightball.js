@@ -20,5 +20,4 @@ export default [
   'Yes, unless you run out of memes',
   'You are doomed',
   'You can\'t handle the truth',
-  '私はあなたのお母さんを翻訳しました'
 ];

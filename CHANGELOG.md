@@ -1,3 +1,11 @@
+<a  name="4.4.9c" />
+# 4.4.9c (March 15th, 2020)
+
+### Bug Fixes
+- [FIX] Removed some of the emoji command's lines.
+- [FIX] This was fixed earlier, but e926 actually works properly now.
+
+<a  name="4.4.9b" />
 # 4.4.9b (March 6th, 2020)
 
 ### Bug Fixes
