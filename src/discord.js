@@ -13,6 +13,7 @@ import { init as initPhantom } from './phantom';
 import { startPortalTimeouts, startPortalIntervals } from './portals';
 import {
   getGuildPrefix,
+  getGuildCooldown,
   getMessageTTL,
   setMessageTTL,
   getUserLang,
@@ -58,16 +59,24 @@ function callCmd(cmd, name, client, evt, suffix) {
 
   const user_id = evt.message.author.id;
   const start_time = new Date().getTime();
+
+  let time = nconf.get('MESSAGE_TTL');
+
+  if (!evt.message.channel.isPrivate) {
+    getGuildCooldown(evt.message.guild.id).then(guildCooldown => {
+      time = guildCooldown;
+    });
+  }
+
   getMessageTTL(user_id).then(exists => {
     // If a user is trying to spam messages above the set TTL time, then skip.
     let embed = { color: 15747399, description: `<:redTick:405749796603822080> You must wait \`${exists[1]}\` seconds before using a command again!` };
     if (exists[1] > 0) return evt.message.channel.sendMessage('', false, embed)
     .then(message => { setTimeout(() => { message.delete(); }, 5000); });
 
-    let time = nconf.get('MESSAGE_TTL');
     let highCDList = ['blur', 'charcoal', 'flip', 'flop', 'greyscale', 'invert', 'magik', 'oilpaint', 'pixelate', 'pride', 'rotate'];
     let hasHighCD = (highCDList.indexOf(cmd.name) > -1);
-    if (hasHighCD) time = 30;
+    if (hasHighCD) time = time + 20;
     setMessageTTL(user_id, time);
 
     return getUserLang(user_id).then(lang => {

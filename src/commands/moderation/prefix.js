@@ -2,8 +2,14 @@ import { setGuildPrefix, getGuildPrefix } from '../../redis';
 
 function prefix(client, evt, suffix) {
   if (evt.message.channel.isPrivate) return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139 Use this command in a server!`});
+
+  if (!suffix) {
+    return getGuildPrefix(evt.message.guild.id)
+    .then(guildPrefix => { return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139 Currently \`PREFIX\` is set to: \`${guildPrefix}\``})});
+  }
+
   let userPerms = evt.message.author.permissionsFor(evt.message.guild);
-  if (evt.message.author.can(userPerms.General.MANAGE_GUILD, evt.message.guild)) {
+  if (suffix && evt.message.author.can(userPerms.General.MANAGE_GUILD, evt.message.guild)) {
     let prefixToSet = suffix;
 
     if (prefixToSet.length > 2 || prefixToSet.length < 1) return evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0 Prefix can only be 1 or 2 characters long!`});
@@ -19,6 +25,8 @@ function prefix(client, evt, suffix) {
     return setGuildPrefix(evt.message.guild.id, prefixToSet)
     .then(() => evt.message.channel.sendMessage('', false, {color: 4437377, description: `<:greenTick:405749911037018125> New prefix \`${prefixToSet}\` has been set!`}));
   };
+
+
 
   return evt.message.channel.sendMessage('', false, {color: 16763981, description: `\u26A0  You do not have the "Manage Server" permission.`});
 }

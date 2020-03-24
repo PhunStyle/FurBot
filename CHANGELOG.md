@@ -1,3 +1,18 @@
+<a  name="4.5.0" />
+# 4.5.0 (March 24th, 2020)
+
+### Features
+- [NEW] `cooldown` command to set a specific cooldown time between commands on your server.
+  Currently this ***does*** affect command usage on other servers as well, so the maximum is 120.
+  
+  This was done to have a reasonable maximum so that users in multiple servers that have the bot don't get trolled.
+
+- [NEW] You can now use `cooldown` and `prefix` without anything to see the current cooldown and prefix settings on the server.
+
+### Bug Fixes
+- [FIX] Fixed something from the emoji command again.
+
+
 <a  name="4.4.9c" />
 # 4.4.9c (March 15th, 2020)
 

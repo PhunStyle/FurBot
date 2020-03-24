@@ -136,6 +136,25 @@ export function setGuildPrefix(guild_id, prefix) {
     });
 }
 
+
+export function getGuildCooldown(guild_id) {
+  return guildClient.hgetAsync(`guild_${guild_id}`, 'cooldown')
+    .then(cooldown => cooldown || nconf.get('MESSAGE_TTL'))
+    .timeout(2000)
+    .catch(err => {
+      sentry(err, 'getGuildCooldown');
+      return;
+    });
+}
+
+export function setGuildCooldown(guild_id, cooldown) {
+  return guildClient.hsetAsync(`guild_${guild_id}`, 'cooldown', cooldown)
+    .timeout(2000)
+    .catch(err => {
+      sentry(err, 'setGuildCooldown');
+    });
+}
+
 export function setOwnerSentWelcomeMessage(user_id) {
   return client.hsetAsync(`user_${user_id}`, 'welcome', 'true')
     .timeout(2000)
