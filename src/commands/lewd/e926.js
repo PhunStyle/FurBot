@@ -98,8 +98,7 @@ function tags(client, evt, suffix) {
             let tagsArray = body[i].tags.general.concat(body[i].tags.species, body[i].tags.character, body[i].tags.copyright, body[i].tags.artist, body[i].tags.invalid, body[i].tags.lore, body[i].tags.meta);
             if (tagsArray.includes('cub') || tagsArray.includes('shota') || tagsArray.includes('loli') || tagsArray.includes('young')) {
                 body.splice(i,1);
-            }
-            if (body[i].file.url == null) {
+            } else if (body[i].file.url == null) {
                 body.splice(i,1);
             }
           }

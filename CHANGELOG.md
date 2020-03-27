@@ -1,10 +1,18 @@
+<a  name="4.5.1" />
+# 4.5.1 (March 28th, 2020)
+
+### Bug Fixes
+- [FIX] e926 now works properly
+- [FIX] Server settings such as `prefix` and `cooldown` now get reset when you kick & re-invite the bot
+
+
 <a  name="4.5.0" />
 # 4.5.0 (March 24th, 2020)
 
 ### Features
 - [NEW] `cooldown` command to set a specific cooldown time between commands on your server.
   Currently this ***does*** affect command usage on other servers as well, so the maximum is 120.
-  
+
   This was done to have a reasonable maximum so that users in multiple servers that have the bot don't get trolled.
 
 - [NEW] You can now use `cooldown` and `prefix` without anything to see the current cooldown and prefix settings on the server.

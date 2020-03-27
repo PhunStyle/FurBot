@@ -17,6 +17,7 @@ import {
   getMessageTTL,
   setMessageTTL,
   getUserLang,
+  delGuildSettings,
   subscriber,
   publisher,
   ee
@@ -183,6 +184,11 @@ function onGuild(evt) {
   }
 }
 
+function onGuildDelete(guild) {
+  delGuildSettings(guild.guildId);
+  logger.warn('Guild [' + guild.guildId + '] has been deleted. Removing settings...')
+}
+
 function connect() {
   if (!nconf.get('TOKEN') || !nconf.get('CLIENT_ID')) {
     logger.error('Please setup TOKEN and CLIENT_ID in config.js to use FurBot');
@@ -193,22 +199,8 @@ function connect() {
 }
 
 function forceSetGame() {
-  setInterval(() => {
-    let gameArray = [
-      'f.help | f.info',
-      'f.changelog',
-      'f.actioninfo',
-      'f.pride',
-      'with pawbeans',
-      'with Esix',
-      'with furries',
-      'with tails'
-    ];
-    let randomGame = Math.floor(Math.random() * gameArray.length);
-    client.User.setGame(gameArray[randomGame]);
-  }, 120000)
+  client.User.setGame('f.help | f.info');
 }
-
 
 function forceFetchUsers() {
   logger.info('Force fetching users');
@@ -263,6 +255,7 @@ export function start() {
 
       client.Dispatcher.on('MESSAGE_CREATE', onMessage);
       client.Dispatcher.on('GUILD_CREATE', onGuild);
+      client.Dispatcher.on('GUILD_DELETE', onGuildDelete);
 
       if (argv.shardmode && !isNaN(argv.shardid) && !isNaN(argv.shardcount)) {
         subscriber.subscribe('active_shard');
