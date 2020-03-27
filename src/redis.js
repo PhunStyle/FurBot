@@ -155,6 +155,14 @@ export function setGuildCooldown(guild_id, cooldown) {
     });
 }
 
+export function delGuildSettings(guild_id) {
+  return guildClient.delAsync(`guild_${guild_id}`)
+    .timeout(2000)
+    .catch(err => {
+      sentry(err, 'delGuildSettings');
+    });
+}
+
 export function setOwnerSentWelcomeMessage(user_id) {
   return client.hsetAsync(`user_${user_id}`, 'welcome', 'true')
     .timeout(2000)
