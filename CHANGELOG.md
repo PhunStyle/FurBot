@@ -1,4 +1,14 @@
+<a  name="4.5.2" />
+
+# 4.5.2 (April 2nd, 2020)
+
+### Bug Fixes
+- [FIX] `changelog` command works fine again.
+- [FIX] Fixed a bug where using any image command would result in a really high cooldown time.
+
+
 <a  name="4.5.1" />
+
 # 4.5.1 (March 28th, 2020)
 
 ### Bug Fixes
@@ -7,6 +17,7 @@
 
 
 <a  name="4.5.0" />
+
 # 4.5.0 (March 24th, 2020)
 
 ### Features
@@ -22,6 +33,7 @@
 
 
 <a  name="4.4.9c" />
+
 # 4.4.9c (March 15th, 2020)
 
 ### Bug Fixes
@@ -29,6 +41,7 @@
 - [FIX] This was fixed earlier, but e926 actually works properly now.
 
 <a  name="4.4.9b" />
+
 # 4.4.9b (March 6th, 2020)
 
 ### Bug Fixes

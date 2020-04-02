@@ -77,7 +77,7 @@ function callCmd(cmd, name, client, evt, suffix) {
 
     let highCDList = ['blur', 'charcoal', 'flip', 'flop', 'greyscale', 'invert', 'magik', 'oilpaint', 'pixelate', 'pride', 'rotate'];
     let hasHighCD = (highCDList.indexOf(cmd.name) > -1);
-    if (hasHighCD) time = time + 20;
+    if (hasHighCD && time < 30) time = '30';
     setMessageTTL(user_id, time);
 
     return getUserLang(user_id).then(lang => {
