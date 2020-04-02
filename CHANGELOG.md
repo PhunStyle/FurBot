@@ -1,4 +1,4 @@
-<a  name="4.5.2" />
+<a name="4.5.2" />
 
 # 4.5.2 (April 2nd, 2020)
 
@@ -7,7 +7,7 @@
 - [FIX] Fixed a bug where using any image command would result in a really high cooldown time.
 
 
-<a  name="4.5.1" />
+<a name="4.5.1" />
 
 # 4.5.1 (March 28th, 2020)
 
@@ -16,7 +16,7 @@
 - [FIX] Server settings such as `prefix` and `cooldown` now get reset when you kick & re-invite the bot
 
 
-<a  name="4.5.0" />
+<a name="4.5.0" />
 
 # 4.5.0 (March 24th, 2020)
 
@@ -32,7 +32,7 @@
 - [FIX] Fixed something from the emoji command again.
 
 
-<a  name="4.4.9c" />
+<a name="4.4.9c" />
 
 # 4.4.9c (March 15th, 2020)
 
@@ -40,7 +40,7 @@
 - [FIX] Removed some of the emoji command's lines.
 - [FIX] This was fixed earlier, but e926 actually works properly now.
 
-<a  name="4.4.9b" />
+<a name="4.4.9b" />
 
 # 4.4.9b (March 6th, 2020)
 
