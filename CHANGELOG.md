@@ -1,3 +1,20 @@
+<a name="4.5.3" />
+
+# 4.5.3 (April 7th, 2020)
+
+### Features
+- [REMOVED] `overwatch`, `lol`, `dota` commands. Their APIs and code were extremely outdated and usage was low and not the main focus for the bot either. They might come back in the future, who knows.
+- [REMOVED] `chat` command for now. Trying to find a better alternative.
+- [REMOVED] `crypto` command. Public CoinMarketCap API was deprecated.
+- [NEW] `changelog` has updated formatting and a full changelog is available now, in case you missed something!
+
+### Bug Fixes
+- [FIX] `weather` command works once again by switching Geocoding Service provider.
+- [FIX] `derpibooru` command works once again by updating the code because derpibooru changed the way their API works!
+
+### Full Changelog
+https://fur.im/changelog/
+
 <a name="4.5.2" />
 
 # 4.5.2 (April 2nd, 2020)

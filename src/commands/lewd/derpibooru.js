@@ -79,7 +79,7 @@ function tags(client, evt, suffix) {
       if (checkLength.length > 6) return Promise.resolve(`\u26A0  |  You can only search up to 6 tags`);
 
       const options = {
-        url: `https://derpibooru.org/search.json?q=${query}`,
+        url: `https://derpibooru.org/api/v1/json/search/images?q=${query}`,
         qs: {
           key: `${apikey}`
         }
@@ -93,9 +93,9 @@ function tags(client, evt, suffix) {
       .map(() => {
         return _makeRequest(options)
         .then(count => {
-          let pages = Math.floor(Math.random() * Math.ceil(count.total / count.search.length));
+          let pages = Math.floor(Math.random() * Math.ceil(count.total / count.images.length));
           return _makeRequest({
-            url: `https://derpibooru.org/search.json?q=${query}`,
+            url: `https://derpibooru.org/api/v1/json/search/images?q=${query}`,
             qs: {
               key: `${apikey}`,
               page: `${pages}`
@@ -103,49 +103,49 @@ function tags(client, evt, suffix) {
           });
         })
         .then(body => {
-          if (!body || typeof body.search[0] === 'undefined' || typeof body === 'undefined' || body.search.length === 0) {
+          if (!body || typeof body.images[0] === 'undefined' || typeof body === 'undefined' || body.images.length === 0) {
              return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
           }
           if (body) {
-            //console.log('Body Before BL: ' + body);
-            //console.log('BodyLength Before BL: ' + body.search.length);
+            // console.log('Body Before BL: ' + body);
+            // console.log('BodyLength Before BL: ' + body.images.length);
             let i;
-            for (i = body.search.length - 1; i >= 0; i--) {
-              let tagsArray = body.search[i].tags.split(' ');
+            for (i = body.images.length - 1; i >= 0; i--) {
+              let tagsArray = body.images[i].tags;
               if (tagsArray.includes('cub') || tagsArray.includes('shota') || tagsArray.includes('loli') || tagsArray.includes('foalcon')) {
-                  body.search.splice(i,1);
+                  body.images.splice(i,1);
               }
             }
-            //console.log('Body After Default BL: ' + body);
-            //console.log('BodyLength After Default BL: ' + body.search.length);
+            // console.log('Body After Default BL: ' + body.images);
+            // console.log('BodyLength After Default BL: ' + body.images.length);
             // Apply blacklisting strictness
             if (value && removeValue === 'true') {
-              for (i = body.search.length - 1; i >= 0; i--) {
-                let tags = body.search[i].tags.split(' ');
+              for (i = body.images.length - 1; i >= 0; i--) {
+                let tags = body.images[i].tags;
                 if (findOne(blacklist, tags)) {
-                    body.search.splice(i,1);
+                    body.images.splice(i,1);
                 }
               }
-              //console.log('Body After Custom BL: ' + body);
-              //console.log('BodyLength After Custom BL: ' + body.search.length);
+              // console.log('Body After Custom BL: ' + body.images);
+              // console.log('BodyLength After Custom BL: ' + body.images.length);
             }
           }
-          if (count > body.search.length) {
-            count = body.search.length;
+          if (count > body.images.length) {
+            count = body.images.length;
           }
-          if (!body || typeof body.search[0] === 'undefined' || typeof body === 'undefined' || body.search.length === 0) {
+          if (!body || typeof body.images[0] === 'undefined' || typeof body === 'undefined' || body.images.length === 0) {
              return Promise.resolve(`\u26A0  |  No results for: \`${query}\``);
           }
           // Do some math
-          let randomid = Math.floor(Math.random() * body.search.length);
+          let randomid = Math.floor(Math.random() * body.images.length);
           currentPosition++;
           // Grab the data
-          let id = body.search[randomid].id;
-          let file = body.search[randomid].image;
-          let fileurl = `https:${file}`;
-          let height = body.search[randomid].height;
-          let width = body.search[randomid].width;
-          let score = body.search[randomid].score;
+          let id = body.images[randomid].id;
+          let file = body.images[randomid].representations.full;
+          let fileurl = file;
+          let height = body.images[randomid].height;
+          let width = body.images[randomid].width;
+          let score = body.images[randomid].score;
           let imageDescription = `**Score:** ${score} | **Resolution: ** ${width} x ${height} | [**Link**](https://derpibooru.org/${id})`;
           if (file) {
             if (file.endsWith('webm') || file.endsWith('swf')) {
@@ -155,11 +155,11 @@ function tags(client, evt, suffix) {
 
           // Apply blacklisting
           if (value) {
-            let tags = body.search[randomid].tags.split(', ');
+            let tags = body.images[randomid].tags;
             if (findOne(blacklist, tags)) {
               fileurl = null;
               let blacklistMatch = getOne(blacklist, tags);
-              imageDescription = `**BLACKLISTED** - Matched: \`${blacklistMatch}\` | [**Link**](https://e621.net/post/show/${id})`;
+              imageDescription = `**BLACKLISTED** - Matched: \`${blacklistMatch}\` | [**Link**](https://derpibooru.org/${id})`;
             }
           }
 
@@ -175,7 +175,7 @@ function tags(client, evt, suffix) {
             footer: { icon_url: 'http://i.imgur.com/qeJd6ST.png', text: 'derpibooru · ' + currentPosition + '/' + count }
           };
 
-          body.search.splice(randomid,1);
+          body.images.splice(randomid,1);
 
           return evt.message.channel.sendMessage('', false, embed);
         });

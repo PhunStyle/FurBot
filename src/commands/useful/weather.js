@@ -1,23 +1,62 @@
 import NodeGeocoder from 'node-geocoder';
 import Promise from 'bluebird';
+import R from 'ramda';
 import nconf from 'nconf';
 import DarkSky from 'dark-sky';
 import moment from 'moment-timezone';
+import _request from 'request';
 
 const forecast = new DarkSky(nconf.get('DARKSKY_KEY'));
 const options = { provider: 'google' };
 const geocoder = NodeGeocoder(options);
+const request = Promise.promisify(_request);
 
+
+function _makeRequest(options) {
+  let default_options = {
+    json: true,
+    headers: {
+      'User-Agent': 'PhunStyle/FurBot @ GitHub',
+      'x-rapidapi-host': 'trueway-geocoding.p.rapidapi.com',
+      'x-rapidapi-key': 'DUOUuBRwUrmshCg8eg6XSYyOjDBQp1dD3NYjsnE5ul5jvMhddA'
+    }
+  };
+
+  if (options.qs) options.qs = R.merge(default_options.qs, options.qs);
+  return request(R.merge(default_options, options, true))
+    .tap(res => {
+      // if (res.statusCode === 521) throw new ApiDown();
+    })
+    .then(R.prop('body'))
+    .tap(body => {
+      // if (body.error) throw new Error(body.error);
+    });
+}
 
 function weather(client, evt, suffix) {
+  const bot_avatar = client.User.getAvatarURL({format: 'png', size: 256, preferAnimated: false});
+
   let weatherData;
+
   let getGeolocation = function(location) {
-    return geocoder.geocode(location)
+    const options = {
+      url: 'https://trueway-geocoding.p.rapidapi.com/Geocode',
+      qs: {
+        language: 'en',
+        address: suffix
+      }
+    };
+    return _makeRequest(options)
     .then(res => {
-      weatherData = res;
-      return forecast.latitude(res[0].latitude).longitude(res[0].longitude).units('auto').get();
+      weatherData = res.results[0];
+      return forecast.latitude(weatherData.location.lat).longitude(weatherData.location.lng).units('auto').get();
+    })
+    .catch(err => {
+      let embed = { color: 15747399, description: `<:redTick:405749796603822080> Something went wrong, please [**notify**](https://discord.gg/TYr4PkZ) the developer!` };
+      evt.message.channel.sendMessage('', false, embed);
     });
   };
+
   getGeolocation(suffix)
   .then(final => {
     let units;
@@ -48,8 +87,8 @@ function weather(client, evt, suffix) {
     let embed = {
       color: 6697881,
       author: {
-        name: `Weather report for ${weatherData[0].formattedAddress}`,
-        icon_url: 'https://cdn.discordapp.com/avatars/174186616422662144/e6b8c266186a60f6b947d1635c09459e.jpg' // eslint-disable-line camelcase
+        name: `Weather report for ${weatherData.address}`,
+        icon_url: bot_avatar
       },
       description: `${final.hourly.summary}`,
       fields: [
