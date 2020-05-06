@@ -13,13 +13,14 @@ function pride(client, evt, suffix, lang) {
   let flagSuffix = suffix.split(' ')[0];
 
   if (flagSuffix === 'gay') flagSuffix = 'rainbow';
+  if (flagSuffix === 'lgbt') flagSuffix = 'rainbow';
   if (flagSuffix === 'bi') flagSuffix = 'bisexual';
   if (flagSuffix === 'pan') flagSuffix = 'pansexual';
   if (flagSuffix === 'trans') flagSuffix = 'transgender';
   if (flagSuffix === 'enby') flagSuffix = 'nonbinary';
   if (flagSuffix === 'ally') flagSuffix = 'straightally';
 
-  let flagArray = ['ace', 'bear', 'bisexual', 'genderfluid', 'genderqueer', 'lesbian', 'nonbinary', 'pansexual', 'rainbow', 'straight', 'straightally', 'transgender'];
+  let flagArray = ['ace', 'aro', 'aroace', 'bear', 'bisexual', 'demi', 'genderfluid', 'genderqueer', 'lesbian', 'nonbinary', 'pansexual', 'rainbow', 'rainbowpastel', 'straight', 'straightally', 'transgender'];
   let validSuffix = (flagArray.indexOf(flagSuffix) > -1);
   let doStraight;
   let doBorder = suffix.includes('border');

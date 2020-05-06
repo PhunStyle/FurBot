@@ -1,3 +1,19 @@
+<a name="4.5.4" />
+
+# 4.5.4 (May 6th, 2020)
+
+### Features
+Pride command features:
+- [ADDED] Aro Flag
+- [ADDED] AroAce Flag
+- [ADDED] Demi Flag
+- [UPDATED] Rainbow Flag
+- [ADDED] Rainbow Flag (Pastel version)
+
+### Full Changelog
+https://fur.im/changelog/
+
+
 <a name="4.5.3" />
 
 # 4.5.3 (April 7th, 2020)
