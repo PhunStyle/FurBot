@@ -33,7 +33,23 @@ function pride(client, evt, suffix, lang) {
   }
 
   if (!suffix || !validSuffix) {
-    return Promise.resolve(`${T('pride_usage', lang)}`);
+    let prideInfo = `**How to use | \`f.pride flag options\`**
+
+__Available options are:__
+\u00B7 \`rotated\` - This rotates the flag 60 degrees
+\u00B7 \`border\` - This will only apply the outer circle of the flag, with a transparent inner circle
+\u00B7 \`overlay\` - This will put a 35% transparent version over your entire avatar
+\u00B7 \`background\` - This will make the flag the background of your avatar if you have a transparent avatar
+
+__Available flagnames are:__
+\`ace\`, \`aro\`, \`aroace\`, \`bear\`, \`bisexual\`, \`demi\`, \`genderfluid\`, \`genderqueer\`, \`lesbian\`, \`nonbinary\`, \`pansexual\`, \`rainbow\`, \`rainbowpastel\`, \`straight\`, \`straightally\`, \`transgender\`
+
+__Example command:__
+\`f.pride rainbowpastel border rotated\`
+
+Happy pride everyone! <:prideMonth:454267469226311681>`;
+
+    return evt.message.channel.sendMessage(prideInfo);
   }
 
   let image = data[1];
