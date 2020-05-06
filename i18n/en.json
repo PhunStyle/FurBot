@@ -119,7 +119,6 @@
   "popkey_usage": "Usage: **`f.popkey`** `gif tags`",
   "prefix": "Set a new prefix for FurBot for the server!",
   "pride": "Turn your boring avatar into one for Pride Month. Show your colors!",
-  "pride_usage": "Usage: `f.pride flagname` | Optionally you can add `rotated` for a rotated background. Or `border` for just the border (if your avatar is transparent). Or `overlay` to put the flag OVER your avatar. Or `background` if you want the flag as background.\n\nAvailable flagnames are:\n`ace`, `bear`, `bisexual`, `genderfluid`, `genderqueer`, `lesbian`, `nonbinary`, `pansexual`, `rainbow`, `straight`, `straightally`, `transgender`\n\nHappy pride month! <:prideMonth:454267469226311681>",
   "prune": "Prune the given amount of messages. If no number is written, prunes 10. (Max 100)",
   "pug": "Posts pictures of adorable pugs",
   "quote": "Responds with a quote, if no number is written, a random one",
