@@ -1,3 +1,22 @@
+<a name="4.5.5" />
+
+# 4.5.5 (June 2nd, 2020)
+
+### Features
+- [ADDED] `f.blm` command with donation information etc.
+- [ADDED] Demiboy Flag
+- [ADDED] Demigirl Flag
+- [ADDED] The new Pride flag with PoC / Trans inclusion, this is now the default. Old flag still available
+- [CHANGED] The demi flag is now labeled demisexual
+
+### Bug Fixes
+- [FIX] External Images used for the pride command now center and resize/crop correctly instead of repeating
+- [FIX] Removed the "Cute" shindan result and replaced it with "Adorable". Should fix weird issue?
+
+### Full Changelog
+https://fur.im/changelog/
+
+
 <a name="4.5.4" />
 
 # 4.5.4 (May 6th, 2020)

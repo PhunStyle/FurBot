@@ -12,15 +12,16 @@ function pride(client, evt, suffix, lang) {
 
   let flagSuffix = suffix.split(' ')[0];
 
-  if (flagSuffix === 'gay') flagSuffix = 'rainbow';
-  if (flagSuffix === 'lgbt') flagSuffix = 'rainbow';
+  if (flagSuffix === 'gay') flagSuffix = 'rainbownew';
+  if (flagSuffix === 'lgbt') flagSuffix = 'rainbownew';
   if (flagSuffix === 'bi') flagSuffix = 'bisexual';
   if (flagSuffix === 'pan') flagSuffix = 'pansexual';
   if (flagSuffix === 'trans') flagSuffix = 'transgender';
   if (flagSuffix === 'enby') flagSuffix = 'nonbinary';
   if (flagSuffix === 'ally') flagSuffix = 'straightally';
+  if (flagSuffix === 'demi') flagSuffix = 'demisexual';
 
-  let flagArray = ['ace', 'aro', 'aroace', 'bear', 'bisexual', 'demi', 'genderfluid', 'genderqueer', 'lesbian', 'nonbinary', 'pansexual', 'rainbow', 'rainbowpastel', 'straight', 'straightally', 'transgender'];
+  let flagArray = ['ace', 'aro', 'aroace', 'bear', 'bisexual', 'demiboy', 'demigirl', 'demisexual', 'genderfluid', 'genderqueer', 'lesbian', 'nonbinary', 'pansexual', 'rainbow', 'rainbownew', 'rainbowpastel', 'straight', 'straightally', 'transgender'];
   let validSuffix = (flagArray.indexOf(flagSuffix) > -1);
   let doStraight;
   let doBorder = suffix.includes('border');
@@ -42,7 +43,7 @@ __Available options are:__
 \u00B7 \`background\` - This will make the flag the background of your avatar if you have a transparent avatar
 
 __Available flagnames are:__
-\`ace\`, \`aro\`, \`aroace\`, \`bear\`, \`bisexual\`, \`demi\`, \`genderfluid\`, \`genderqueer\`, \`lesbian\`, \`nonbinary\`, \`pansexual\`, \`rainbow\`, \`rainbowpastel\`, \`straight\`, \`straightally\`, \`transgender\`
+\`ace\`, \`aro\`, \`aroace\`, \`bear\`, \`bisexual\`, \`demiboy\`, \`demigirl\`, \`demisexual\`, \`genderfluid\`, \`genderqueer\`, \`lesbian\`, \`nonbinary\`, \`pansexual\`, \`rainbow\`, \`rainbownew\`, \`rainbowpastel\`, \`straight\`, \`straightally\`, \`transgender\`
 
 __Example command:__
 \`f.pride rainbowpastel border rotated\`
@@ -69,7 +70,10 @@ Happy pride everyone! <:prideMonth:454267469226311681>`;
   if (!doOverlay && !doBackground && !doStraight) {
     return new Promise((resolve, reject) => {
       gm(request(image))
-      .resize('236', '236')
+      .resize('236', '236', '^')
+      .gravity('Center')
+      .crop('236', '236')
+      //.resize('^236')
       // .crop(236, 236, 0, 0)
       .write(output, (err, buf) => {
         if (err) {
@@ -79,7 +83,7 @@ Happy pride everyone! <:prideMonth:454267469226311681>`;
         }
         gm(236, 236, 'none')
         .fill(output)
-        .drawCircle((236 / 2) - 1, (236 / 2) - 1, (236 / 2) - 1, 0)
+        .drawCircle((236 / 2), (236 / 2), (236 / 2), 0)
         .write(output, (err, finalbuf) => {
           if (err) {
             let embed = { color: 15747399, description: `<:redTick:405749796603822080> Something went wrong. Make sure you use the command correctly!` };
