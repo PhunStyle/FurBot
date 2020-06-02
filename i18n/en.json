@@ -26,6 +26,7 @@
   "blacklist_strict": "Change whether to **SHOW** or **REMOVE** blacklisted results (Default is SHOW)",
   "blacklist_usage": "Use the command like this: `f.blacklist set blood, gore` | It is important to use commas (,) to separate tags.",
   "blacklist_usage_add": "Use the command like this: `f.blacklist add blood, gore` | It is important to use commas (,) to separate tags.",
+  "blm": "Black Lives Matter information command",
   "cat": "Posts pictures of adorable cats",
   "champgg_setup": "Please setup Champion.gg in config.js to use the **`f.lol`** command.",
   "channelinfo": "Gives information about this channel, unless a name is specified",

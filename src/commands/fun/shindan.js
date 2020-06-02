@@ -7,8 +7,8 @@ function shindan(client, evt, suffix) {
       color: 3329023,
       description: 'Usage: `f.shindan topic` | See all available shindan below:',
       fields: [
-        { name: 'cute',
-          value: 'Check cuteness level',
+        { name: 'adorable',
+          value: 'Check adorableness level',
           inline: true },
         { name: 'perverted',
           value: 'Check how perverted you are',
@@ -65,8 +65,8 @@ function shindan(client, evt, suffix) {
   }
 
   switch (suffix) {
-    case 'cute':
-      shindanID = 587327;
+    case 'adorable':
+      shindanID = 619296;
       break;
     case 'perverted':
       shindanID = 289267;
