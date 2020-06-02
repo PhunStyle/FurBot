@@ -21,7 +21,7 @@ function pride(client, evt, suffix, lang) {
   if (flagSuffix === 'ally') flagSuffix = 'straightally';
   if (flagSuffix === 'demi') flagSuffix = 'demisexual';
 
-  let flagArray = ['ace', 'aro', 'aroace', 'bear', 'bisexual', 'demisexual', 'demiboy', 'demigirl', 'genderfluid', 'genderqueer', 'lesbian', 'nonbinary', 'pansexual', 'rainbow', 'rainbownew', 'rainbowpastel', 'straight', 'straightally', 'transgender'];
+  let flagArray = ['ace', 'aro', 'aroace', 'bear', 'bisexual', 'demiboy', 'demigirl', 'demisexual', 'genderfluid', 'genderqueer', 'lesbian', 'nonbinary', 'pansexual', 'rainbow', 'rainbownew', 'rainbowpastel', 'straight', 'straightally', 'transgender'];
   let validSuffix = (flagArray.indexOf(flagSuffix) > -1);
   let doStraight;
   let doBorder = suffix.includes('border');
@@ -43,7 +43,7 @@ __Available options are:__
 \u00B7 \`background\` - This will make the flag the background of your avatar if you have a transparent avatar
 
 __Available flagnames are:__
-\`ace\`, \`aro\`, \`aroace\`, \`bear\`, \`bisexual\`, \`demi\`, \`genderfluid\`, \`genderqueer\`, \`lesbian\`, \`nonbinary\`, \`pansexual\`, \`rainbow\`, \`rainbowpastel\`, \`straight\`, \`straightally\`, \`transgender\`
+\`ace\`, \`aro\`, \`aroace\`, \`bear\`, \`bisexual\`, \`demiboy\`, \`demigirl\`, \`demisexual\`, \`genderfluid\`, \`genderqueer\`, \`lesbian\`, \`nonbinary\`, \`pansexual\`, \`rainbow\`, \`rainbownew\`, \`rainbowpastel\`, \`straight\`, \`straightally\`, \`transgender\`
 
 __Example command:__
 \`f.pride rainbowpastel border rotated\`
