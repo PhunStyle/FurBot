@@ -1,7 +1,7 @@
 function blm(client, evt) {
   let message = `Hello FurBot User,
 
-We enter Pride Month :prideMonth:  this year with a bit of a sour taste in our mouths. Because of the events of the past days and the ones still on-going, I think it's important to use this platform, however small it may be, to spread this message.
+We enter Pride Month <:prideMonth:454267469226311681>  this year with a bit of a sour taste in our mouths. Because of the events of the past days and the ones still on-going, I think it's important to use this platform, however small it may be, to spread this message.
 
 In addition to providing the links below ***all  proceeds of the FurBot Patreon (https://www.patreon.com/Phun) for June & July*** will go to charity.
 That being said, **please donate to them directly** if you can - since patreon does take a % of earnings.
