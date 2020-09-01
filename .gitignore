@@ -54,3 +54,6 @@ sharding_test.json
 
 # Do not upload this script
 scripts/sharding/mvdb.js
+
+# Do not upload temporary files
+src/images/tmp/*.png
