@@ -1,3 +1,17 @@
+<a name="4.5.6" />
+
+# 4.5.6 (September 1st, 2020)
+
+### Features
+- [ADDED] `f.godiwish` stupid meme
+
+### Bug Fixes
+- [FIX] All image commands now have a 15 second cooldown instead of 30.
+
+### Full Changelog
+https://fur.im/changelog/
+
+
 <a name="4.5.5" />
 
 # 4.5.5 (June 2nd, 2020)
