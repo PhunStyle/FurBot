@@ -14,7 +14,9 @@ function truncateUsername(str, num) {
 }
 
 function godiwish(client, evt, suffix) {
-  evt.message.delete();
+  if (!evt.message.channel.isPrivate) {
+    evt.message.delete();
+  }
   let data = getImageLink(client, evt, suffix);
 
   let intensity = parseInt(data[0], 10);
@@ -83,8 +85,6 @@ function godiwish(client, evt, suffix) {
     });
   });
 }
-
-
 
 export default {
   godiwishthatwereme: godiwish,
