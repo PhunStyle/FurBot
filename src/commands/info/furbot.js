@@ -22,7 +22,8 @@ https://discord.gg/4FRcCzP`;
 }
 
 export default {
-  furbot
+  furbot,
+  furbotv2: furbot
 };
 
 export const help = {

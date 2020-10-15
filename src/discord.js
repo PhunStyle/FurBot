@@ -199,7 +199,7 @@ function connect() {
 }
 
 function forceSetGame() {
-  client.User.setGame('f.help | f.info');
+  client.User.setGame('f.furbotv2');
 }
 
 function forceFetchUsers() {
