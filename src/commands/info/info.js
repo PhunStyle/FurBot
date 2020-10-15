@@ -57,7 +57,7 @@ function botinfo(client, evt, suffix, lang, json) {
               value: `[Click Here](https://www.patreon.com/bePatron?u=5578447)`,
               inline: true },
             { name: '\uD83D\uDEAA FurBot Server:',
-              value: `[Click Here](https://discord.gg/H7W49Ps)`,
+              value: `[Click Here](https://discord.gg/4FRcCzP)`,
               inline: true }
           ]
         };
