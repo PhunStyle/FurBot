@@ -60,10 +60,6 @@ function shindan(client, evt, suffix) {
   let authorName = evt.message.author.username;
   let shindanID;
 
-  if (!evt.message.channel.isPrivate) {
-    authorName = evt.message.member.name;
-  }
-
   switch (suffix) {
     case 'adorable':
       shindanID = 619296;
