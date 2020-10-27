@@ -57,3 +57,6 @@ scripts/sharding/mvdb.js
 
 # Do not upload temporary files
 src/images/tmp/*.png
+
+# Do not upload bash files
+*.sh

@@ -7,14 +7,14 @@ import { cleanName } from '../../helpers';
 function spank(client, evt) {
   if (evt.message.channel.isPrivate) return evt.message.channel.sendMessage('', false, {color: 3901635, description: `\u2139 Use this command in a server!`});
 
-  let authorName = cleanName(evt.message.member.name);
+  let authorName = cleanName(evt.message.author.username);
 
   let receiverArray = [];
   let receivers = '';
 
   if (evt.message.mentions.length !== 0) {
     evt.message.mentions.map(user => {
-      let receiverName = cleanName(user.memberOf(evt.message.guild).name);
+      let receiverName = cleanName(user.username);
       if (user !== evt.message.author && !user.bot) receiverArray.push(`**${receiverName}**`);
     });
 

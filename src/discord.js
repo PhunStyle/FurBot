@@ -197,13 +197,8 @@ function connect() {
 }
 
 function forceSetGame() {
+  logger.info('Setting Game Presence');
   client.User.setGame('f.furbotv2');
-}
-
-function forceFetchUsers() {
-  logger.info('Force fetching users');
-  client.Users.fetchMembers();
-  setTimeout(forceSetGame, 60000);
 }
 
 if (argv.shardmode && !isNaN(argv.shardid) && !isNaN(argv.shardcount)) {
@@ -237,7 +232,7 @@ export function start() {
   // Listen for events on Discord
   client.Dispatcher.on('GATEWAY_READY', () => {
     logger.success(`Started successfully. Connected to ${client.Guilds.length} servers.`);
-    setTimeout(forceFetchUsers, 60000);
+    setTimeout(forceSetGame, 60000);
 
     if (!initialized) {
       initialized = true;
