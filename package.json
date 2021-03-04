@@ -87,7 +87,7 @@
   },
   "scripts": {
     "build": "concurrent 'npm run build-js'",
-    "build-js": "rm -rf ./dist && babel src --out-dir dist --copy-files",
+    "build-js": "rm -rf './dist' && babel src --out-dir dist --copy-files",
     "debug": "npm run build && DEBUG=horseman node-debug --no-preload ./index.js",
     "dev": "NODE_ENV=development DEBUG=express:*,horseman nodemon -i **/*.marko.js -e js,marko ./index.js",
     "dev-nodebug": "NODE_ENV=development nodemon -i **/*.marko.js -e js,marko ./index.js",
