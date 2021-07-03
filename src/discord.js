@@ -198,7 +198,7 @@ function connect() {
 
 function forceSetGame() {
   logger.info('Setting Game Presence');
-  client.User.setGame('f.furbotv2');
+  client.User.setGame('f.help | f.info');
 }
 
 if (argv.shardmode && !isNaN(argv.shardid) && !isNaN(argv.shardcount)) {
