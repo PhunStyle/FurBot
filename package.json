@@ -23,7 +23,7 @@
     "discordie": "github:qeled/discordie#dev",
     "dogapi": "2.3.0",
     "entities": "1.1.1",
-    "express": "4.15.2",
+    "express": "4.19.2",
     "forever": "0.15.3",
     "gizoogle": "0.0.6",
     "glob": "6.0.3",
